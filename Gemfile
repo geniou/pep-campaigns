@@ -36,3 +36,9 @@ gem 'jquery-rails'
 
 # To use debugger
 # gem 'debugger'
+
+group :test do
+  gem "rspec-rails",      ">= 2.0.0.beta"
+  gem "autotest"
+  gem "autotest-rails"
+end
