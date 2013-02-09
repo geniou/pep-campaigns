@@ -1,0 +1,11 @@
+%h1 Contact Details
+
+= render :partial => "admin/contacts/details", :locals => { :contact => @contact }
+
+%h2 Applications Made
+
+= render :partial => "admin/applications/table", :locals => { :applications => @contact.applications }
+
+%h2 References Given
+
+= render :partial => "admin/references/table", :locals => { :references => @contact.references }
