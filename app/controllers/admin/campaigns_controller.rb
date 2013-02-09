@@ -12,13 +12,23 @@ class Admin::CampaignsController < Admin::BaseController
     @campaign = Campaign.new
   end
 
-  def show
+  def edit
+    @campaign = Campaign.find(params[:id])
   end
 
   def create
     @campaign = Campaign.new(params[:campaign])
     if @campaign.save
       redirect_to admin_campaigns_path, :notice => "Kampagne angelegt."
+    else
+      render :action => 'new'
+    end
+  end
+  
+  def update
+    @campaign = Campaign.find(params[:id])
+    if @campaign.update_attributes(params[:campaign])
+      redirect_to admin_campaigns_path, :notice => "Kampagne bearbeitet."
     else
       render :action => 'new'
     end

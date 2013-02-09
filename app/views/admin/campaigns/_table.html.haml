@@ -5,18 +5,13 @@
         %th Name
         %th
         %th
-        %th Link for Applications
-        %th Actions
+        %th
     %tbody
       - campaigns.each do |campaign|
         %tr
           %td= campaign.name
           %td= link_to 'Fragen ansehen', admin_campaign_questions_path(campaign_id: campaign.id)
-          %td= link_to 'öffentlicher Link', new_campaign_application_url(campaign)
-          %td= link_to new_campaign_application_url(campaign), new_campaign_application_url(campaign)
-          %td
-            = link_to "Show Campaign", admin_campaign_path(campaign)
-            |
-            = link_to "Edit Campaign", edit_admin_campaign_path(campaign)
+          %td= link_to 'Link für Bewerber', new_campaign_application_url(campaign)
+          %td= link_to "bearbeiten", edit_admin_campaign_path(campaign.id)
 - else
   %p None
