@@ -2,24 +2,27 @@ require 'spec_helper'
 
 describe ReferencesController do
 
-  describe "supply" do
+  describe "new" do
 
     before :each do
-      @reference = FactoryGirl.create(:reference)
+      @campaign = FactoryGirl.create(:campaign)
+      @application = FactoryGirl.create(:application, :campaign => @campaign)
     end
 
     def do_request(params = {})
-      get :supply, { :id => @reference.hashed_id }.update(params)
+      get :new, { :application_id => @application.hashed_id,
+                  :campaign_id => @campaign.hashed_id }.update(params)
     end
 
-    it "should render the submission form for a valid reference" do
+    it "should render the reference submission form for a valid application" do
       do_request
       assert_response :ok
+      assigns[:reference].should be_instance_of(Reference)
     end
 
     it "should render 404 for an invalid hash" do
       lambda {
-        do_request(:id => "#{@reference.hashed_id}garbage")
+        do_request(:application_id => "#{@application.hashed_id}garbage")
       }.should raise_error(ActionController::RoutingError)
     end
 
