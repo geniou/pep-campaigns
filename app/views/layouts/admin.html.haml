@@ -1,0 +1,15 @@
+%html
+  %head
+    %title PEP Admin
+    %meta{ charset: "utf-8" }/
+    = stylesheet_link_tag 'application', :media => 'all'
+    = javascript_include_tag "application"
+  %body.admin
+    %nav
+      %li= link_to('Campaigns', admin_campaigns_path)
+      %li= link_to('Applications', admin_applications_path)
+      %li= link_to('Logout', destroy_admin_session_path, method: :delete)
+    #content
+      .notice= notice
+      .alert= alert
+      = yield

@@ -18,7 +18,7 @@ PepCampaigns::Application.routes.draw do
   end
 
   namespace :admin do
-    root :to => 'root#index'
+    root :to => 'campaigns#index'
 
     resources :campaigns do
       resources :questions

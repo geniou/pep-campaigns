@@ -19,7 +19,7 @@ feature 'Admin section' do
   end
 
   def need_to_login
-    page.should_not have_selector('h1', text: 'PEP Admin Section')
+    page.should_not have_selector('h1', text: 'Kampagnen')
     page.should have_selector('h2', text: 'Sign in')
   end
 
@@ -31,6 +31,6 @@ feature 'Admin section' do
   end
 
   def see_admin_section
-    page.should have_selector('h1', text: 'PEP Admin Section')
+    page.should have_selector('h1', text: 'Kampagnen')
   end
 end
