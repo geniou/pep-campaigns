@@ -1,0 +1,8 @@
+%h1 neue Frage
+
+= semantic_form_for [:admin, :campaign, @question] do |f|
+  = f.input :type, as: :select, collection: { 'für Bewerber' => 'Question::Application', 'für Referenzen' => 'Question::Reference'}
+  = f.input :text
+
+  = f.actions do
+    = f.action :submit, as: :button, label: 'Fragen anlegen'

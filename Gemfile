@@ -16,7 +16,7 @@ group :test, :development do
   gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'headless'
-  gem 'spork'
+  gem 'spork-rails'
   gem 'capistrano'
   gem 'awesome_print'
   gem "factory_girl_rails"

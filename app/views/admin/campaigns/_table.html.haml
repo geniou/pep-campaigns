@@ -3,10 +3,13 @@
     %thead
       %tr
         %th Name
+        %th
+        %th
     %tbody
       - campaigns.each do |campaign|
         %tr
           %td= campaign.name
-          %td= link_to new_campaign_application_url(campaign), new_campaign_application_url(campaign)
+          %td= link_to 'Fragen ansehen', admin_campaign_questions_path(campaign_id: campaign.id)
+          %td= link_to 'öffentlicher Link', new_campaign_application_url(campaign)
 - else
   %p None

@@ -1,0 +1,9 @@
+%h1 Fragen zur Kampagne #{@campaign.name}
+
+= link_to 'Frage anlegen', new_admin_campaign_question_path(campaign_id: @campaign.id)
+
+%h2 Fragen für Bewerber
+= render partial: 'table', locals: { questions: @application_questions }
+
+%h2 Fragen für Referenzen
+= render partial: 'table', locals: { questions: @reference_questions }

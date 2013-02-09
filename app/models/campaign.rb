@@ -4,6 +4,9 @@ class Campaign < ActiveRecord::Base
   include HashedId
 
   attr_accessible :name
+  has_many :questions
+  has_many :application_questions, class_name: 'Question::Application'
+  has_many :reference_questions,   class_name: 'Question::Reference'
 
   def to_param
     hashed_id
