@@ -1,7 +1,9 @@
 class Admin::CampaignsController < Admin::BaseController
 
   def index
-    @campaigns = Campaign.all
+    @open_campaigns = Campaign.open_to_applicants.all
+    @referee_open_campaigns = Campaign.only_open_to_referees.all
+    @closed_campaigns = Campaign.closed.all
   end
 
   def new

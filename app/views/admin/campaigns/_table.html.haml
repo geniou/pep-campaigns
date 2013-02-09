@@ -1,0 +1,12 @@
+- if campaigns.size > 0
+  %table.campaigns
+    %thead
+      %tr
+        %th Name
+    %tbody
+      - campaigns.each do |campaign|
+        %tr
+          %td= campaign.name
+          %td= link_to new_campaign_application_url(campaign), new_campaign_application_url(campaign)
+- else
+  %p None

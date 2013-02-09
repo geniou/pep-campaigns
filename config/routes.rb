@@ -21,6 +21,7 @@ PepCampaigns::Application.routes.draw do
     root :to => 'root#index'
 
     resources :campaigns
+    resources :applications
   end
 
 end
