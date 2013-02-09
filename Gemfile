@@ -9,6 +9,6 @@ gem 'haml-rails'
 gem 'uglifier'
 gem 'devise'
 
-group :test do
+group :test, :development do
   gem "rspec-rails"
 end
