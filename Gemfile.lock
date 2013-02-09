@@ -68,7 +68,6 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    ffi (1.0.11)
     haml (3.1.7)
     haml-rails (0.3.5)
       actionpack (>= 3.1, < 4.1)
@@ -182,6 +181,7 @@ DEPENDENCIES
   coffee-rails
   database_cleaner
   devise
+  factory_girl
   haml-rails
   headless
   jquery-rails

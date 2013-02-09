@@ -18,4 +18,5 @@ group :test, :development do
   gem 'spork'
   gem 'capistrano'
   gem 'awesome_print'
+  gem "factory_girl"
 end
