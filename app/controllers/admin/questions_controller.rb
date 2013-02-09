@@ -16,7 +16,7 @@ class Admin::QuestionsController < Admin::BaseController
     else
       @campaign.reference_questions
     end.new(params[:question].except(:type))
-    
+
     if @question.save
       redirect_to admin_campaign_questions_path(campaign_id: @campaign.id), :notice => "Frage angelegt."
     else
@@ -25,7 +25,7 @@ class Admin::QuestionsController < Admin::BaseController
   end
 
   private
-  
+
   def load_campaign
     @campaign = Campaign.find(params[:campaign_id])
   end

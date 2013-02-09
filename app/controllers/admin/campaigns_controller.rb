@@ -24,7 +24,7 @@ class Admin::CampaignsController < Admin::BaseController
       render :action => 'new'
     end
   end
-  
+
   def update
     @campaign = Campaign.find(params[:id])
     if @campaign.update_attributes(params[:campaign])

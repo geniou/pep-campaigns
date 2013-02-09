@@ -1,4 +1,4 @@
-class Admin::ApplicationsController < ApplicationController
+class Admin::ApplicationsController < Admin::BaseController
 
   before_filter :find_application, :only => [ :show ]
 
