@@ -10,3 +10,4 @@
     - @campaigns.each do |campaign|
       %tr
         %td= campaign.name
+        %td= link_to new_campaign_application_url(campaign), new_campaign_application_url(campaign)
