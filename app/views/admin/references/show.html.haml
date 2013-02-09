@@ -1,0 +1,5 @@
+%h1= "Reference for #{@reference.application.name}"
+
+%h2 Answers
+= render :partial => "admin/answers/table", :locals => { :answers => @reference.answers }
+

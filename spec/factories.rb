@@ -25,6 +25,7 @@ FactoryGirl.define do
   factory :reference do
     association :campaign
     association :contact
+    association :application
   end
 
   factory :application do

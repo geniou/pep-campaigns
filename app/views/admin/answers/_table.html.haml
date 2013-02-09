@@ -1,0 +1,10 @@
+%table.answers
+  %thead
+    %tr
+      %th Frage
+      %th Antwort
+  %tbody
+    - answers.each do |answer|
+      %tr
+        %td= answer.question.text
+        %td= answer.text
