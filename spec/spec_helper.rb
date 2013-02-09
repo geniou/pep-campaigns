@@ -9,6 +9,8 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'database_cleaner'
 
+  Capybara.javascript_driver = :webkit
+
   RSpec.configure do |config|
     config.include FactoryGirl::Syntax::Methods
 
