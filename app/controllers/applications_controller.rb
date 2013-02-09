@@ -17,6 +17,7 @@ class ApplicationsController < ApplicationController
     else
       @application = @contact.applications.build(params[:application])
       @application.campaign = @campaign
+      @application.answers = read_answers_from_params(params)
       if !@application.save
         render :new
       else
@@ -29,6 +30,16 @@ class ApplicationsController < ApplicationController
   end
 
 private
+
+  def read_answers_from_params(params)
+    params.select { |k,v| k.to_s.start_with?("answer_") }.collect do |key, text|
+      question_id = key.split(/_/).last
+      next unless question_id
+      question = Question.find_by_id(question_id)
+      next unless question
+      Answer::Application.new(:question => question, :text => text)
+    end
+  end
 
   def find_campaign
     @campaign = Campaign.find_by_hashed_id(params[:campaign_id]) || raise(ActionController::RoutingError.new("Not Found"))

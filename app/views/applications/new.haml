@@ -20,4 +20,12 @@
     %h2 Who's with you?
     %p Add team member
 
+  %div{"id" => "questions"}
+    %ol
+      - @campaign.application_questions.each do |question|
+        %li
+          %p= question.text
+          = text_area_tag "answer_#{question.id}", nil, :cols => 80, :rows => 3
+          %hr
+
   = f.submit "Jetzt bewerben"
