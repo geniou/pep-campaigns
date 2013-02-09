@@ -10,7 +10,7 @@ class Application < ActiveRecord::Base
   belongs_to :campaign
   has_many :references
   has_many :team_members
-  has_many :answers, class_name: 'Answer::Application'
+  has_many :answers, class_name: 'Answer::GrantApplication'
 
   validates_presence_of :contact
   validates_presence_of :campaign

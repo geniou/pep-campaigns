@@ -17,7 +17,7 @@ class ApplicationsController < SurveyController
     else
       @application = @contact.applications.build(params[:application])
       @application.campaign = @campaign
-      @application.answers = read_answers_from_params(params, Answer::Application)
+      @application.answers = read_answers_from_params(params, Answer::GrantApplication)
       if !@application.save
         render :new
       else

@@ -1,0 +1,7 @@
+%div{"id" => "questions"}
+  %ol
+    - questions.each do |question|
+      %li
+        %p= question.text
+        = text_area_tag "answer_#{question.id}", nil, :cols => 80, :rows => 3
+        %hr

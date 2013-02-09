@@ -15,4 +15,6 @@
   %div{"id" => "reference_details"}
     %p Questions about your reference
 
+  = render :partial => 'shared/questions', :locals => { :questions => @campaign.reference_questions }
+
   = f.submit "Submit"

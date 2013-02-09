@@ -80,8 +80,10 @@ describe ApplicationsController do
       end
 
       lambda {
-        do_request(@answers)
-      }.should change(Application, :count)
+        lambda {
+          do_request(@answers)
+        }.should change(Application, :count)
+      }.should change(Answer::GrantApplication, :count).by(6)
     end
 
   end
