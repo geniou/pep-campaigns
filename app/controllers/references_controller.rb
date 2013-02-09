@@ -10,7 +10,7 @@ class ReferencesController < ApplicationController
 private
 
   def find_reference
-    @reference = Reference.find_by_hashed_id(params[:id]) || render(:text => "not found", :status => :not_found)
+    @reference = Reference.find_by_hashed_id(params[:id]) || raise(ActionController::RoutingError.new("Not Found"))
   end
 
 end

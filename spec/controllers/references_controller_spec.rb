@@ -18,8 +18,9 @@ describe ReferencesController do
     end
 
     it "should render 404 for an invalid hash" do
-      do_request(:id => "#{@reference.hashed_id}garbage")
-      assert_response :not_found
+      lambda {
+        do_request(:id => "#{@reference.hashed_id}garbage")
+      }.should raise_error(ActionController::RoutingError)
     end
 
   end
