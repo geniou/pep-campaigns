@@ -19,7 +19,7 @@ class ReferencesController < SurveyController
       @reference = @contact.references.build(params[:reference])
       @reference.campaign = @campaign
       @reference.application = @application
-      @reference.answers = read_answers_from_params(params, Answer::Reference)
+      @reference.answers = read_answers_from_params(params, "Answer::Reference".constantize)
       if !@reference.save
         render :new
       else
