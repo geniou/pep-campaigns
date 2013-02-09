@@ -8,6 +8,7 @@ gem 'coffee-rails'
 gem 'haml-rails'
 gem 'uglifier'
 gem 'devise'
+gem 'formtastic'
 
 group :test, :development do
   gem "rspec-rails"

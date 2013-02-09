@@ -1,0 +1,12 @@
+%h1 Campaigns
+
+= link_to 'Kampagne anlegen', new_admin_campaign_path
+
+%table.campaigns
+  %thead
+    %tr
+      %th Name
+  %tbody
+    - @campaigns.each do |campaign|
+      %tr
+        %td= campaign.name

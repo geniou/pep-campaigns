@@ -1,10 +1,9 @@
 require 'hashed_id'
 
 class Campaign < ActiveRecord::Base
-
   include HashedId
 
-  # attr_accessible :title, :body
+  attr_accessible :name
 
   def to_param
     hashed_id

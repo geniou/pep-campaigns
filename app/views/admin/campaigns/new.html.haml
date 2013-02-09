@@ -1,0 +1,7 @@
+%h1 Kampagne anlegen
+
+= semantic_form_for [:admin, @campaign] do |f|
+  = f.input :name
+
+  = f.actions do
+    = f.action :submit, as: :button, label: 'Kampagne anlegen'
