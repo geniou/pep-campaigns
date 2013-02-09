@@ -57,6 +57,30 @@ describe ReferencesController do
       }.should change(Reference, :count)
     end
 
+    it "should require any questions to be answered" do
+      @questions = (0..5).collect do
+        FactoryGirl.create :reference_question, :campaign => @campaign
+      end
+
+      lambda {
+        do_request
+      }.should_not change(Reference, :count)
+    end
+
+    it "should create the application if the questions have been answered" do
+      @questions = (0..5).collect do
+        FactoryGirl.create :reference_question, :campaign => @campaign
+      end
+      @answers = @questions.inject({}) do |params, question|
+        params["answer_#{question.id}"] = "I AM A FISH"
+        params
+      end
+
+      lambda {
+        do_request(@answers)
+      }.should change(Reference, :count)
+    end
+
   end
 
 end

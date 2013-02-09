@@ -1,6 +1,6 @@
 require 'hashed_id'
 
-class ReferencesController < ApplicationController
+class ReferencesController < SurveyController
 
   before_filter :find_application, :only => [ :new, :create ]
   before_filter :find_campaign, :only => [ :new, :create ]
@@ -14,14 +14,13 @@ class ReferencesController < ApplicationController
     @contact = Contact.new(params[:contact])
 
     if !@contact.save
-      puts "Failed to save contact"
       render :new
     else
       @reference = @contact.references.build(params[:reference])
       @reference.campaign = @campaign
       @reference.application = @application
+      @reference.answers = read_answers_from_params(params, Answer::Reference)
       if !@reference.save
-        puts "Failed to save reference"
         render :new
       else
         redirect_to success_campaign_application_reference_path(@campaign, @application, @reference)
