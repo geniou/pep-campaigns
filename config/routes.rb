@@ -9,7 +9,11 @@ PepCampaigns::Application.routes.draw do
       member do
         get :success
       end
-      resources :references, :constraints => { :id => /[^\/]+/ } 
+      resources :references, :constraints => { :id => /[^\/]+/ } do
+        member do
+          get :success
+        end
+      end
     end
   end
 
