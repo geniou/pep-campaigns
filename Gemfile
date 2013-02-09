@@ -11,4 +11,11 @@ gem 'devise'
 
 group :test, :development do
   gem "rspec-rails"
+  gem 'capybara'
+  gem 'capybara-webkit'
+  gem 'database_cleaner'
+  gem 'headless'
+  gem 'spork'
+  gem 'capistrano'
+  gem 'awesome_print'
 end
