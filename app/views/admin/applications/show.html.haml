@@ -1,5 +1,8 @@
 %h1= @application.name
 
+%h2 Applicant
+=render :partial => "admin/contacts/details", :locals => { :contact => @application.contact }
+
 %h2 Answers
 = render :partial => "admin/answers/table", :locals => { :answers => @application.answers }
 
