@@ -4,9 +4,12 @@ PepCampaigns::Application.routes.draw do
 
   root :to => 'root#index'
 
-  resources :campaigns do
-    resources :applications do
-      resources :references
+  resources :campaigns, :constraints => { :id => /[^\/]+/ } do
+    resources :applications, :constraints => { :id => /[^\/]+/ } do
+      member do
+        get :success
+      end
+      resources :references, :constraints => { :id => /[^\/]+/ } 
     end
   end
 

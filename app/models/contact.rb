@@ -1,5 +1,6 @@
 class Contact < ActiveRecord::Base
-  # attr_accessible :title, :body
+
+  attr_protected :id
 
   has_many :applications
   has_many :references

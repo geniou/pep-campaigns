@@ -6,4 +6,18 @@
     %h2 Who are you?
 
     %p We need a little personal information
+
+    - if @contact.errors.any?
+      %div{"id" => "contact_errors"}
+        %p We got problems!
     = render :partial => "contacts/form"
+
+  %div{"id" => "application_details"}
+    %h2 What's your organisation like?
+    = f.label :name, "Organisation Name"
+    = f.text_field :name
+
+    %h2 Who's with you?
+    %p Add team member
+
+  = f.submit "Jetzt bewerben"
