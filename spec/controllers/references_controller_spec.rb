@@ -28,4 +28,35 @@ describe ReferencesController do
 
   end
 
+  describe "create" do
+
+    before :each do
+      @contact_details = {
+        first_name: "Some",
+        last_name: "Person",
+        organisation: "Some organisation",
+        email: "email@example.com",
+        website: "http://website.com",
+        street_name: "A Street",
+        house_number: "123",
+        "birthdate(1i)" => "1980",
+        "birthdate(2i)" => "01",
+        "birthdate(3i)" => "01",
+        sex: "m",
+        nationality: "French"
+      }
+    end
+
+    def do_request(params = {})
+      get :create, { :contact => @contact_details, :application_id => @application.hashed_id, :campaign_id => @campaign.hashed_id }.update(params)
+    end
+
+    it "should create a new reference" do
+      lambda {
+        do_request
+      }.should change(Reference, :count)
+    end
+
+  end
+
 end

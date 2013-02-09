@@ -14,11 +14,14 @@ class ReferencesController < ApplicationController
     @contact = Contact.new(params[:contact])
 
     if !@contact.save
+      puts "Failed to save contact"
       render :new
     else
       @reference = @contact.references.build(params[:reference])
       @reference.campaign = @campaign
+      @reference.application = @application
       if !@reference.save
+        puts "Failed to save reference"
         render :new
       else
         redirect_to success_campaign_application_reference_path(@campaign, @application, @reference)
