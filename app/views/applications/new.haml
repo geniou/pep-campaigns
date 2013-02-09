@@ -1,1 +1,9 @@
-%h1 Supply a reference!
+%h1 Apply for a Stipend!!
+
+= form_for([ @campaign, @application ]) do |f|
+
+  %div{"id" => "contact"}
+    %h2 Who are you?
+
+    %p We need a little personal information
+    = render :partial => "contacts/form"

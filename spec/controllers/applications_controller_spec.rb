@@ -4,6 +4,8 @@ describe ApplicationsController do
 
   describe "new" do
 
+    render_views 
+
     before :each do
       @campaign = FactoryGirl.create(:campaign)
     end
@@ -16,6 +18,8 @@ describe ApplicationsController do
       do_request
       assert_response :ok
       assigns[:application].should be_an_instance_of(Application)
+      assigns[:contact].should be_an_instance_of(Contact)
+      response.body.should have_selector "div#contact"
     end
 
     it "should render 404 for an invalid campaign hash" do

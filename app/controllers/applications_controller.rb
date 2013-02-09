@@ -4,6 +4,7 @@ class ApplicationsController < ApplicationController
 
   def new
     @application = Application.new
+    @contact = Contact.new
   end
 
 private

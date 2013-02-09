@@ -7,4 +7,8 @@ class Reference < ActiveRecord::Base
   belongs_to :contact
   belongs_to :campaign
 
+  def to_param
+    hashed_id
+  end
+
 end

@@ -1,0 +1,28 @@
+%div{"id" => "contact_form"}
+  = label :contact, :title, "Anrede"
+  = text_field :contact, :title
+  = label :contact, :first_name, "Vorname"
+  = text_field :contact, :first_name
+  = label :contact, :last_name, "Nachname"
+  = text_field :contact, :last_name
+  = label :contact, :organisation, "Organization"
+  = text_field :contact, :organisation
+  = label :contact, :email, "E-Mail Addresse"
+  = text_field :contact, :email
+  = label :contact, :website, "Website"
+  = text_field :contact, :website
+  = label :contact, :street_name, "Strasse"
+  = text_field :contact, :street_name
+  = label :contact, :house_number, "Hausnummer"
+  = text_field :contact, :house_number
+  = label :contact, :birthdate, "Gerbürtsdatum"
+  = date_select :contact, :birthdate, :start_year => (Time.now.year - 25), :end_year => (Time.now.year - 100)
+  = label :contact, :sex, "Geschlect"
+  %p
+    M
+    = radio_button :contact, :sex, "m"
+  %p
+    W
+    = radio_button :contact, :sex, "f"
+  = label :contact, :nationality, "Nationalität"
+  = text_field :contact, :nationality 
