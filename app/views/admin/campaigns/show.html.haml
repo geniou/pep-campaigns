@@ -1,0 +1,3 @@
+%h1= @campaign.name
+
+= render :partial => "applications/table", :locals => { :applications => @campaign.applications }

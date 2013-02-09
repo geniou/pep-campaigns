@@ -1,0 +1,18 @@
+- if references.size > 0
+  %table.references
+    %thead
+      %tr
+        %th Referee 
+        %th Actions
+    %tbody
+      - references.each do |reference|
+        - campaign = reference.campaign
+        %tr
+          %td= reference.contact.name
+          %td= link_to new_campaign_application_reference_url(campaign, reference), new_campaign_application_reference_url(campaign, reference)
+          %td
+            = link_to "Show Reference", admin_reference_path(reference)
+            |
+            = link_to "Edit Reference", edit_admin_reference_path(reference)
+- else
+  %p None

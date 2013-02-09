@@ -17,6 +17,7 @@ class ReferencesController < ApplicationController
       render :new
     else
       @reference = @contact.references.build(params[:reference])
+      @reference.campaign = @campaign
       if !@reference.save
         render :new
       else

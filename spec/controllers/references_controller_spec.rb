@@ -2,12 +2,12 @@ require 'spec_helper'
 
 describe ReferencesController do
 
-  describe "new" do
+  before :each do
+    @campaign = FactoryGirl.create(:campaign)
+    @application = FactoryGirl.create(:application, :campaign => @campaign)
+  end
 
-    before :each do
-      @campaign = FactoryGirl.create(:campaign)
-      @application = FactoryGirl.create(:application, :campaign => @campaign)
-    end
+  describe "new" do
 
     def do_request(params = {})
       get :new, { :application_id => @application.hashed_id,

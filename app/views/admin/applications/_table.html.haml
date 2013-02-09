@@ -1,0 +1,19 @@
+- if applications.size > 0
+  %table.applications
+    %thead
+      %tr
+        %th Name
+        %th Link for Referees
+        %th Actions
+    %tbody
+      - applications.each do |application|
+        - campaign = application.campaign
+        %tr
+          %td= application.name
+          %td= link_to new_campaign_application_reference_url(campaign, application), new_campaign_application_reference_url(campaign, application)
+          %td
+            = link_to "Show Application", admin_application_path(application)
+            |
+            = link_to "Edit Application", edit_admin_application_path(application)
+- else
+  %p None

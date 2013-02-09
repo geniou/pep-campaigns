@@ -1,9 +1,16 @@
 FactoryGirl.define do
 
-  factory :reference do
-  end
-
-  factory :application do
+  factory :contact do
+    first_name "Robert"
+    last_name "Paulson"
+    email "his_name_is@robert.paulson"
+    organisation "Project Mayhem"
+    website "http://paperstreetsoap.com"
+    street_name "Paper Street"
+    house_number 221
+    birthdate Date.parse("07/07/1969")
+    nationality "US"
+    sex "m"
   end
 
   factory :campaign do
@@ -13,6 +20,15 @@ FactoryGirl.define do
   factory :question do
     factory :application_question, class: Question::Application
     factory :reference_question, class: Question::Reference
+
+  factory :reference do
+    association :campaign
+    association :contact
+  end
+
+  factory :application do
+    association :campaign
+    association :contact
   end
 
   factory :admin do

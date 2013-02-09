@@ -23,7 +23,9 @@ PepCampaigns::Application.routes.draw do
     resources :campaigns do
       resources :questions
     end
-	resources :applications
+
+    resources :applications
+    resources :references
   end
 
 end

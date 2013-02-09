@@ -12,9 +12,11 @@ class ApplicationsController < ApplicationController
     @contact = Contact.new(params[:contact])
 
     if !@contact.save
+      @application = Application.new(params[:application])
       render :new
     else
       @application = @contact.applications.build(params[:application])
+      @application.campaign = @campaign
       if !@application.save
         render :new
       else

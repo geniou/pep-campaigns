@@ -1,0 +1,7 @@
+%h1 Application Review
+
+%h2 Completed Applications
+= render :partial => "table", :locals => { :applications => @complete_applications }
+
+%h2 Incomplete Applications
+= render :partial => "table", :locals => { :applications => @incomplete_applications }

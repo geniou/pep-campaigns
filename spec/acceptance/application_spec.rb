@@ -1,6 +1,9 @@
 require 'spec_helper'
+require 'acceptance/acceptance_helper'
 
 feature "Application" do
+
+  include AcceptanceHelpers
 
   scenario "Submit a new application" do
     campaign_exists 
@@ -17,11 +20,6 @@ feature "Application" do
 
   def go_to_application_submission_page
     visit new_campaign_application_path(@campaign)
-  end
-
-  def fill_in_contact_details
-    fill_in 'contact_first_name', :with => "Some"
-    fill_in 'contact_last_name', :with => "Person"
   end
 
   def fill_in_application_details

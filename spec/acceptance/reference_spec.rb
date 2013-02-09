@@ -1,6 +1,9 @@
 require 'spec_helper'
+require 'acceptance/acceptance_helper'
 
 feature "Reference" do
+
+  include AcceptanceHelpers
 
   scenario "Submit a new reference" do
     application_exists 
@@ -18,11 +21,6 @@ feature "Reference" do
 
   def go_to_reference_submission_page
     visit new_campaign_application_reference_path(@campaign, @application)
-  end
-
-  def fill_in_contact_details
-    fill_in 'contact_first_name', :with => "Some"
-    fill_in 'contact_last_name', :with => "Person"
   end
 
   def fill_in_reference_details
