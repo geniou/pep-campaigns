@@ -4,6 +4,8 @@ describe Admin::ApplicationsController do
 
   render_views
 
+  before { controller.stub(authenticate_admin!: nil) }
+
   describe "index" do
 
     def do_request
@@ -13,7 +15,7 @@ describe Admin::ApplicationsController do
     it "should render the index page" do
       do_request
       assert_response :ok
-    end    
+    end
 
   end
 
