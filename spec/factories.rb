@@ -20,6 +20,7 @@ FactoryGirl.define do
   factory :question do
     factory :application_question, class: Question::Application
     factory :reference_question, class: Question::Reference
+  end
 
   factory :reference do
     association :campaign
