@@ -1,28 +1,25 @@
-class ApplicationsController < SurveyController
+require 'hashed_id'
+class ApplicationsController < ApplicationController
 
   before_filter :find_campaign, :only => [ :new, :create, :success ]
   before_filter :find_application, :only => [ :success ]
 
   def new
     @application = Application.new
-    @contact = Contact.new
+    @application.contact = Contact.new
+    @campaign.application_questions.each do |question|
+      answer = @application.answers.build
+      answer.question = question
+    end
   end
 
   def create
-    @contact = Contact.new(params[:contact])
-
-    if !@contact.save
-      @application = Application.new(params[:application])
+    @application = Application.new(params[:application])
+    @application.campaign = @campaign
+    if !@application.save
       render :new
     else
-      @application = @contact.applications.build(params[:application])
-      @application.campaign = @campaign
-      @application.answers = read_answers_from_params(params, Answer::GrantApplication)
-      if !@application.save
-        render :new
-      else
-        redirect_to success_campaign_application_path(@campaign, @application)
-      end
+      redirect_to success_campaign_application_path(@campaign, @application)
     end
   end
 

@@ -5,6 +5,7 @@ class Campaign < ActiveRecord::Base
 
   attr_accessible :name
   has_many :questions
+  has_many :applications
   has_many :application_questions, class_name: 'Question::Application'
   has_many :reference_questions,   class_name: 'Question::Reference'
 

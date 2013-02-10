@@ -1,25 +1,14 @@
-%h1 Apply for a Stipend!!
+%h1 Für ein Stipendium Bewerben
 
-= form_for([ @campaign, @application ]) do |f|
+= semantic_form_for([ @campaign, @application ]) do |f|
+  %h2 Angaben zur Person
+  = render partial: "contacts/form", locals: { form: f }
 
-  %div{"id" => "contact"}
-    %h2 Who are you?
+  %h2 Organisation
+  = f.input :name, label: "Name der Organisation"
 
-    %p We need a little personal information
+  %h2 Fragen
+  = render :partial => 'shared/questions', :locals => { form: f }
 
-    - if @contact.errors.any?
-      %div{"id" => "contact_errors"}
-        %p We got problems!
-    = render :partial => "contacts/form"
-
-  %div{"id" => "application_details"}
-    %h2 What's your organisation like?
-    = f.label :name, "Organisation Name"
-    = f.text_field :name
-
-    %h2 Who's with you?
-    %p Add team member
-
-  = render :partial => 'shared/questions', :locals => { :questions => @campaign.application_questions }
-
-  = f.submit "Jetzt bewerben"
+  = f.actions do
+    = f.submit "Jetzt bewerben"

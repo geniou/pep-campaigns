@@ -1,30 +1,26 @@
 require 'hashed_id'
-
-class ReferencesController < SurveyController
+class ReferencesController < ApplicationController
 
   before_filter :find_application, :only => [ :new, :create ]
   before_filter :find_campaign, :only => [ :new, :create ]
 
   def new
-    @reference = Reference.new 
-    @contact = Contact.new
+    @reference = Reference.new
+    @reference.contact = Contact.new
+    @campaign.reference_questions.each do |question|
+      answer = @reference.answers.build
+      answer.question = question
+    end
   end
 
   def create
-    @contact = Contact.new(params[:contact])
-
-    if !@contact.save
+    @reference = Reference.new(params[:reference])
+    @reference.campaign = @campaign
+    @reference.application = @application
+    if !@reference.save
       render :new
     else
-      @reference = @contact.references.build(params[:reference])
-      @reference.campaign = @campaign
-      @reference.application = @application
-      @reference.answers = read_answers_from_params(params, "Answer::Reference".constantize)
-      if !@reference.save
-        render :new
-      else
-        redirect_to success_campaign_application_reference_path(@campaign, @application, @reference)
-      end
+      redirect_to success_campaign_application_reference_path(@campaign, @application, @reference)
     end
   end
 
