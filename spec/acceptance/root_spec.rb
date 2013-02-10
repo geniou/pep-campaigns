@@ -12,7 +12,7 @@ feature 'Home page' do
   end
 
   def see_home_page
-    page.should have_selector('h1', text: 'PEP Germany Campaigns')
+    page.should have_selector('h1', text: 'Kampagnen')
   end
 
 end

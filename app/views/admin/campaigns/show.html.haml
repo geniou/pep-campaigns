@@ -1,3 +1,9 @@
-%h1= @campaign.name
+%h1= "Kampagne #{@campaign.name}"
 
-= render :partial => "applications/table", :locals => { :applications => @campaign.applications }
+%ul.sub_navigation
+  %li= link_to 'Fragen anzeigen', admin_campaign_questions_path(@campaign.id)
+  %li= link_to 'Bewerber-Formular', new_campaign_application_url(@campaign)
+  %li= link_to "bearbeiten", edit_admin_campaign_path(@campaign.id)
+
+%h2 Anträge
+= render :partial => "admin/applications/table", :locals => { :applications => @campaign.applications }

@@ -1,19 +1,24 @@
 class Admin::CampaignsController < Admin::BaseController
 
   before_filter :find_campaign, :only => [ :show, :edit ]
+  before_filter :set_breadcrumb, :only => [ :show, :edit ]
 
   def index
-    @open_campaigns = Campaign.open_to_applicants.all
-    @referee_open_campaigns = Campaign.only_open_to_referees.all
-    @closed_campaigns = Campaign.closed.all
+    @campaigns = Campaign.all
+    add_breadcrumb 'Kampagnen'
+  end
+
+  def show
   end
 
   def new
     @campaign = Campaign.new
+    add_breadcrumb 'neu Kampagne'
   end
 
   def edit
     @campaign = Campaign.find(params[:id])
+    add_breadcrumb 'Kampagne bearbeiten'
   end
 
   def create
@@ -37,7 +42,11 @@ class Admin::CampaignsController < Admin::BaseController
 private
 
   def find_campaign
-    @campaign = Campaign.find_by_id(params[:id])
+    @campaign = Campaign.find(params[:id])
+  end
+
+  def set_breadcrumb
+    add_campagin_breadcrumb @campaign
   end
 
 end

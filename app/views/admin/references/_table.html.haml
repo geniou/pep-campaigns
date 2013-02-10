@@ -2,17 +2,11 @@
   %table.references
     %thead
       %tr
-        %th Referee 
-        %th Actions
+        %th Name
     %tbody
       - references.each do |reference|
         - campaign = reference.campaign
         %tr
-          %td= reference.contact.name
-          %td= link_to new_campaign_application_reference_url(campaign, reference), new_campaign_application_reference_url(campaign, reference)
-          %td
-            = link_to "Show Reference", admin_reference_path(reference)
-            |
-            = link_to "Edit Reference", edit_admin_reference_path(reference)
+          %td= link_to reference.contact.name, admin_reference_path(reference)
 - else
-  %p None
+  %p Es gibt noch keine Referenzen für diesen Antrag

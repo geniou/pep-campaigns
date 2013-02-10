@@ -1,8 +1,8 @@
-%h1= "Reference for #{@reference.application.name}"
+%h1= "Referenz von #{@reference.contact.name}"
 
-%h2 Referee
+%h2 Kontaktdaten
 =render :partial => "admin/contacts/details", :locals => { :contact => @reference.contact }
 
-%h2 Answers
+%h2 Antworten
 = render :partial => "admin/answers/table", :locals => { :answers => @reference.answers }
 

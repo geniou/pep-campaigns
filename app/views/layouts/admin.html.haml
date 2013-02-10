@@ -6,11 +6,23 @@
     = javascript_include_tag "application"
   %body.admin
     %nav
-      %li= link_to('Campaigns', admin_campaigns_path)
-      %li= link_to('Applications', admin_applications_path)
-      %li= link_to('Contacts', admin_contacts_path)
+      %li= link_to('Kampagnen', admin_campaigns_path)
+      %li= link_to('Kontakte', admin_contacts_path)
       %li= link_to('Logout', destroy_admin_session_path, method: :delete)
+
     #content
       .notice= notice
       .alert= alert
+
+      - if @breadcrumbs && @breadcrumbs.count > 0
+        #breadcrumbs
+          %ol
+            %li= link_to 'Admin', admin_root_path
+            - @breadcrumbs.each do |breadcrumb|
+              %li
+                -if breadcrumb.second && breadcrumb != @breadcrumbs.last
+                  = link_to breadcrumb.first, breadcrumb.second
+                -else
+                  = breadcrumb.first
+
       = yield

@@ -1,13 +1,17 @@
 class Admin::QuestionsController < Admin::BaseController
   before_filter :load_campaign
+  before_filter :set_breadcrumb
 
   def index
     @application_questions = @campaign.application_questions
     @reference_questions = @campaign.reference_questions
+    add_breadcrumb 'Fragen'
   end
 
   def new
     @question = Question.new
+    add_breadcrumb 'Fragen', admin_campaign_questions_path(@campaign.id)
+    add_breadcrumb 'Frage anlegen'
   end
 
   def create
@@ -28,5 +32,9 @@ class Admin::QuestionsController < Admin::BaseController
 
   def load_campaign
     @campaign = Campaign.find(params[:campaign_id])
+  end
+
+  def set_breadcrumb
+    add_campagin_breadcrumb(@campaign)
   end
 end

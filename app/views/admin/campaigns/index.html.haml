@@ -1,13 +1,16 @@
 %h1 Kampagnen
 
-= link_to 'Kampagne anlegen', new_admin_campaign_path
+%p= link_to 'Kampagne anlegen', new_admin_campaign_path
 
-%h2 Open campaigns
-= render :partial => "table", :locals => { :campaigns => @open_campaigns }
-
-%h2 Open for referees only
-= render :partial => "table", :locals => { :campaigns => @referee_open_campaigns }
-
-%h2 Closed campaigns
-= render :partial => "table", :locals => { :campaigns => @closed_campaigns }
+- if @campaigns.size > 0
+  %table.campaigns
+    %thead
+      %tr
+        %th Name
+    %tbody
+      - @campaigns.each do |campaign|
+        %tr
+          %td= link_to campaign.name, admin_campaign_path(campaign.id)
+- else
+  %p Es gibt noch keine Kampagnen - leg doch eine an.
 

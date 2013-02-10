@@ -1,11 +1,14 @@
-%h1= @application.name
+%h1= "Antrag von #{@application.name}"
 
-%h2 Applicant
+%ul.sub_navigation
+  %li= link_to "Referenze-Formular", new_campaign_application_reference_url(@application.campaign, @application)
+
+%h2 Antrag
 =render :partial => "admin/contacts/details", :locals => { :contact => @application.contact }
 
-%h2 Answers
+%h2 Antworten
 = render :partial => "admin/answers/table", :locals => { :answers => @application.answers }
 
-%h2 Referees
+%h2 Referenzen
 = render :partial => "admin/references/table", :locals => { :references => @application.references }
 
