@@ -1,5 +1,5 @@
 body.admin {
-  margin: 30px 0 0 0;
+  margin: 60px 0 0 0;
   padding: 0;
   font-size: 10pt;
   font-family: sans-serif;
@@ -39,19 +39,43 @@ body.admin {
     position: fixed;
     top: 0;
     left: 0;
-    height: 30px;
-    line-height: 30px;
+    height: 40px;
     width: 100%;
     background: #3e3e3e;
     color: white;
+    font-size: 1.2em;
     li {
       display: inline;
-      padding: 10px;
       a {
+        padding: 10px;
+        line-height: 40px;
         color: #e3e3e3;
-        text-decoration: none;
         &:hover {
-          color: white;
+          text-decoration: none;
+          background: #e3e3e3;
+          color: #3e3e3e;
+        }
+      }
+    }
+  }
+
+  ul.sub-navigation {
+    position: fixed;
+    top: 40px;
+    left: 0;
+    background: #e3e3e3;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    li {
+      display: inline;
+      a {
+        padding: 10px;
+        text-decoration: none;
+        line-height: 30px;
+        color: #3e3e3e;
+        &:hover {
+          background: white;
         }
       }
     }

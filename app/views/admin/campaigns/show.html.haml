@@ -1,6 +1,6 @@
 %h1= "Kampagne #{@campaign.name}"
 
-%ul.sub_navigation
+%ul.sub-navigation
   %li= link_to 'Fragen anzeigen', admin_campaign_questions_path(@campaign.id)
   %li= link_to 'Bewerber-Formular', new_campaign_application_url(@campaign)
   %li= link_to "bearbeiten", edit_admin_campaign_path(@campaign.id)

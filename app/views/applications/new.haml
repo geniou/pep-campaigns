@@ -5,7 +5,8 @@
   = render partial: "contacts/form", locals: { form: f }
 
   %h2 Organisation
-  = f.input :name, label: "Name der Organisation"
+  = f.inputs do
+    = f.input :name, label: "Name der Organisation"
 
   %h2 Fragen
   = render :partial => 'shared/questions', :locals => { form: f }
