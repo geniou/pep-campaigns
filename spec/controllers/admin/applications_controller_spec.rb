@@ -2,22 +2,7 @@ require 'spec_helper'
 
 describe Admin::ApplicationsController do
 
-  render_views
-
   before { controller.stub(authenticate_admin!: nil) }
-
-  describe "index" do
-
-    def do_request
-      get :index
-    end
-
-    it "should render the index page" do
-      do_request
-      assert_response :ok
-    end
-
-  end
 
   describe "show" do
 

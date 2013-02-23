@@ -65,6 +65,7 @@ feature 'Admin campaign section' do
 
   def go_to_campaign_form
     visit '/admin/campaigns'
+    click_link 'Campaign'
     click_link 'bearbeiten'
   end
 

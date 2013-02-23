@@ -40,7 +40,8 @@ feature 'Admin campaign questions' do
 
   def go_to_admin_campaign_questions_page
     visit '/admin/campaigns'
-    click_link 'Fragen ansehen'
+    click_link 'Campaign'
+    click_link 'Fragen anzeigen'
   end
 
   def see_all_questions_of_the_campaign
@@ -51,7 +52,8 @@ feature 'Admin campaign questions' do
 
   def create_new_campaign_question
     visit '/admin/campaigns'
-    click_link 'Fragen ansehen'
+    click_link 'Campaign'
+    click_link 'Fragen anzeigen'
     click_link 'Frage anlegen'
 
     select 'für Bewerber', :from => 'question_type'

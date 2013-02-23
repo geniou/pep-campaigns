@@ -9,7 +9,7 @@ class Admin::BaseController < ApplicationController
   
   def add_application_breadcrumb(application)
     add_campagin_breadcrumb(application.campaign)
-    add_breadcrumb "Antrag von '#{application.contact.name}'", admin_campaign_application_path(application.id)
+    add_breadcrumb "Antrag von '#{application.contact.name}'", admin_application_path(application.id)
   end
 
   def add_campagin_breadcrumb(campaign)
