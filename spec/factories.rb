@@ -20,8 +20,13 @@ FactoryGirl.define do
   end
 
   factory :question do
-    factory :application_question, class: Question::Application
-    factory :reference_question, class: Question::Reference
+    type 'Question'
+    factory :application_question do
+      for_application true
+    end
+    factory :reference_question do
+      for_application false
+    end
   end
 
   factory :reference do

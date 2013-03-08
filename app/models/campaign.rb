@@ -6,8 +6,8 @@ class Campaign < ActiveRecord::Base
   attr_accessible :name, :referee_introduction_text, :required_reference_count
   has_many :questions
   has_many :applications
-  has_many :application_questions, class_name: 'Question::Application'
-  has_many :reference_questions,   class_name: 'Question::Reference'
+  has_many :application_questions, class_name: 'Question', conditions: { for_application: true }
+  has_many :reference_questions,   class_name: 'Question', conditions: { for_application: false }
 
   validates_presence_of :name
   validates :required_reference_count, :numericality => { :only_integer => true, :greater_than => 0 }

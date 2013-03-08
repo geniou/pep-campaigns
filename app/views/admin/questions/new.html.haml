@@ -2,7 +2,7 @@
 
 = semantic_form_for [:admin, :campaign, @question] do |f|
   = f.inputs do
-    = f.input :type, as: :select, collection: { 'für Bewerber' => 'Question::Application', 'für Referenzen' => 'Question::Reference'}
+    = f.input :for_application, as: :select, collection: { 'für Bewerber' => true, 'für Referenzen' => false}
     = f.input :text
 
   = f.actions do

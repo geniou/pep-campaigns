@@ -15,11 +15,8 @@ class Admin::QuestionsController < Admin::BaseController
   end
 
   def create
-    @question = if params[:question][:type] == 'Question::Application'
-      @campaign.application_questions
-    else
-      @campaign.reference_questions
-    end.new(params[:question].except(:type))
+    @question = @campaign.questions.new(params[:question])
+    @question.type = 'Question'
 
     if @question.save
       redirect_to admin_campaign_questions_path(campaign_id: @campaign.id), :notice => "Frage angelegt."

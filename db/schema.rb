@@ -34,9 +34,10 @@ ActiveRecord::Schema.define(:version => 20130316104317) do
   create_table "answers", :force => true do |t|
     t.integer "application_id"
     t.integer "reference_id"
-    t.string  "type",           :null => false
-    t.text    "text"
+    t.text    "text_value"
     t.integer "question_id"
+    t.decimal "numeric_value"
+    t.boolean "boolean_value"
   end
 
   create_table "applications", :force => true do |t|
@@ -78,11 +79,12 @@ ActiveRecord::Schema.define(:version => 20130316104317) do
   end
 
   create_table "questions", :force => true do |t|
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",      :null => false
+    t.datetime "updated_at",      :null => false
     t.integer  "campaign_id"
-    t.string   "type",        :null => false
+    t.string   "type",            :null => false
     t.text     "text"
+    t.boolean  "for_application", :null => false
   end
 
   create_table "references", :force => true do |t|

@@ -56,7 +56,7 @@ feature 'Admin campaign questions' do
     click_link 'Fragen anzeigen'
     click_link 'Frage anlegen'
 
-    select 'für Bewerber', :from => 'question_type'
+    select 'für Bewerber', :from => 'question_for_application'
     fill_in 'question_text', with: 'What should we know about you?'
     click_button('Fragen anlegen')
   end
