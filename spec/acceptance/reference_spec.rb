@@ -6,15 +6,18 @@ feature "Reference" do
   include AcceptanceHelpers
 
   scenario "Submit a new reference" do
-    application_exists
+    application_with_question_exists
+
     go_to_reference_submission_page
     fill_in_reference_details
+
     see_reference_submitted_landing
   end
 
-  def application_exists
+  def application_with_question_exists
     @campaign = create(:campaign)
     @application = create(:application, :campaign => @campaign)
+    @campaign.reference_questions << create(:reference_question, text: 'Question 1')
   end
 
   def go_to_reference_submission_page
@@ -31,6 +34,9 @@ feature "Reference" do
     select "January", :from => 'reference_contact_attributes_birthdate_2i'
     select "1", :from => 'reference_contact_attributes_birthdate_3i'
 =end
+
+    fill_in 'Question 1', :with => "Answer 1"
+
     click_button("Submit")
   end
 

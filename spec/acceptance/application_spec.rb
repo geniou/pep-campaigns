@@ -6,7 +6,7 @@ feature "Application" do
   include AcceptanceHelpers
 
   scenario "Submit a new application" do
-    campaign_exists
+    campaign_with_question_exists
 
     go_to_application_submission_page
     fill_in_application_details
@@ -14,8 +14,9 @@ feature "Application" do
     see_application_submitted_landing
   end
 
-  def campaign_exists
+  def campaign_with_question_exists
     @campaign = create(:campaign)
+    @campaign.application_questions << create(:application_question, text: 'Question 1')
   end
 
   def go_to_application_submission_page
@@ -32,6 +33,9 @@ feature "Application" do
     select "1", :from => 'application_contact_attributes_birthdate_3i'
 =end
     fill_in 'application_name', :with => "The Application Name"
+
+    fill_in 'Question 1', :with => "Answer 1"
+
     click_button("Jetzt bewerben")
   end
 
