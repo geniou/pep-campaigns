@@ -4,6 +4,7 @@ class AddFirstAdminUser < ActiveRecord::Migration
   end
 
   def down
-    Admin.find_by_email('pep@example.com').delete
+    admin = Admin.find_by_email('pep@example.com')
+    admin.delete if admin
   end
 end
