@@ -1,5 +1,9 @@
 %h1= "Kampagne #{@campaign.name}"
 
+%p
+  Required References per Application:
+  = @campaign.required_reference_count
+
 %ul.sub-navigation
   %li= link_to 'Fragen anzeigen', admin_campaign_questions_path(@campaign.id)
   %li= link_to 'Bewerber-Formular', new_campaign_application_url(@campaign)

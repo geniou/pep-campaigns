@@ -26,12 +26,16 @@ class Application < ActiveRecord::Base
     campaign.application_questions
   end
 
+  def complete
+    references.size >= campaign.required_reference_count
+  end
+
   def self.complete
-    Application.all.select { |a| a.references.size >= PEPCampaigns::REQUIRED_REFERENCES }
+    Application.all.select { |a| a.complete }
   end
 
   def self.incomplete
-    Application.all.select { |a| a.references.size < PEPCampaigns::REQUIRED_REFERENCES }
+    Application.all.select { |a| !a.complete }
   end
 
 protected

@@ -16,6 +16,7 @@ FactoryGirl.define do
   factory :campaign do
     name { 'Campaign' }
     referee_introduction_text { "Please fill in the referee form" }
+    required_reference_count 10
   end
 
   factory :question do

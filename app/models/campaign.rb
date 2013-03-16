@@ -3,11 +3,14 @@ require 'hashed_id'
 class Campaign < ActiveRecord::Base
   include HashedId
 
-  attr_accessible :name, :referee_introduction_text
+  attr_accessible :name, :referee_introduction_text, :required_reference_count
   has_many :questions
   has_many :applications
   has_many :application_questions, class_name: 'Question::Application'
   has_many :reference_questions,   class_name: 'Question::Reference'
+
+  validates_presence_of :name
+  validates :required_reference_count, :numericality => { :only_integer => true, :greater_than => 0 }
 
   def to_param
     hashed_id

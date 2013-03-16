@@ -26,6 +26,30 @@ feature 'Admin campaign section' do
     campaign_is_changed
   end
 
+  scenario 'Try to set invalid reference count' do
+    admin_exists_and_is_logged_in
+    campaign_exists
+
+    go_to_campaign_form
+    
+    fill_in 'campaign[required_reference_count]', with: 'some garbage'
+    click_button('speichern')
+
+    page.should have_selector('p.inline-errors')
+  end
+
+  scenario 'Try to set low reference count' do
+    admin_exists_and_is_logged_in
+    campaign_exists
+
+    go_to_campaign_form
+    
+    fill_in 'campaign[required_reference_count]', with: '0'
+    click_button('speichern')
+
+    page.should have_selector('p.inline-errors')
+  end
+
   def campaigns_exists
     create(:campaign, name: 'Campaign 1')
     create(:campaign, name: 'Campaign 2')
@@ -60,6 +84,8 @@ feature 'Admin campaign section' do
 
   def create_campaign
     fill_in 'campaign[name]', with: 'new campaign'
+    fill_in 'campaign[referee_introduction_text]', with: 'introductory text'
+    fill_in 'campaign[required_reference_count]', with: 5
     click_button('speichern')
   end
 
