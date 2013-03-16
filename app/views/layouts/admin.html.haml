@@ -5,15 +5,21 @@
     = stylesheet_link_tag 'application', :media => 'all'
     = javascript_include_tag "application"
   %body.admin
-    %nav
-      %li= link_to('Kampagnen', admin_campaigns_path)
-      %li= link_to('Kontakte', admin_contacts_path)
-      %li= link_to('Logout', destroy_admin_session_path, method: :delete)
-
-    #content
+    %header
       .notice= notice
       .alert= alert
+      %nav
+        %li= link_to('Kampagnen', admin_campaigns_path)
+        %li= link_to('Kontakte', admin_contacts_path)
+        %li= link_to('Logout', destroy_admin_session_path, method: :delete)
 
+      - if @subnavigation_items && @subnavigation_items.count > 0
+        #subnavigation
+          %ul
+            - @subnavigation_items.each do |subnavigation_item|
+              %li= link_to subnavigation_item.first, subnavigation_item.second
+
+    #content
       - if @breadcrumbs && @breadcrumbs.count > 0
         #breadcrumbs
           %ol
@@ -24,5 +30,4 @@
                   = link_to breadcrumb.first, breadcrumb.second
                 -else
                   = breadcrumb.first
-
       = yield

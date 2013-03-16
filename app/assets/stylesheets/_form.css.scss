@@ -1,0 +1,20 @@
+fieldset.choices {
+  li {
+    display: inline;
+  }
+}
+
+input[type=submit] {
+  background: linear-gradient(#2489CE, #073E64) #2489CE;
+  border: 0;
+  color: white;
+  padding: 7px 20px !important;
+  border-radius: 5px;
+  text-shadow: 1px 1px #073E64;
+  &:hover {
+    background: linear-gradient(#1892e7, #073E64) #1892e7;
+  }
+  &:active {
+    box-shadow: 0 0 2px 2px #073E64 inset;
+  }
+}

@@ -1,12 +1,11 @@
 body.admin {
   margin: 60px 0 0 0;
   padding: 0;
-  font-size: 10pt;
   font-family: sans-serif;
-  color: #3e3e3e;
 
   #content {
     padding: 20px;
+    margin-top: 60px;
   }
 
   table {
@@ -27,55 +26,46 @@ body.admin {
     }
   }
 
-  a {
-    color: #54A50B;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
-  }
-
-  nav {
+  header {
     position: fixed;
     top: 0;
     left: 0;
-    height: 40px;
+    height: 70px;
     width: 100%;
-    background: #3e3e3e;
+    background: linear-gradient(#073E64, #073E64) #073E64;
     color: white;
-    font-size: 1.2em;
-    li {
-      display: inline;
-      a {
-        padding: 10px;
-        line-height: 40px;
-        color: #e3e3e3;
-        &:hover {
+    box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.75);
+
+    nav {
+      li {
+        display: inline;
+        a {
+          padding: 10px;
+          line-height: 40px;
+          color: white;
           text-decoration: none;
-          background: #e3e3e3;
-          color: #3e3e3e;
+          &:hover {
+            background: white;
+            color: #073E64;
+          }
         }
       }
     }
-  }
 
-  ul.sub-navigation {
-    position: fixed;
-    top: 40px;
-    left: 0;
-    background: #e3e3e3;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    li {
-      display: inline;
-      a {
-        padding: 10px;
-        text-decoration: none;
-        line-height: 30px;
-        color: #3e3e3e;
-        &:hover {
-          background: white;
+    #subnavigation ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+      li {
+        display: inline;
+        a {
+          padding: 10px;
+          text-decoration: none;
+          line-height: 30px;
+          font-weight: normal;
+          &:hover {
+            color: white;
+          }
         }
       }
     }

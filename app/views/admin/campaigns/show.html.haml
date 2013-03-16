@@ -4,10 +4,9 @@
   Required References per Application:
   = @campaign.required_reference_count
 
-%ul.sub-navigation
-  %li= link_to 'Fragen anzeigen', admin_campaign_questions_path(@campaign.id)
-  %li= link_to 'Bewerber-Formular', new_campaign_application_url(@campaign)
-  %li= link_to "bearbeiten", edit_admin_campaign_path(@campaign.id)
+- add_subnavigation_item 'Fragen anzeigen', admin_campaign_questions_path(@campaign.id)
+- add_subnavigation_item 'Bewerber-Formular', new_campaign_application_url(@campaign)
+- add_subnavigation_item "bearbeiten", edit_admin_campaign_path(@campaign.id)
 
 - if @campaign.referee_introduction_text.present?
   %h2 Introduction to Referees:

@@ -1,6 +1,6 @@
 %h1 Kampagnen
 
-%p= link_to 'Kampagne anlegen', new_admin_campaign_path
+- add_subnavigation_item 'Kampagne anlegen', new_admin_campaign_path
 
 - if @campaigns.size > 0
   %table.campaigns

@@ -1,7 +1,6 @@
 %h1 Fragen
 
-%ul.sub-navigation
-  %li= link_to 'Frage anlegen', new_admin_campaign_question_path(campaign_id: @campaign.id)
+- add_subnavigation_item 'Frage anlegen', new_admin_campaign_question_path(campaign_id: @campaign.id)
 
 %h2 Fragen für Bewerber
 = render partial: 'table', locals: { questions: @application_questions }
