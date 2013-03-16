@@ -16,8 +16,16 @@ feature "Application" do
 
   def campaign_with_questions_exists
     @campaign = create(:campaign)
-    @campaign.application_questions << create(:text_question, for_application: true, text: 'Question 1')
-    @campaign.application_questions << create(:rate_question, for_application: true, text: 'Question 2')
+    @campaign.application_questions << create(:text_question,
+                                              for_application: true,
+                                              text: 'Question 1')
+    @campaign.application_questions << create(:rate_question,
+                                              for_application: true,
+                                              text: 'Question 2')
+    @campaign.application_questions << create(:select_question,
+                                              for_application: true,
+                                              text: 'Question 3',
+                                              options: ['Q3A1', 'Q3A2'])
   end
 
   def go_to_application_submission_page
@@ -37,6 +45,7 @@ feature "Application" do
 
     fill_in 'Question 1', with: "Answer 1"
     choose '1'
+    choose 'Q3A2'
 
     click_button("Jetzt bewerben")
   end

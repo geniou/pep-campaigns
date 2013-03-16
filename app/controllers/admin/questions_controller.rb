@@ -15,6 +15,7 @@ class Admin::QuestionsController < Admin::BaseController
   end
 
   def create
+    params[:question]['options'] = params[:question]['options'].split(',').collect(&:strip)
     @question = @campaign.questions.new(params[:question])
 
     if @question.save

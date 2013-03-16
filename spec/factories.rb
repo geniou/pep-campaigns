@@ -39,6 +39,7 @@ FactoryGirl.define do
       end
     end
     factory :rate_question, class: 'Question::Rate'
+    factory :select_question, class: 'Question::Select'
   end
 
   factory :reference do

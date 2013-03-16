@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :text, :for_application, :type
+  attr_accessible :text, :for_application, :type, :options
 
   belongs_to :campaign
 
