@@ -19,6 +19,7 @@ feature "Reference" do
 
   def go_to_reference_submission_page
     visit new_campaign_application_reference_path(@campaign, @application)
+    page.should have_selector("#referee_introduction_text")
   end
 
   def fill_in_reference_details

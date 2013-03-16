@@ -5,5 +5,9 @@
   %li= link_to 'Bewerber-Formular', new_campaign_application_url(@campaign)
   %li= link_to "bearbeiten", edit_admin_campaign_path(@campaign.id)
 
+- if @campaign.referee_introduction_text.present?
+  %h2 Introduction to Referees:
+  %p= display_text(@campaign.referee_introduction_text)
+
 %h2 Anträge
 = render :partial => "admin/applications/table", :locals => { :applications => @campaign.applications }
