@@ -3,11 +3,13 @@
     = contact.input :title, label: 'Anrede'
     = contact.input :first_name, label: "Vorname"
     = contact.input :last_name, label: "Nachname"
-    = contact.input :organisation, label: "Organization"
     = contact.input :email, label: "E-Mail Adresse"
-    = contact.input :website, label: "Webseite"
-    = contact.input :street_name, label: "Straße"
-    = contact.input :house_number, label: "Hausnummer"
-    = contact.input :birthdate, label: "Geburtsdatum"
-    = contact.input :sex, type: 'radio', collection: ['m', 'f'], label: "Geschlecht"
-    = contact.input :nationality, label: "Nationalität" 
+-#
+  Optional for now. @see Case 46320811
+  = contact.input :organisation, label: "Organization"
+  = contact.input :website, label: "Webseite"
+  = contact.input :street_name, label: "Straße"
+  = contact.input :house_number, label: "Hausnummer"
+  = contact.input :birthdate, label: "Geburtsdatum"
+  = contact.input :sex, type: 'radio', collection: ['m', 'f'], label: "Geschlecht"
+  = contact.input :nationality, label: "Nationalität" 

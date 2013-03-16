@@ -23,9 +23,13 @@ feature "Reference" do
 
   def fill_in_reference_details
     fill_in_contact_details
+=begin
+    These fields are optional now @see Case 46320811
+
     select "2011", :from => 'reference_contact_attributes_birthdate_1i'
     select "January", :from => 'reference_contact_attributes_birthdate_2i'
     select "1", :from => 'reference_contact_attributes_birthdate_3i'
+=end
     click_button("Submit")
   end
 

@@ -24,9 +24,13 @@ feature "Application" do
 
   def fill_in_application_details
     fill_in_contact_details
+=begin
+    These fields are potional right now @see Case 46320811
+
     select "2011", :from => 'application_contact_attributes_birthdate_1i'
     select "January", :from => 'application_contact_attributes_birthdate_2i'
     select "1", :from => 'application_contact_attributes_birthdate_3i'
+=end
     fill_in 'application_name', :with => "The Application Name"
     click_button("Jetzt bewerben")
   end

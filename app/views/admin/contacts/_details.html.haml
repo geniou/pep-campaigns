@@ -4,12 +4,15 @@
 %p
   %b E-Mail:
   = "#{contact.email}"
-%p
-  %b Organisation:
-  = "#{contact.organisation}"
-%p
-  %b Website:
-  = "#{contact.website}"
-%p
-  %b Address:
-  = "#{contact.street_name} #{contact.house_number}, #{contact.postcode} #{contact.city}"
+- if contact.organisation.present?
+  %p
+    %b Organisation:
+    = "#{contact.organisation}"
+- if contact.website.present?
+  %p
+    %b Website:
+    = "#{contact.website}"
+- if !contact.address.empty?
+  %p
+    %b Address:
+    = contact.address
