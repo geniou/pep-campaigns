@@ -21,7 +21,7 @@ class Admin::ApplicationsController < Admin::BaseController
   def find_application
     @application = Application.find(params[:id])
   end
-  
+
   def set_breadcrumb
     add_application_breadcrumb(@application)
   end

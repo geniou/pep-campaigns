@@ -1,5 +1,8 @@
 FactoryGirl.define do
 
+  factory :answer do
+  end
+
   factory :contact do
     first_name "Robert"
     last_name "Paulson"
@@ -20,13 +23,22 @@ FactoryGirl.define do
   end
 
   factory :question do
-    type 'Question'
-    factory :application_question do
-      for_application true
+    factory :text_question, class: 'Question::Text' do
+      ignore do
+        answer nil
+        application nil
+      end
+      after(:create) do |question, evaluator|
+        if evaluator.answer
+          create(:answer,
+                 application_id: evaluator.application.id,
+                 text_value: evaluator.answer,
+                 question: question
+                )
+        end
+      end
     end
-    factory :reference_question do
-      for_application false
-    end
+    factory :rate_question, class: 'Question::Rate'
   end
 
   factory :reference do
@@ -38,8 +50,8 @@ FactoryGirl.define do
   factory :application do
     association :campaign
     association :contact
-  end
 
+  end
   factory :admin do
     sequence(:email) { |n| "email#{n}@example.com" }
     password { 'ecertv5634v5zfv345t' }

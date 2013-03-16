@@ -11,7 +11,7 @@ class Application < ActiveRecord::Base
   belongs_to :campaign
   has_many :references
   has_many :team_members
-  has_many :answers, class_name: 'Answer::GrantApplication'
+  has_many :answers, conditions: "application_id IS NOT NULL"
   accepts_nested_attributes_for :answers
 
   validates_presence_of :contact

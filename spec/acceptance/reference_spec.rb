@@ -17,7 +17,7 @@ feature "Reference" do
   def application_with_question_exists
     @campaign = create(:campaign)
     @application = create(:application, :campaign => @campaign)
-    @campaign.reference_questions << create(:reference_question, text: 'Question 1')
+    @campaign.reference_questions << create(:text_question, for_application: false, text: 'Question 1')
   end
 
   def go_to_reference_submission_page

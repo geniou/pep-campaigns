@@ -25,7 +25,7 @@ feature 'Admin campaign questions' do
 
   def campaign_with_questions_exists
     create(:campaign).tap do |campaign|
-      create(:application_question, campaign: campaign, text: 'What should we know?')
+      create(:text_question, for_application: true, campaign: campaign, text: 'What should we know?')
     end
   end
 
@@ -57,6 +57,7 @@ feature 'Admin campaign questions' do
     click_link 'Frage anlegen'
 
     select 'für Bewerber', :from => 'question_for_application'
+    select 'Text', :from => 'question_type'
     fill_in 'question_text', with: 'What should we know about you?'
     click_button('Fragen anlegen')
   end
