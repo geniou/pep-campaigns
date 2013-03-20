@@ -1,4 +1,4 @@
-%h1 Referenzen
+%h1= "#{@campaign.name} - Referenzen"
 
 - if @campaign.referee_introduction_text.present?
   %p{"id" => "referee_introduction_text"}= display_text(@campaign.referee_introduction_text)
