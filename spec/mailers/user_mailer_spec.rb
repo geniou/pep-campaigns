@@ -16,7 +16,7 @@ describe UserMailer do
       ActionMailer::Base.deliveries.size.should == 1
       mail = ActionMailer::Base.deliveries.first
       mail.to.first.should == @contact.email
-      mail.body.encoded.should match(@contact.name)
+      mail.body.encoded.should match("#{@contact.first_name} #{@contact.last_name}")
     end
 
   end
