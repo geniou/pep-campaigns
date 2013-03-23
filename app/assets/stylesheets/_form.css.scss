@@ -1,6 +1,17 @@
-fieldset.choices {
-  li {
-    display: inline;
+// rates inline
+.formtastic .rate .choices {
+  .choices-group {
+    float: none;
+    .choice {
+      display: inline;
+    }
+  }
+  .label {
+    position: relative;
+    width: 25%;
+    label {
+      position: relative;
+    }
   }
 }
 
