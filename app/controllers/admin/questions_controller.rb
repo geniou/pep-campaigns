@@ -9,6 +9,7 @@ class Admin::QuestionsController < Admin::BaseController
 
   def new
     @question = Question.new
+    @question.options = ''
     add_breadcrumb 'Fragen', admin_campaign_questions_path(@campaign.id)
     add_breadcrumb 'Frage anlegen'
   end

@@ -10,4 +10,13 @@ class Question < ActiveRecord::Base
   def input_element
     raise NotImplementedError, "#{self.class}#input_element not implemented"
   end
+
+  def self.types
+    {
+      'Text'      => Question::Text,
+      'Bewertung' => Question::Rate,
+      'Auswahl'   => Question::Select,
+      'Checkbox'  => Question::Boolean,
+    }
+  end
 end
