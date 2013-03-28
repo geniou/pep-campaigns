@@ -41,7 +41,7 @@ feature "Reference" do
   end
 
   def see_reference_submitted_landing
-    page.should have_selector('h1', text: "Thanks!")
+    page.should have_selector('h1', text: "Vielen Dank")
 
     Reference.first.contact.last_name.should == 'Person'
   end
