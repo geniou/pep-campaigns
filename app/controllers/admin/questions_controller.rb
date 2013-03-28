@@ -42,6 +42,11 @@ class Admin::QuestionsController < Admin::BaseController
     end
   end
 
+  def destroy
+    Question.find(params[:id]).destroy
+    redirect_to admin_campaign_questions_path(@campaign), :notice => "Frage geloescht."
+  end
+
   private
 
   def load_campaign
