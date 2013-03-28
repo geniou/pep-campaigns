@@ -1,6 +1,9 @@
 class Question
   class Select < Question
-    serialize :options, Array
+
+    def self.model_name
+      Question.model_name
+    end
 
     def input_element
       [:text_value, {

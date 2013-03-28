@@ -2,7 +2,9 @@
   %thead
     %tr
       %th Frage
+      %th
   %tbody
     - questions.each do |question|
       %tr
         %td= question.text
+        %td= link_to 'bearbeiten', edit_admin_campaign_question_path(id: question.id, campaign_id: question.campaign.id)

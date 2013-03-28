@@ -1,6 +1,10 @@
 class Question
   class Rate < Question
 
+    def self.model_name
+      Question.model_name
+    end
+
     def input_element
       [:numeric_value, {
         label: text,

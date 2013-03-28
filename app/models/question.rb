@@ -3,6 +3,8 @@ class Question < ActiveRecord::Base
 
   belongs_to :campaign
 
+  serialize :options, Array
+
   def input_element
     raise NotImplementedError, "#{self.class}#input_element not implemented"
   end

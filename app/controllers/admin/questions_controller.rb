@@ -25,10 +25,27 @@ class Admin::QuestionsController < Admin::BaseController
     end
   end
 
+  def edit
+    @question = Question.find(params[:id])
+    @question.options = @question.options.join(',')
+  end
+
+  def update
+    params[:question]['options'] = params[:question]['options'].split(',').collect(&:strip)
+    @question = Question.find(params[:id])
+    @question.update_attributes(params['question'])
+
+    if @question.save
+      redirect_to admin_campaign_questions_path(@campaign), :notice => "Frage gaendert."
+    else
+      render :action => 'edit'
+    end
+  end
+
   private
 
   def load_campaign
-    @campaign = Campaign.find(params[:campaign_id])
+    @campaign = Campaign.find(params[:campaign_id].to_i)
   end
 
   def set_breadcrumb

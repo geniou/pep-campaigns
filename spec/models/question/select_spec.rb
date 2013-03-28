@@ -24,6 +24,12 @@ describe Question::Select do
       subject[1][:collection].should == options
     end
   end
+
+  describe 'self.model_name' do
+    subject { Question::Select.model_name }
+
+    it { should == Question.model_name }
+  end
 end
 
 

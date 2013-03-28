@@ -19,4 +19,10 @@ describe Question::Text do
       subject[1][:label].should == 'The question'
     end
   end
+
+  describe 'self.model_name' do
+    subject { Question::Text.model_name }
+
+    it { should == Question.model_name }
+  end
 end

@@ -20,7 +20,7 @@ PepCampaigns::Application.routes.draw do
   namespace :admin do
     root :to => 'campaigns#index'
 
-    resources :campaigns do
+    resources :campaigns, :constraints => { :id => /[^\/]+/ } do
       resources :questions
     end
     resources :applications
