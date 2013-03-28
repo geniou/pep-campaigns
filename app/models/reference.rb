@@ -13,9 +13,9 @@ class Reference < ActiveRecord::Base
   has_many :answers, conditions: "reference_id IS NOT NULL"
   accepts_nested_attributes_for :answers
 
-  validates_presence_of :contact
+  validates_associated :answers
+  validates_associated :contact
   validates_presence_of :campaign
-  validate :all_questions_answered
   validates_presence_of :application
 
   def to_param
@@ -25,13 +25,4 @@ class Reference < ActiveRecord::Base
   def questions
     campaign.reference_questions
   end
-
-protected
-
-  def all_questions_answered
-    if (answers.size != questions.size)
-      errors.add(:answers, "All questions must be answered")
-    end
-  end
-
 end

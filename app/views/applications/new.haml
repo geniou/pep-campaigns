@@ -1,6 +1,8 @@
 %h1 Für ein Stipendium Bewerben
 
 = semantic_form_for([ @campaign, @application ]) do |f|
+  = f.semantic_errors
+
   %h2 Angaben zur Person
   = render partial: "contacts/form", locals: { form: f }
 

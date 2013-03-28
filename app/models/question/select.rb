@@ -3,7 +3,12 @@ class Question
     serialize :options, Array
 
     def input_element
-      [:text_value, { label: text, as: :radio, collection: options } ]
+      [:text_value, {
+        label: text,
+        as: :radio,
+        collection: options,
+        required: true
+      } ]
     end
   end
 end
