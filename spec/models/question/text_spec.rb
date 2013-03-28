@@ -18,6 +18,11 @@ describe Question::Text do
       element.stub(text: 'The question')
       subject[1][:label].should == 'The question'
     end
+
+    it 'marks question as required' do
+      element.stub(required: required = double('required'))
+      subject[1][:required].should == required
+    end
   end
 
   describe 'self.model_name' do

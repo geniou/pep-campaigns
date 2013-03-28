@@ -23,6 +23,11 @@ describe Question::Select do
       element.stub(options: options = double)
       subject[1][:collection].should == options
     end
+
+    it 'marks question as required' do
+      element.stub(required: required = double('required'))
+      subject[1][:required].should == required
+    end
   end
 
   describe 'self.model_name' do

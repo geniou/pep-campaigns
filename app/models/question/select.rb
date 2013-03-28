@@ -7,10 +7,10 @@ class Question
 
     def input_element
       [:text_value, {
-        label: text,
-        as: :radio,
+        label:      text,
+        as:         :radio,
         collection: options,
-        required: true
+        required:   required
       } ]
     end
   end

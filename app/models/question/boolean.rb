@@ -7,8 +7,9 @@ class Question
 
     def input_element
       [:boolean_value, {
-        label: text,
-        as: :boolean,
+        label:    text,
+        as:       :boolean,
+        required: required
       }]
     end
   end

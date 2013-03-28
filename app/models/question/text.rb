@@ -7,9 +7,9 @@ class Question
 
     def input_element
       [:text_value, {
-        label: text,
-        as: :text,
-        required: true
+        label:    text,
+        as:       :text,
+        required: required
       }]
     end
   end

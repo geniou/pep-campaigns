@@ -1,5 +1,5 @@
 class Question < ActiveRecord::Base
-  attr_accessible :text, :for_application, :type, :options, :position
+  attr_accessible :text, :for_application, :type, :options, :position, :required
 
   belongs_to :campaign
   has_many :answers, dependent: :destroy

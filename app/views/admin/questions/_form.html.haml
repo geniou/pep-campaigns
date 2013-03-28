@@ -4,6 +4,7 @@
     = f.input :type, as: :select, collection: Question.types, include_blank: false
     = f.input :options, hint: 'nur für "Auswahl"; kommagetrennte Werte'
     = f.input :position
+    = f.input :required
     = f.input :text
 
   = f.actions do
