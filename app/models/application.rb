@@ -23,7 +23,7 @@ class Application < ActiveRecord::Base
   end
 
   def questions
-    campaign.application_questions
+    campaign.application_questions.ordered
   end
 
   def complete

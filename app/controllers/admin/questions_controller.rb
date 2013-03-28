@@ -5,7 +5,6 @@ class Admin::QuestionsController < Admin::BaseController
   def index
     @application_questions = @campaign.application_questions
     @reference_questions = @campaign.reference_questions
-    add_breadcrumb 'Fragen'
   end
 
   def new
@@ -28,6 +27,7 @@ class Admin::QuestionsController < Admin::BaseController
   def edit
     @question = Question.find(params[:id])
     @question.options = @question.options.join(',')
+    add_breadcrumb 'Frage bearbeiten'
   end
 
   def update
@@ -55,5 +55,6 @@ class Admin::QuestionsController < Admin::BaseController
 
   def set_breadcrumb
     add_campagin_breadcrumb(@campaign)
+    add_breadcrumb 'Fragen', admin_campaign_questions_path(campaign_id: @campaign.id)
   end
 end

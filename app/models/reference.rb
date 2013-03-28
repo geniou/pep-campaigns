@@ -23,6 +23,6 @@ class Reference < ActiveRecord::Base
   end
 
   def questions
-    campaign.reference_questions
+    campaign.reference_questions.ordered
   end
 end

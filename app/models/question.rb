@@ -1,8 +1,9 @@
 class Question < ActiveRecord::Base
-  attr_accessible :text, :for_application, :type, :options
+  attr_accessible :text, :for_application, :type, :options, :position
 
   belongs_to :campaign
   has_many :answers, dependent: :destroy
+  scope :orders, order(:position)
 
   serialize :options, Array
 
