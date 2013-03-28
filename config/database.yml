@@ -2,13 +2,16 @@ development:
   adapter: postgresql
   encoding: unicode
   database: pep-campaigns_development
+  min_messages: warning
 
 test:
   adapter: postgresql
   encoding: unicode
   database: pep-campaigns_test
+  min_messages: warning
 
 production:
   adapter: postgresql
   encoding: unicode
   database: pep-campaigns_production
+  min_messages: warning
