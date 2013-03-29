@@ -1,10 +1,7 @@
-// rates inline
-.formtastic .rate .choices {
+// fix display problem for long labels
+.formtastic .radio .choices {
   .choices-group {
     float: none;
-    .choice {
-      display: inline;
-    }
   }
   .label {
     position: relative;
@@ -12,6 +9,13 @@
     label {
       position: relative;
     }
+  }
+}
+
+// rates inline
+.formtastic .rate .choices {
+  .choice {
+    display: inline;
   }
 }
 
