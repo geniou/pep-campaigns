@@ -1,0 +1,13 @@
+!!! 5
+%html
+  %head
+    %title PEP - Programm Engagement mit Perspektive
+    = stylesheet_link_tag 'application', :media => 'all'
+  %body
+    .notice= notice
+    .alert= alert
+    %header
+      = image_tag 'peplogo_small.png'
+    #content
+      .categorybar
+      = yield
