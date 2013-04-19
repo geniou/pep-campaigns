@@ -4,13 +4,14 @@
       %tr
         %th Name
         %th E-Mail
+        %th Vorkommen
         %th Actions
     %tbody
       - contacts.each do |contact|
         %tr
           %td= contact.name
           %td= contact.email
-          %td
-            = link_to "Show Contact", admin_contact_path(contact)
+          %td= contact_appearances(contact)
+          %td= link_to "Show Contact", admin_contact_path(contact)
 - else
   %p None

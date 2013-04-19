@@ -51,8 +51,8 @@ FactoryGirl.define do
   factory :application do
     association :campaign
     association :contact
-
   end
+
   factory :admin do
     sequence(:email) { |n| "email#{n}@example.com" }
     password { 'ecertv5634v5zfv345t' }

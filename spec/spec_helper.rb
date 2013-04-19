@@ -12,6 +12,9 @@ Spork.prefork do
   Capybara.javascript_driver = :webkit
 
   RSpec.configure do |config|
+    require Rails.root.join("spec/support/admin.rb")
+    config.include SpecAdmin
+
     config.include FactoryGirl::Syntax::Methods
 
     DatabaseCleaner.strategy = :truncation

@@ -24,8 +24,8 @@ class Contact < ActiveRecord::Base
 
   def address
     [ street_address, postcode, city ].compact.join(", ")
-  end 
- 
+  end
+
   def street_address
     [ house_number, street_name ].compact.join(" ")
   end
