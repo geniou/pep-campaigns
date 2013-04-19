@@ -1,6 +1,6 @@
 = semantic_form_for [:admin, @campaign, @question] do |f|
   = f.inputs do
-    = f.input :for_application, as: :select, collection: { 'für Bewerber' => true, 'für Referenzen' => false}, include_blank: false
+    = f.input :for, as: :select, collection: { 'Antrag' => 'application', 'Referenzen' => 'reference'}, include_blank: false
     = f.input :type, as: :select, collection: Question.types, include_blank: false
     = f.input :options, hint: 'nur für "Auswahl"; kommagetrennte Werte'
     = f.input :position

@@ -8,11 +8,11 @@ class Campaign < ActiveRecord::Base
   has_many :applications
   has_many :application_questions,
     class_name: 'Question',
-    conditions: { for_application: true },
+    conditions: { for: :application },
     order: :position
   has_many :reference_questions,
     class_name: 'Question',
-    conditions: { for_application: false },
+    conditions: { for: :reference },
     order: :position
 
   validates_presence_of :name

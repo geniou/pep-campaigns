@@ -17,7 +17,7 @@ feature "Reference" do
   def application_with_question_exists
     @campaign = create(:campaign, referee_introduction_text: 'Introduction text')
     @application = create(:application, :campaign => @campaign)
-    @campaign.reference_questions << create(:text_question, for_application: false, text: 'Question 1')
+    @campaign.reference_questions << create(:text_question, for: :reference, text: 'Question 1')
   end
 
   def go_to_reference_submission_page
@@ -28,7 +28,7 @@ feature "Reference" do
   def fill_in_reference_details
     fill_in_contact_details
 
-    fill_in 'Question 1', :with => "Answer 1"
+    fill_in 'Question 1', with: "Answer 1"
 
     click_button("Submit")
   end

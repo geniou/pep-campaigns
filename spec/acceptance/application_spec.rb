@@ -27,13 +27,13 @@ feature "Application" do
   def campaign_with_questions_exists
     create(:campaign) do |campaign|
       campaign.application_questions << create(:text_question,
-                                              for_application: true,
+                                              for: :application,
                                               text: 'Question 1')
       campaign.application_questions << create(:rate_question,
-                                              for_application: true,
+                                              for: :application,
                                               text: 'Question 2')
       campaign.application_questions << create(:select_question,
-                                              for_application: true,
+                                              for: :application,
                                               text: 'Question 3',
                                               options: ['Q3A1', 'Q3A2'])
     end

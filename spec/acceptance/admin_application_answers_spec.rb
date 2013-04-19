@@ -19,7 +19,7 @@ feature 'Admin application questions' do
               );
         create(:text_question,
                campaign: campaign,
-               for_application: true,
+               for: :application,
                text: 'Question 1',
                answer: 'Answer 1',
                application: @application
