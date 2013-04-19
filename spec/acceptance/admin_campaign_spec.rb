@@ -23,7 +23,6 @@ feature 'Admin campaign section' do
 
     go_to_campaign_form
     change_campaign
-    campaign_is_changed
   end
 
   scenario 'Try to set invalid reference count' do
@@ -75,7 +74,8 @@ feature 'Admin campaign section' do
 
   def create_campaign
     fill_in 'campaign[name]', with: 'new campaign'
-    fill_in 'campaign[referee_introduction_text]', with: 'introductory text'
+    fill_in 'campaign[applicant_introduction_text]', with: 'Applicant introductory text'
+    fill_in 'campaign[referee_introduction_text]', with: 'Refferee introductory text'
     fill_in 'campaign[required_reference_count]', with: 5
     click_button('speichern')
   end
@@ -89,9 +89,6 @@ feature 'Admin campaign section' do
   def change_campaign
     fill_in 'campaign[name]', with: 'The new Campaign'
     click_button('speichern')
-  end
-
-  def campaign_is_changed
-    page.should have_selector('td', tect: 'The new Campaign')
+    page.should have_selector('h1', text: 'The new Campaign')
   end
 end

@@ -1,16 +1,12 @@
 %h1= "Kampagne #{@campaign.name}"
 
-%p
-  Required References per Application:
-  = @campaign.required_reference_count
-
 - add_subnavigation_item 'Fragen anzeigen', admin_campaign_questions_path(@campaign.id)
 - add_subnavigation_item 'Bewerber-Formular', new_campaign_application_url(@campaign)
 - add_subnavigation_item "bearbeiten", edit_admin_campaign_path(@campaign.id)
 
-- if @campaign.referee_introduction_text.present?
-  %h2 Introduction to Referees:
-  %p= display_text(@campaign.referee_introduction_text)
+%p
+  Required References per Application:
+  = @campaign.required_reference_count
 
 %h2 Anträge
 = render :partial => "admin/applications/table", :locals => { :applications => @campaign.applications }

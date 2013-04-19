@@ -5,6 +5,12 @@ feature "Application" do
 
   include AcceptanceHelpers
 
+  scenario "See application" do
+    campaign_with_applicant_introduction_text_exists
+    go_to_application_submission_page
+    see_applicant_introduction_text
+  end
+
   scenario "Submit a new application" do
     campaign_with_questions_exists
 
@@ -14,33 +20,35 @@ feature "Application" do
     see_application_submitted_landing
   end
 
+  def campaign_with_applicant_introduction_text_exists
+    create(:campaign, applicant_introduction_text: 'Introduction text')
+  end
+
   def campaign_with_questions_exists
-    @campaign = create(:campaign)
-    @campaign.application_questions << create(:text_question,
+    create(:campaign) do |campaign|
+      campaign.application_questions << create(:text_question,
                                               for_application: true,
                                               text: 'Question 1')
-    @campaign.application_questions << create(:rate_question,
+      campaign.application_questions << create(:rate_question,
                                               for_application: true,
                                               text: 'Question 2')
-    @campaign.application_questions << create(:select_question,
+      campaign.application_questions << create(:select_question,
                                               for_application: true,
                                               text: 'Question 3',
                                               options: ['Q3A1', 'Q3A2'])
+    end
   end
 
   def go_to_application_submission_page
-    visit new_campaign_application_path(@campaign)
+    visit new_campaign_application_path(Campaign.first)
+  end
+
+  def see_applicant_introduction_text
+    page.should have_selector('.introduction', text: 'Introduction text')
   end
 
   def fill_in_application_details
     fill_in_contact_details
-=begin
-    These fields are potional right now @see Case 46320811
-
-    select "2011", :from => 'application_contact_attributes_birthdate_1i'
-    select "January", :from => 'application_contact_attributes_birthdate_2i'
-    select "1", :from => 'application_contact_attributes_birthdate_3i'
-=end
     fill_in 'application_name', :with => "The Application Name"
 
     fill_in 'Question 1', with: "Answer 1"

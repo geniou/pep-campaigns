@@ -15,25 +15,18 @@ feature "Reference" do
   end
 
   def application_with_question_exists
-    @campaign = create(:campaign)
+    @campaign = create(:campaign, referee_introduction_text: 'Introduction text')
     @application = create(:application, :campaign => @campaign)
     @campaign.reference_questions << create(:text_question, for_application: false, text: 'Question 1')
   end
 
   def go_to_reference_submission_page
     visit new_campaign_application_reference_path(@campaign, @application)
-    page.should have_selector("#referee_introduction_text")
+    page.should have_selector(".introduction", text: 'Introduction text')
   end
 
   def fill_in_reference_details
     fill_in_contact_details
-=begin
-    These fields are optional now @see Case 46320811
-
-    select "2011", :from => 'reference_contact_attributes_birthdate_1i'
-    select "January", :from => 'reference_contact_attributes_birthdate_2i'
-    select "1", :from => 'reference_contact_attributes_birthdate_3i'
-=end
 
     fill_in 'Question 1', :with => "Answer 1"
 

@@ -1,5 +1,8 @@
 %h1 Für ein Stipendium Bewerben
 
+- unless @campaign.applicant_introduction_text.blank?
+  .introduction= simple_format(@campaign.applicant_introduction_text)
+
 = semantic_form_for([ @campaign, @application ]) do |f|
   = f.semantic_errors
 

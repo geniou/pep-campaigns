@@ -33,7 +33,7 @@ class Admin::CampaignsController < Admin::BaseController
   def update
     @campaign = Campaign.find(params[:id])
     if @campaign.update_attributes(params[:campaign])
-      redirect_to admin_campaigns_path, :notice => "Kampagne bearbeitet."
+      redirect_to admin_campaign_path(@campaign), :notice => "Kampagne bearbeitet."
     else
       render :action => 'new'
     end
