@@ -20,6 +20,7 @@
 }
 
 input[type=submit] {
+  background-color: #2489CE;
   background: linear-gradient(#2489CE, #073E64) #2489CE;
   border: 0;
   color: white;
@@ -27,6 +28,7 @@ input[type=submit] {
   border-radius: 5px;
   text-shadow: 1px 1px #073E64;
   &:hover {
+    background-color: #1892e7;
     background: linear-gradient(#1892e7, #073E64) #1892e7;
   }
   &:active {
