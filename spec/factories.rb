@@ -7,13 +7,6 @@ FactoryGirl.define do
     first_name "Robert"
     last_name "Paulson"
     email "his_name_is@robert.paulson"
-    organisation "Project Mayhem"
-    website "http://paperstreetsoap.com"
-    street_name "Paper Street"
-    house_number 221
-    birthdate Date.parse("07/07/1969")
-    nationality "US"
-    sex "m"
   end
 
   factory :campaign do

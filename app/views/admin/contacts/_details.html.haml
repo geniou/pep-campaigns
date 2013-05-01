@@ -4,15 +4,3 @@
 %p
   %b E-Mail:
   = "#{contact.email}"
-- if contact.organisation.present?
-  %p
-    %b Organisation:
-    = "#{contact.organisation}"
-- if contact.website.present?
-  %p
-    %b Website:
-    = "#{contact.website}"
-- if !contact.address.empty?
-  %p
-    %b Address:
-    = contact.address
