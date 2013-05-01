@@ -1,6 +1,7 @@
 source 'https://rubygems.org'
+ruby '2.0.0'
 
-gem 'rails', '3.2.11'
+gem 'rails', '~> 3.2.11'
 gem 'pg'
 gem 'jquery-rails'
 gem 'sass-rails'
@@ -13,7 +14,6 @@ gem 'formtastic'
 group :test, :development do
   gem "rspec-rails"
   gem 'capybara'
-  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'spork-rails'
   gem 'capistrano'
