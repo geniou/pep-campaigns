@@ -20,11 +20,13 @@ FactoryGirl.define do
       ignore do
         answer nil
         application nil
+        reference nil
       end
       after(:create) do |question, evaluator|
         if evaluator.answer
           create(:answer,
                  application_id: evaluator.application.id,
+                 reference_id: evaluator.reference.try(:id),
                  text_value: evaluator.answer,
                  question: question
                 )

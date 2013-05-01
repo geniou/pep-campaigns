@@ -11,8 +11,8 @@ class Reference < ActiveRecord::Base
   belongs_to :campaign
   belongs_to :application
   has_many :answers
-  has_many :referee_answers, class_name: Answer
-  has_many :reference_answers, class_name: Answer
+  has_many :referee_answers,   class_name: Answer, include: :question, conditions: [ "questions.for = 'referee'" ]
+  has_many :reference_answers, class_name: Answer, include: :question, conditions: [ "questions.for = 'reference'" ]
   accepts_nested_attributes_for :referee_answers, :reference_answers
 
   validates_associated :contact, :referee_answers, :reference_answers

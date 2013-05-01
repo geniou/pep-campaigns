@@ -1,8 +1,8 @@
 class Admin::ApplicationsController < Admin::BaseController
 
-  before_filter :find_campaign, :only => [ :index ]
-  before_filter :find_application, :only => [ :show ]
-  before_filter :set_breadcrumb, :only => [ :show ]
+  before_filter :find_campaign,    only: [:index]
+  before_filter :find_application, except: [:index]
+  before_filter :set_breadcrumb,   except: [:index]
 
   def index
     @complete_applications = @campaign.applications.complete
@@ -10,6 +10,18 @@ class Admin::ApplicationsController < Admin::BaseController
   end
 
   def show
+  end
+
+  def edit
+    add_breadcrumb('bearbeiten')
+  end
+
+  def update
+    if @application.update_attributes(params[:application])
+      redirect_to admin_application_path(@application.id), notice: "Angaben erfolgreich bearbeitet."
+    else
+      render :edit
+    end
   end
 
   private
