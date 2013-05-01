@@ -2,4 +2,21 @@
 
 %h1 Fragen
 
-= render partial: 'table', locals: { questions: @questions }
+%table.questions
+  %thead
+    %tr
+      %th #
+      %th Frage
+      %th
+      %th
+  %tbody
+    - @questions.each do |question_for, questions|
+      - if questions.any?
+        %tr
+          %th{ colspan: 4 }= t "question.for.#{question_for}"
+        - questions.each do |question|
+          %tr
+            %td= question.position
+            %td= question.text
+            %td= link_to 'bearbeiten', edit_admin_campaign_question_path(id: question.id, campaign_id: question.campaign.id)
+            %td= button_to 'löschen', admin_campaign_question_path(id: question.id, campaign_id: question.campaign.id), confirm: 'Sicher?', method: :delete
