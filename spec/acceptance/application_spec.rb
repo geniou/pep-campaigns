@@ -49,7 +49,6 @@ feature "Application" do
 
   def fill_in_application_details
     fill_in_contact_details
-    fill_in 'application_name', :with => "The Application Name"
 
     fill_in 'Question 1', with: "Answer 1"
     choose '1'
@@ -61,7 +60,7 @@ feature "Application" do
   def see_application_submitted_landing
     page.should have_selector('h1', text: "Success!")
 
-    application = Application.find_by_name('The Application Name')
+    application = Application.first
     application.contact.last_name.should == "Person"
   end
 

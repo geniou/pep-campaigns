@@ -7,15 +7,11 @@
   = f.semantic_errors
 
   %h2 Angaben zur Person
-  = render partial: "contacts/form", locals: { form: f }
-  = render :partial => 'shared/questions', :locals => { form: f, answers: :applicant_answers }
-
-  %h2 Organisation
-  = f.inputs do
-    = f.input :name, label: "Name der Organisation"
+  = render partial: 'contacts/form',    locals: { form: f }
+  = render partial: 'shared/questions', locals: { form: f, answers: :applicant_answers }
 
   %h2 Fragen
-  = render :partial => 'shared/questions', :locals => { form: f, answers: :application_answers }
+  = render partial: 'shared/questions', locals: { form: f, answers: :application_answers }
 
   = f.actions do
     = f.submit "Jetzt bewerben"

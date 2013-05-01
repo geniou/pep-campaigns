@@ -1,6 +1,6 @@
 - add_subnavigation_item "Referenze-Formular", new_campaign_application_reference_url(@application.campaign, @application)
 
-%h1= "Antrag von #{@application.name}"
+%h1= "Antrag von #{@application.contact.name}"
 
 %h2 Antrag
 =render :partial => "admin/contacts/details", :locals => { :contact => @application.contact }
