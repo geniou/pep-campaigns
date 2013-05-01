@@ -4,7 +4,8 @@ class Application < ActiveRecord::Base
 
   include HashedId
 
-  attr_accessible :name, :contact_attributes, :applican_anwers_attributes, :application_answers_attributes
+  attr_accessible :name, :contact_attributes, :applicant_answers_attributes,
+    :application_answers_attributes
 
   belongs_to :contact
   accepts_nested_attributes_for :contact
@@ -16,7 +17,8 @@ class Application < ActiveRecord::Base
   has_many :application_answers, class_name: Answer
   accepts_nested_attributes_for :applicant_answers, :application_answers
 
-  validates_associated :answers
+  validates_associated :applicant_answers
+  validates_associated :application_answers
   validates_associated :contact
   validates_presence_of :campaign
 
