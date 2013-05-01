@@ -7,8 +7,7 @@
     = javascript_include_tag "application"
   %body.admin
     %header
-      .notice= notice
-      .alert= alert
+      = render 'layouts/flash_messages'
       %nav
         %li= link_to('Kampagnen', admin_campaigns_path)
         %li= link_to('Kontakte', admin_contacts_path)

@@ -3,9 +3,9 @@
   %head
     %title PEP - Programm Engagement mit Perspektive
     = stylesheet_link_tag 'application', :media => 'all'
+    = javascript_include_tag "application"
   %body
-    .notice= notice
-    .alert= alert
+    = render 'layouts/flash_messages'
     %header
       = image_tag 'peplogo_small.png'
     #content
