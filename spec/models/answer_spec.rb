@@ -42,7 +42,7 @@ describe Answer do
         end
       end
       context 'without value' do
-        before { subject.stub(value: nil) }
+        before { subject.stub(value: '') }
         it 'add an error' do
           subject.errors.should_receive(:add)
           subject.valid?

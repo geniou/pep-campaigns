@@ -12,6 +12,6 @@ class Answer < ActiveRecord::Base
   protected
 
   def value_exists?
-    errors.add(:base, "Value needed") unless value || !question.required
+    errors.add(:base, "Value needed") if value == '' && question.required
   end
 end

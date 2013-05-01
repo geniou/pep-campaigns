@@ -17,17 +17,11 @@ class Application < ActiveRecord::Base
   has_many :application_answers, class_name: Answer
   accepts_nested_attributes_for :applicant_answers, :application_answers
 
-  validates_associated :applicant_answers
-  validates_associated :application_answers
-  validates_associated :contact
+  validates_associated :answers, :contact
   validates_presence_of :campaign
 
   def to_param
     hashed_id
-  end
-
-  def questions
-    campaign.application_questions.ordered
   end
 
   def complete

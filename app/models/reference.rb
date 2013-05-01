@@ -15,16 +15,10 @@ class Reference < ActiveRecord::Base
   has_many :reference_answers, class_name: Answer
   accepts_nested_attributes_for :referee_answers, :reference_answers
 
-  validates_associated :answers
-  validates_associated :contact
-  validates_presence_of :campaign
-  validates_presence_of :application
+  validates_associated :contact, :referee_answers, :reference_answers
+  validates_presence_of :campaign, :application
 
   def to_param
     hashed_id
-  end
-
-  def questions
-    campaign.reference_questions.ordered
   end
 end
