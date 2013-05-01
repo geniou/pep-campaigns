@@ -12,6 +12,6 @@ class Answer < ActiveRecord::Base
   protected
 
   def value_exists?
-    errors.add(:base, "Value needed") if value == '' && question.required
+    errors.add(question.field_name, I18n.t('answers.error.blank')) unless question.input_valid?(value)
   end
 end

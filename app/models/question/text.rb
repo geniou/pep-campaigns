@@ -5,12 +5,16 @@ class Question
       Question.model_name
     end
 
-    def input_element
-      [:text_value, {
-        label:    text,
-        as:       :text,
-        required: required
-      }]
+    def field_name
+      :text_value
+    end
+
+    def input_type
+      :text
+    end
+
+    def input_valid?(value)
+      !value.blank? || !required
     end
   end
 end

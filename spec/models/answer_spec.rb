@@ -30,41 +30,22 @@ describe Answer do
 
   describe 'valid?' do
     subject { Answer.new }
-    before { subject.stub_chain(:question, required: required) }
+    let(:question) { double('question', input_valid?: valid, field_name: :foo) }
+    before { subject.stub(question: question) }
 
-    context 'question is required' do
-      let(:required) { true }
-      context 'with value' do
-        before { subject.stub(value: double('value')) }
-        it 'add no error' do
-          subject.errors.should_not_receive(:add)
-          subject.valid?
-        end
-      end
-      context 'without value' do
-        before { subject.stub(value: '') }
-        it 'add an error' do
-          subject.errors.should_receive(:add)
-          subject.valid?
-        end
+    context 'answer valid' do
+      let(:valid) { true }
+      it 'add no error' do
+        subject.errors.should_not_receive(:add)
+        subject.valid?
       end
     end
 
-    context 'question is not required' do
-      let(:required) { false }
-      context 'with value' do
-        before { subject.stub(value: double('value')) }
-        it 'add no error' do
-          subject.errors.should_not_receive(:add)
-          subject.valid?
-        end
-      end
-      context 'without value' do
-        before { subject.stub(value: nil) }
-        it 'add no error' do
-          subject.errors.should_not_receive(:add)
-          subject.valid?
-        end
+    context 'answer invalid' do
+      let(:valid) { false }
+      it 'adds error' do
+        subject.errors.should_receive(:add)
+        subject.valid?
       end
     end
   end

@@ -5,12 +5,12 @@ class Question
       Question.model_name
     end
 
-    def input_element
-      [:boolean_value, {
-        label:    text,
-        as:       :boolean,
-        required: required
-      }]
+    def field_name
+      :boolean_value
+    end
+
+    def input_type
+      :boolean
     end
   end
 end

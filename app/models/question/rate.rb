@@ -5,8 +5,12 @@ class Question
       Question.model_name
     end
 
+    def field_name
+      :numeric_value
+    end
+
     def input_element
-      [:numeric_value, {
+      [field_name, {
         label:        text,
         as:           :radio,
         collection:   (1..5).map{ |i| [i, i.to_f] },

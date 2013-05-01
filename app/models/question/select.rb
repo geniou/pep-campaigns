@@ -5,13 +5,12 @@ class Question
       Question.model_name
     end
 
-    def input_element
-      [:text_value, {
-        label:      text,
-        as:         :radio,
-        collection: options,
-        required:   required
-      } ]
+    def field_name
+      :text_value
+    end
+
+    def input_type
+      :radio
     end
   end
 end

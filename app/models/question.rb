@@ -8,7 +8,16 @@ class Question < ActiveRecord::Base
   serialize :options, Array
 
   def input_element
-    raise NotImplementedError, "#{self.class}#input_element not implemented"
+    [field_name, {
+      label:      text,
+      as:         input_type,
+      collection: options,
+      required:   required
+    } ]
+  end
+
+  def input_valid?(value)
+    !value.nil? || !required
   end
 
   def self.types
