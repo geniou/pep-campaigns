@@ -16,7 +16,7 @@ feature 'Admin application questions' do
         @application = create(:application,
                campaign: campaign,
                contact: contact
-              );
+              )
         create(:text_question,
                campaign: campaign,
                for: :application,

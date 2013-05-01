@@ -7,8 +7,12 @@ class ReferencesController < ApplicationController
   def new
     @reference = Reference.new
     @reference.contact = Contact.new
+    @campaign.referee_questions.each do |question|
+      answer = @reference.referee_answers.build
+      answer.question = question
+    end
     @campaign.reference_questions.each do |question|
-      answer = @reference.answers.build
+      answer = @reference.reference_answers.build
       answer.question = question
     end
   end

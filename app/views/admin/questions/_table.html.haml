@@ -6,9 +6,12 @@
       %th
       %th
   %tbody
-    - questions.each do |question|
+    - questions.each do |type, q|
       %tr
-        %td= question.position
-        %td= question.text
-        %td= link_to 'bearbeiten', edit_admin_campaign_question_path(id: question.id, campaign_id: question.campaign.id)
-        %td= button_to 'löschen', admin_campaign_question_path(id: question.id, campaign_id: question.campaign.id), confirm: 'Sicher?', method: :delete
+        %th{ colspan: 4 }= t type
+      - q.each do |question|
+        %tr
+          %td= question.position
+          %td= question.text
+          %td= link_to 'bearbeiten', edit_admin_campaign_question_path(id: question.id, campaign_id: question.campaign.id)
+          %td= button_to 'löschen', admin_campaign_question_path(id: question.id, campaign_id: question.campaign.id), confirm: 'Sicher?', method: :delete

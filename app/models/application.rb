@@ -4,15 +4,17 @@ class Application < ActiveRecord::Base
 
   include HashedId
 
-  attr_accessible :name, :contact_attributes, :answers_attributes
+  attr_accessible :name, :contact_attributes, :applican_anwers_attributes, :application_answers_attributes
 
   belongs_to :contact
   accepts_nested_attributes_for :contact
   belongs_to :campaign
   has_many :references
   has_many :team_members
-  has_many :answers, conditions: "application_id IS NOT NULL"
-  accepts_nested_attributes_for :answers
+  has_many :answers
+  has_many :applicant_answers,   class_name: Answer
+  has_many :application_answers, class_name: Answer
+  accepts_nested_attributes_for :applicant_answers, :application_answers
 
   validates_associated :answers
   validates_associated :contact

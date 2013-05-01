@@ -6,9 +6,17 @@ class Campaign < ActiveRecord::Base
   attr_accessible :name, :applicant_introduction_text, :referee_introduction_text, :required_reference_count
   has_many :questions
   has_many :applications
+  has_many :applicant_questions,
+    class_name: 'Question',
+    conditions: { for: :applicant },
+    order: :position
   has_many :application_questions,
     class_name: 'Question',
     conditions: { for: :application },
+    order: :position
+  has_many :referee_questions,
+    class_name: 'Question',
+    conditions: { for: :referee },
     order: :position
   has_many :reference_questions,
     class_name: 'Question',

@@ -1,9 +1,5 @@
-%h1 Fragen
-
 - add_subnavigation_item 'Frage anlegen', new_admin_campaign_question_path(campaign_id: @campaign.id)
 
-%h2 Fragen für Bewerber
-= render partial: 'table', locals: { questions: @application_questions }
+%h1 Fragen
 
-%h2 Fragen für Referenzen
-= render partial: 'table', locals: { questions: @reference_questions }
+= render partial: 'table', locals: { questions: @questions }

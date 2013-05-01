@@ -27,7 +27,7 @@ feature 'Admin section' do
     fill_in 'admin_email', with: 'admin@example.com'
     fill_in 'admin_password', with: '123456'
     click_button('Sign in')
-    page.should have_selector('.notice', text: 'Signed in successfully.')
+    page.should have_selector('.notice', text: 'Erfolgreich angemeldet.')
   end
 
   def see_admin_section

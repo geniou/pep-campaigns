@@ -3,8 +3,12 @@ class Admin::QuestionsController < Admin::BaseController
   before_filter :set_breadcrumb
 
   def index
-    @application_questions = @campaign.application_questions
-    @reference_questions = @campaign.reference_questions
+    @questions = {
+      applicant:   @campaign.applicant_questions,
+      application: @campaign.application_questions,
+      referee:     @campaign.referee_questions,
+      reference:   @campaign.reference_questions
+    }
   end
 
   def new

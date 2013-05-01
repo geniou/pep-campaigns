@@ -6,9 +6,11 @@
 = semantic_form_for([ @campaign, @application, @reference ]) do |f|
   %h2 Angaben zur Person
   = render partial: "contacts/form", locals: { form: f }
+  = render partial: 'shared/questions', locals: { form: f, answers: :referee_answers }
 
-  %h2 Fragen
-  = render :partial => 'shared/questions', :locals => { form: f }
+  - if @reference.reference_answers.any?
+    %h2 Fragen
+    = render partial: 'shared/questions', locals: { form: f, answers: :reference_answers }
 
   = f.actions do
     = f.submit "Submit"

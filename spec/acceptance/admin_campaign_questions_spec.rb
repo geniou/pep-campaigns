@@ -45,7 +45,6 @@ feature 'Admin campaign questions' do
 
   def see_all_questions_of_the_campaign
     page.should have_selector('table.questions')
-    page.should have_selector('table.questions tbody tr', count: 1)
     page.should have_selector('table.questions tbody tr', text: 'What should we know?')
   end
 
@@ -55,8 +54,8 @@ feature 'Admin campaign questions' do
     click_link 'Fragen anzeigen'
     click_link 'Frage anlegen'
 
-    select 'Antrag', :from => 'question_for'
-    select 'Text', :from => 'question_type'
+    select 'Bewerbung', from: 'question_for'
+    select 'Text', from: 'question_type'
     fill_in 'question_text', with: 'What should we know about you?'
     click_button('Fragen anlegen')
   end
@@ -67,8 +66,8 @@ feature 'Admin campaign questions' do
     click_link 'Fragen anzeigen'
     click_link 'Frage anlegen'
 
-    select 'Antrag', :from => 'question_for'
-    select 'Auswahl', :from => 'question_type'
+    select 'Bewerbung', from: 'question_for'
+    select 'Auswahl', from: 'question_type'
     fill_in 'question_options', with: 'A, B, C'
     fill_in 'question_text', with: 'What should we know about you?'
     click_button('Fragen anlegen')

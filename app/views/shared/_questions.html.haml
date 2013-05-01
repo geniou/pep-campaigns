@@ -1,4 +1,4 @@
-= form.semantic_fields_for :answers do |answer|
+= form.semantic_fields_for answers do |answer|
   = answer.semantic_errors
   = answer.inputs do
     = answer.input *answer.object.question.input_element

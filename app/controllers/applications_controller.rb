@@ -7,8 +7,13 @@ class ApplicationsController < ApplicationController
   def new
     @application = Application.new
     @application.contact = Contact.new
+    # TODO: move logic to model
     @campaign.application_questions.each do |question|
-      answer = @application.answers.build
+      answer = @application.application_answers.build
+      answer.question = question
+    end
+    @campaign.applicant_questions.each do |question|
+      answer = @application.applicant_answers.build
       answer.question = question
     end
   end
