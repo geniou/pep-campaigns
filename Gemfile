@@ -21,6 +21,10 @@ group :test, :development do
   gem "factory_girl_rails"
 end
 
+group :development do
+  gem 'erd'
+end
+
 group :production do
   gem 'therubyracer'
 end
