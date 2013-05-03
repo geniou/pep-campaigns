@@ -4,11 +4,17 @@
       %tr
         %th Name
         %th E-Mail
+        %th Antworten
+        %th Referenzen
+        %th Fertig
     %tbody
       - applications.each do |application|
         - campaign = application.campaign
         %tr
           %td= link_to application.contact.name, admin_application_path(application.id)
           %td= application.contact.email
+          %td= application.answers?
+          %td= "#{application.references.size}/#{application.campaign.required_reference_count}"
+          %td= application.complete?
 - else
   %p Es gibt noch keine Anträge

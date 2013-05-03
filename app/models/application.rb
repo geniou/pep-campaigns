@@ -24,15 +24,15 @@ class Application < ActiveRecord::Base
     hashed_id
   end
 
-  def complete
+  def answers?
+    answers.any?
+  end
+
+  def required_references?
     references.size >= campaign.required_reference_count
   end
 
-  def self.complete
-    Application.all.select { |a| a.complete }
-  end
-
-  def self.incomplete
-    Application.all.select { |a| !a.complete }
+  def complete?
+    answers? && required_references?
   end
 end

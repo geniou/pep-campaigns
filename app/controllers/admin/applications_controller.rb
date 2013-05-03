@@ -1,13 +1,7 @@
 class Admin::ApplicationsController < Admin::BaseController
 
-  before_filter :find_campaign,    only: [:index]
-  before_filter :find_application, except: [:index]
-  before_filter :set_breadcrumb,   except: [:index]
-
-  def index
-    @complete_applications = @campaign.applications.complete
-    @incomplete_applications = @campaign.applications.incomplete
-  end
+  before_filter :find_application
+  before_filter :set_breadcrumb
 
   def show
   end

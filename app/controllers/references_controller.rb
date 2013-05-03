@@ -25,7 +25,7 @@ class ReferencesController < ApplicationController
     if !@reference.save
       render :new
     else
-      if @application.references.reload.size == @campaign.required_reference_count
+      if @application.required_references?
         UserMailer.references_received_mail(@application).deliver
       end
       redirect_to success_campaign_application_reference_path(@campaign, @application, @reference)

@@ -11,7 +11,7 @@ describe Application do
     @application.should be_instance_of(Application)
   end
 
-  describe "complete" do
+  describe "required_references?" do
 
     it "should include applications with the required number of references" do
       @application.complete.should be_false

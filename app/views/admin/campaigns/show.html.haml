@@ -4,9 +4,4 @@
 - add_subnavigation_item 'Bewerber-Formular (Schritt 1)', new_campaign_application_url(@campaign)
 - add_subnavigation_item "bearbeiten", edit_admin_campaign_path(@campaign.id)
 
-%p
-  Required References per Application:
-  = @campaign.required_reference_count
-
-%h2 Anträge
 = render :partial => "admin/applications/table", :locals => { :applications => @campaign.applications }
