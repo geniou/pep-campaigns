@@ -3,8 +3,8 @@ class Question
 
     def self.model_name
       Question.model_name
-    end
 
+    end
     def field_name
       :text_value
     end
@@ -15,6 +15,16 @@ class Question
 
     def input_valid?(value)
       !value.blank? || !required
+    end
+
+    def summary_type
+      :list
+    end
+
+    def summary(answers)
+      answers
+        .map { |answer| answer.value }
+        .reject { |answer| answer.blank? }
     end
   end
 end

@@ -19,5 +19,13 @@ class Question
         hint:         hint
       }]
     end
+
+    def summary_type
+      :number
+    end
+
+    def summary(answers)
+      answers.average(:numeric_value)
+    end
   end
 end

@@ -1,0 +1,5 @@
+de:
+  summaries:
+    references:
+      headline: "Auswertung der Referenzfragebögen von %s"
+      count: "%{count} Teilnehmer"

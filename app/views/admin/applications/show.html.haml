@@ -1,5 +1,6 @@
 - add_subnavigation_item "Referenze-Formular", new_campaign_application_reference_url(@application.campaign, @application)
 - add_subnavigation_item 'Bewerber-Formular (Schritt 2)', edit_campaign_application_path(@application.campaign, @application)
+- add_subnavigation_item 'Auswertung Referenzen', references_admin_application_summary_path(@application.id)
 - add_subnavigation_item "bearbeiten", edit_admin_application_path(@application.id)
 
 %h1= "Antrag von #{@application.contact.name}"

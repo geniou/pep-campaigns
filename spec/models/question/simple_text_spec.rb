@@ -61,5 +61,23 @@ describe Question::SimpleText do
       it { should be_true }
     end
   end
+
+  describe 'summary_type' do
+    subject { Question::SimpleText.new.summary_type }
+
+    it { should == :list }
+  end
+
+  describe 'summary' do
+    subject { question.summary(Answer.all) }
+    let(:question) { create(:simple_text_question, for: :application, required: false) }
+    before do
+      create(:answer, question: question, text_value: 'Foo')
+      create(:answer, question: question, text_value: 'Bar')
+      create(:answer, question: question, text_value: '')
+    end
+
+    it { should == ['Foo', 'Bar'] }
+  end
 end
 

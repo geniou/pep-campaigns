@@ -20,25 +20,26 @@ FactoryGirl.define do
   end
 
   factory :question do
-    factory :text_question, class: 'Question::Text' do
-      ignore do
-        answer nil
-        application nil
-        reference nil
-      end
-      after(:create) do |question, evaluator|
-        if evaluator.answer
-          create(:answer,
-                 application_id: evaluator.application.id,
-                 reference_id: evaluator.reference.try(:id),
-                 text_value: evaluator.answer,
-                 question: question
-                )
-        end
+    ignore do
+      answer nil
+      application nil
+      reference nil
+    end
+    after(:create) do |question, evaluator|
+      if evaluator.answer
+        create(:answer,
+               application_id: evaluator.application.id,
+               reference_id: evaluator.reference.try(:id),
+               text_value: evaluator.answer,
+               question: question
+              )
       end
     end
+    factory :text_question, class: 'Question::Text'
+    factory :simple_text_question, class: 'Question::SimpleText'
     factory :rate_question, class: 'Question::Rate'
     factory :select_question, class: 'Question::Select'
+    factory :boolean_question, class: 'Question::Boolean'
   end
 
   factory :reference do

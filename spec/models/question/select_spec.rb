@@ -66,6 +66,23 @@ describe Question::Select do
       it { should be_true }
     end
   end
+
+  describe 'summary_type' do
+    subject { Question::Select.new.summary_type }
+
+    it { should == :key_value }
+  end
+
+  describe 'summary' do
+    subject { question.summary(Answer.all) }
+    let(:question) { create(:select_question, for: :application, required: false) }
+    before do
+      create(:answer, question: question, text_value: 'Foo')
+      create(:answer, question: question, text_value: 'Bar')
+      create(:answer, question: question, text_value: 'Foo')
+      create(:answer, question: question, text_value: nil)
+    end
+
+    it { should == [['Foo', 2], ['Bar', 1]] }
+  end
 end
-
-

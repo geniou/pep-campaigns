@@ -1,5 +1,5 @@
 PepCampaigns::Application.routes.draw do
-  
+
   devise_for :admins
 
   root :to => 'root#index'
@@ -23,7 +23,11 @@ PepCampaigns::Application.routes.draw do
     resources :campaigns, :constraints => { :id => /[^\/]+/ } do
       resources :questions
     end
-    resources :applications
+    resources :applications do
+      resource :summary do
+        get :references
+      end
+    end
     resources :references
     resources :contacts
   end

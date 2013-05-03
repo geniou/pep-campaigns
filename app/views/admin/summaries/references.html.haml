@@ -1,0 +1,7 @@
+%h1= t('summaries.references.headline') % @application.contact.name
+
+%p= t('summaries.references.count', count: @summary[:count])
+
+- @summary[:questions].each do |question, summary_type, answers|
+  %h2= question
+  = render partial: summary_type.to_s, locals: { answers: answers }

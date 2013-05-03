@@ -31,5 +31,4 @@ class Admin::ApplicationsController < Admin::BaseController
   def set_breadcrumb
     add_application_breadcrumb(@application)
   end
-
 end

@@ -61,4 +61,23 @@ describe Question::Boolean do
       it { should be_true }
     end
   end
+
+  describe 'summary_type' do
+    subject { Question::Boolean.new.summary_type }
+
+    it { should == :percentage }
+  end
+
+  describe 'summary' do
+    subject { question.summary(answers) }
+    let(:question) { create(:boolean_question, for: :application, required: false) }
+    let(:answers) { Answer }
+    before do
+      create(:answer, question: question, boolean_value: true)
+      create(:answer, question: question, boolean_value: false)
+      create(:answer, question: question, boolean_value: nil)
+    end
+
+    it { should == 50 }
+  end
 end

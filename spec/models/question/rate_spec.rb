@@ -61,5 +61,23 @@ describe Question::Rate do
       it { should be_true }
     end
   end
+
+  describe 'summary_type' do
+    subject { Question::Rate.new.summary_type }
+
+    it { should == :number }
+  end
+
+  describe 'summary' do
+    subject { question.summary(Answer) }
+    let(:question) { create(:rate_question, for: :application) }
+    before do
+      create(:answer, question: question, numeric_value: 1)
+      create(:answer, question: question, numeric_value: 3)
+      create(:answer, question: question, text_value: '')
+    end
+
+    it { should == 2 }
+  end
 end
 
