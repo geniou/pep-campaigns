@@ -4,7 +4,7 @@ class Reference < ActiveRecord::Base
 
   include HashedId
 
-  attr_accessible :contact_attributes, :referee_answers, :reference_answers_attributes
+  attr_accessible :contact_attributes, :referee_answers_attributes, :reference_answers_attributes
 
   belongs_to :contact
   accepts_nested_attributes_for :contact
