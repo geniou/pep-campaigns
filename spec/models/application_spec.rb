@@ -4,7 +4,7 @@ describe Application do
 
   before :each do
     @campaign = FactoryGirl.create(:campaign)
-    @application = FactoryGirl.create(:application, :campaign => @campaign)
+    @application = FactoryGirl.create(:application, campaign: @campaign)
   end
 
   it "should be an Application" do

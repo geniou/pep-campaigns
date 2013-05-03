@@ -2,8 +2,6 @@ require 'spec_helper'
 
 describe Admin::ContactsController do
 
-  render_views
-
   before { controller.stub(authenticate_admin!: nil) }
 
   before :each do
@@ -33,7 +31,5 @@ describe Admin::ContactsController do
       do_request
       assert_response :ok
     end
-
   end
-
 end

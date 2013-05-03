@@ -7,6 +7,10 @@ FactoryGirl.define do
     first_name "Robert"
     last_name "Paulson"
     email "his_name_is@robert.paulson"
+    factory :applicant_contact, class: 'Contact::Applicant' do
+      password 'foo'
+    end
+    factory :referee_contact, class: 'Contact::Referee'
   end
 
   factory :campaign do
@@ -39,13 +43,13 @@ FactoryGirl.define do
 
   factory :reference do
     association :campaign
-    association :contact
     association :application
+    contact { create(:referee_contact) }
   end
 
   factory :application do
     association :campaign
-    association :contact
+    contact { create(:applicant_contact) }
   end
 
   factory :admin do

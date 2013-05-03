@@ -1,6 +1,10 @@
+- password ||= false
 = form.semantic_fields_for :contact do |contact|
   = contact.inputs do
     = contact.input :title, label: 'Anrede'
     = contact.input :first_name, label: "Vorname"
     = contact.input :last_name, label: "Nachname"
     = contact.input :email, label: "E-Mail Adresse"
+    - if password
+      = contact.input :password, label: "Passwort", as: :password
+      = contact.input :password_confirmation, label: "Passwort bestätigen", as: :password

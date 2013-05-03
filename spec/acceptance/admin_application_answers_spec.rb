@@ -20,19 +20,16 @@ feature 'Admin application questions' do
 
   def application_with_an_answer_exists
     create(:campaign) do |campaign|
-      create(:contact) do |contact|
-        @application = create(:application,
-               campaign: campaign,
-               contact: contact
-              )
-        create(:text_question,
-               campaign: campaign,
-               for: :application,
-               text: 'Question 1',
-               answer: 'Answer 1',
-               application: @application
-              )
-      end
+      @application = create(:application,
+             campaign: campaign,
+            )
+      create(:text_question,
+             campaign: campaign,
+             for: :application,
+             text: 'Question 1',
+             answer: 'Answer 1',
+             application: @application
+            )
     end
   end
 

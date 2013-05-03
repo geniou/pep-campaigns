@@ -2,7 +2,19 @@ de:
  activerecord:
   errors:
     models:
-      contact:
+      contact/applicant:
+        attributes:
+          first_name:
+            blank: "Bitte geben Sie ihnen Vornamen an."
+          last_name:
+            blank: "Bitte geben Sie ihnen Vornamen an."
+          email:
+            blank: "Bitte geben Sie ihne E-Mail-Adresse an."
+          password:
+            blank: "Bitte geben Sie ein Password an."
+            confirmation: "Password und die Bestätigung stimmen nicht überein."
+            wrong: "Bitte überprüfen Sie ihr Passwort."
+      contact/referee:
         attributes:
           first_name:
             blank: "Bitte geben Sie ihnen Vornamen an."

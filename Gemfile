@@ -10,6 +10,7 @@ gem 'haml-rails'
 gem 'uglifier'
 gem 'devise'
 gem 'formtastic'
+gem "bcrypt-ruby", :require => "bcrypt"
 
 group :test, :development do
   gem "rspec-rails"

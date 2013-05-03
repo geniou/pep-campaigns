@@ -1,4 +1,4 @@
-%h1 Für ein Stipendium Bewerben
+%h1 Für ein Stipendium Bewerben - Schritt 1/2
 
 - unless @campaign.applicant_introduction_text.blank?
   .introduction= simple_format(@campaign.applicant_introduction_text)
@@ -7,11 +7,8 @@
   = f.semantic_errors
 
   %h2 Angaben zur Person
-  = render partial: 'contacts/form',    locals: { form: f }
+  = render partial: 'contacts/form',    locals: { form: f, password: true }
   = render partial: 'shared/questions', locals: { form: f, answers: :applicant_answers }
 
-  %h2 Fragen
-  = render partial: 'shared/questions', locals: { form: f, answers: :application_answers }
-
   = f.actions do
-    = f.submit "Jetzt bewerben"
+    = f.submit "Weiter"

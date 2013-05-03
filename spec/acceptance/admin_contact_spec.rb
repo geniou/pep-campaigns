@@ -3,6 +3,7 @@ require 'spec_helper'
 feature 'Admin contacts' do
 
   background do
+    pending
     admin_exists_and_is_logged_in
   end
 
@@ -14,11 +15,11 @@ feature 'Admin contacts' do
 
   def application_and_reference_contacts_exist
     create(:campaign, name: 'The campaign') do |campaign|
-      create(:contact, last_name: 'Application contact') do |application_contact|
-        create(:application, campaign: campaign, contact: application_contact) do |application|
-          create(:contact, last_name: 'Reference contact') do |reference_contact|
+      create(:applicant_contact, last_name: 'Application contact') do |applicant_contact|
+        create(:application, campaign: campaign, contact: applicant_contact) do |application|
+          create(:referee_contact, last_name: 'Reference contact') do |referee_contact|
             create(:reference, campaign: campaign,
-                   application: application, contact: reference_contact)
+                   application: application, contact: referee_contact)
           end
         end
       end

@@ -20,19 +20,16 @@ feature 'Admin reference questions' do
 
   def reference_with_an_answer_exists
     create(:campaign) do |campaign|
-      create(:contact) do |contact|
-        create(:application, campaign: campaign, contact: contact) do |application|
-          create(:reference, campaign: campaign, contact: contact,
-                 application: application) do |reference|
-            create(:text_question,
-                   campaign: campaign,
-                   for: :reference,
-                   text: 'Question 1',
-                   answer: 'Answer 1',
-                   application: application,
-                   reference: reference
-                  )
-          end
+      create(:application, campaign: campaign) do |application|
+        create(:reference, campaign: campaign, application: application) do |reference|
+          create(:text_question,
+                 campaign: campaign,
+                 for: :reference,
+                 text: 'Question 1',
+                 answer: 'Answer 1',
+                 application: application,
+                 reference: reference
+                )
         end
       end
     end

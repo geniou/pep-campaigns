@@ -5,27 +5,21 @@ feature "Application" do
 
   include AcceptanceHelpers
 
-  scenario "See application" do
-    campaign_with_applicant_introduction_text_exists
-    go_to_application_submission_page
-    see_applicant_introduction_text
-  end
-
-  scenario "Submit a new application" do
+  scenario "Create and finalize a application" do
     campaign_with_questions_exists
 
-    go_to_application_submission_page
-    fill_in_application_details
+    # step 1
+    go_to_application_create_page
+    see_applicant_introduction_text
+    fill_in_applicant_details
 
-    see_application_submitted_landing
-  end
-
-  def campaign_with_applicant_introduction_text_exists
-    create(:campaign, applicant_introduction_text: 'Introduction text')
+    # step 2
+    try_and_fail_without_applicant_login
+    fill_applicant_login_and_application_answers
   end
 
   def campaign_with_questions_exists
-    create(:campaign) do |campaign|
+    create(:campaign, applicant_introduction_text: 'Introduction text') do |campaign|
       campaign.application_questions << create(:text_question,
                                               for: :application,
                                               text: 'Question 1')
@@ -39,7 +33,7 @@ feature "Application" do
     end
   end
 
-  def go_to_application_submission_page
+  def go_to_application_create_page
     visit new_campaign_application_path(Campaign.first)
   end
 
@@ -47,21 +41,34 @@ feature "Application" do
     page.should have_selector('.introduction', text: 'Introduction text')
   end
 
-  def fill_in_application_details
+  def fill_in_applicant_details
     fill_in_contact_details
-
-    fill_in 'Question 1', with: "Answer 1"
-    choose '1'
-    choose 'Q3A2'
-
-    click_button("Jetzt bewerben")
-  end
-
-  def see_application_submitted_landing
-    page.should have_selector('h1', text: "Success!")
+    fill_in 'Passwort', with: "geheim"
+    fill_in 'Passwort bestätigen', with: "geheim"
+    click_button("Weiter")
 
     application = Application.first
     application.contact.last_name.should == "Person"
   end
 
+  def try_and_fail_without_applicant_login
+    fill_in_application_answers
+    page.should have_content('Bitte überprüfen Sie ihr Passwort.')
+  end
+
+  def fill_applicant_login_and_application_answers
+    fill_in 'Passwort', with: "geheim"
+
+    fill_in_application_answers
+  end
+
+  private
+
+  def fill_in_application_answers
+    fill_in 'Question 1', with: "Answer 1"
+    choose '1'
+    choose 'Q3A2'
+
+    click_button("Bewerbung abschließen")
+  end
 end

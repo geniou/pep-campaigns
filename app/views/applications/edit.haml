@@ -1,0 +1,14 @@
+%h1 Für ein Stipendium Bewerben - Schritt 2/2
+
+= semantic_form_for([ @campaign, @application ]) do |f|
+  = f.semantic_errors
+
+  = f.semantic_fields_for :contact do |contact|
+    = contact.inputs do
+      = contact.input :password, label: "Passwort", as: :password
+
+  %h2 Fragen
+  = render partial: 'shared/questions', locals: { form: f, answers: :application_answers }
+
+  = f.actions do
+    = f.submit "Bewerbung abschließen"
