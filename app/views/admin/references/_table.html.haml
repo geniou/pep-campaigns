@@ -3,10 +3,12 @@
     %thead
       %tr
         %th Name
+        %th Erstellt
     %tbody
       - references.each do |reference|
         - campaign = reference.campaign
         %tr
           %td= link_to reference.contact.name, admin_reference_path(reference)
+          %td= l reference.created_at
 - else
   %p Es gibt noch keine Referenzen für diesen Antrag

@@ -7,6 +7,8 @@
         %th Antworten
         %th Referenzen
         %th Fertig
+        %th Erstellt
+        %th Verändert
     %tbody
       - applications.each do |application|
         - campaign = application.campaign
@@ -16,5 +18,7 @@
           %td= application.answers?
           %td= "#{application.references.size}/#{application.campaign.required_reference_count}"
           %td= application.complete?
+          %td= l application.created_at
+          %td= l application.updated_at
 - else
   %p Es gibt noch keine Anträge
