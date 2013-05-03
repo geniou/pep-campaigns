@@ -1,7 +1,5 @@
-%h1 Success!
+%h1 Alles erfolgreich gespeichert
 
-%h2 You totally applied for that thing!
-
-%p Send this link to your referrees:
 %p
-  = new_campaign_application_reference_url(@campaign, @application)
+  Folgenden Link kannst du verschicken um Referenzen zu sammeln:
+  =link_to 'Referenzen sammeln', new_campaign_application_reference_url(@campaign, @application)
