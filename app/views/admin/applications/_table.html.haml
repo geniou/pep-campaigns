@@ -4,7 +4,8 @@
       %tr
         %th Name
         %th E-Mail
-        %th Antworten
+        - if @campaign.application_questions.any?
+          %th Antworten
         %th Referenzen
         %th Fertig
         %th Erstellt
@@ -15,7 +16,8 @@
         %tr
           %td= link_to application.contact.name, admin_application_path(application.id)
           %td= application.contact.email
-          %td= application.answers?
+          - if @campaign.application_questions.any?
+            %td= application.application_answers?
           %td= "#{application.references.size}/#{application.campaign.required_reference_count}"
           %td= application.complete?
           %td= l application.created_at

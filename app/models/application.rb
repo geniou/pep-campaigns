@@ -24,8 +24,8 @@ class Application < ActiveRecord::Base
     hashed_id
   end
 
-  def answers?
-    answers.any?
+  def application_answers?
+    campaign.application_questions.count == application_answers.count
   end
 
   def required_references?
@@ -33,6 +33,6 @@ class Application < ActiveRecord::Base
   end
 
   def complete?
-    answers? && required_references?
+    application_answers? && required_references?
   end
 end
