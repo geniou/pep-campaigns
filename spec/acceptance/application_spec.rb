@@ -53,7 +53,7 @@ feature "Application" do
 
   def try_and_fail_without_applicant_login
     fill_in_application_answers
-    page.should have_content('Bitte überprüfen Sie ihr Passwort.')
+    page.should have_content('Bitte überprüfen Sie Ihr Passwort.')
   end
 
   def fill_applicant_login_and_application_answers

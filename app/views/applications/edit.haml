@@ -1,8 +1,7 @@
-%h1 Für ein Stipendium Bewerben - Schritt 2/2
+%h1 Für ein Stipendium bewerben - Schritt 2/2
 
-%p
-  Folgenden Link kannst du verschicken um Referenzen zu sammeln:
-  =link_to 'Referenzen sammeln', new_campaign_application_reference_url(@campaign, @application)
+- unless @campaign.application_introduction_text.blank?
+  .introduction= simple_format(@campaign.application_introduction_text % { reference_link: new_campaign_application_reference_url(@campaign, @application), edit_link: edit_campaign_application_reference_url(@campaign, @application) })
 
 = semantic_form_for([ @campaign, @application ]) do |f|
   = f.semantic_errors

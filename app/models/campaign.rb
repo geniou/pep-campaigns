@@ -3,7 +3,8 @@ require 'hashed_id'
 class Campaign < ActiveRecord::Base
   include HashedId
 
-  attr_accessible :name, :applicant_introduction_text, :referee_introduction_text,
+  attr_accessible :name, :applicant_introduction_text, :application_introduction_text,
+    :application_success_text, :referee_introduction_text, :reference_success_text,
     :required_reference_count, :open_to_applicants, :open_to_referees
   has_many :questions
   has_many :applications

@@ -1,7 +1,4 @@
 %h1 Vielen Dank für Ihre Unterstützung!
 
-%p
-  Zum Programm können Sie über <a href="http://www.engagement-mit-perspektive.de">www.engagement-mit-perspektive.de</a>
-  auf dem Laufenden bleiben, am Wettbewerb auf <a href="http://www.oursocialinnovation.org">www.oursocialinnovation.org</a>
-  aktiv teilhaben, wenn Sie zu den Projekten kommentieren und mitdiskutieren möchten.
-
+- unless @campaign.reference_success_text.blank?
+  .introduction= simple_format(@campaign.reference_success_text)

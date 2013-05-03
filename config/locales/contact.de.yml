@@ -5,20 +5,20 @@ de:
       contact/applicant:
         attributes:
           first_name:
-            blank: "Bitte geben Sie ihnen Vornamen an."
+            blank: "Bitte geben Sie Ihren Vornamen an."
           last_name:
-            blank: "Bitte geben Sie ihnen Vornamen an."
+            blank: "Bitte geben Sie Ihren Nachnamen an."
           email:
-            blank: "Bitte geben Sie ihne E-Mail-Adresse an."
+            blank: "Bitte geben Sie Ihre E-mail Adresse an."
           password:
-            blank: "Bitte geben Sie ein Password an."
-            confirmation: "Password und die Bestätigung stimmen nicht überein."
-            wrong: "Bitte überprüfen Sie ihr Passwort."
+            blank: "Bitte geben Sie ein Passwort an."
+            confirmation: "Passwort und die Bestätigung stimmen nicht überein."
+            wrong: "Bitte überprüfen Sie Ihr Passwort."
       contact/referee:
         attributes:
           first_name:
-            blank: "Bitte geben Sie ihnen Vornamen an."
+            blank: "Bitte geben Sie Ihren Vornamen an."
           last_name:
-            blank: "Bitte geben Sie ihnen Vornamen an."
+            blank: "Bitte geben Sie Ihren Nachnamen an."
           email:
-            blank: "Bitte geben Sie ihne E-Mail-Adresse an."
+            blank: "Bitte geben Sie Ihre E-mail Adresse an."
