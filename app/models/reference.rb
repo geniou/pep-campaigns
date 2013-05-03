@@ -6,6 +6,8 @@ class Reference < ActiveRecord::Base
 
   attr_accessible :contact_attributes, :referee_answers_attributes, :reference_answers_attributes
 
+  delegate :referee_questions, :reference_questions, to: :campaign
+
   belongs_to :contact
   accepts_nested_attributes_for :contact
   belongs_to :campaign

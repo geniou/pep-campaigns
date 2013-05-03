@@ -1,10 +1,13 @@
-%table.answers
-  %thead
-    %tr
-      %th Frage
-      %th Antwort
-  %tbody
-    - answers.each do |answer|
+- if answers.any?
+  %table.answers
+    %thead
       %tr
-        %td= answer.question.text
-        %td= answer.value
+        %th Frage
+        %th Antwort
+    %tbody
+      - answers.each do |answer|
+        %tr
+          %td= answer.question.text
+          %td= answer.value
+- else
+  Es gibt noch keine Antworten

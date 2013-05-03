@@ -1,6 +1,4 @@
 %p
-  %b Name:
-  = "#{contact.last_name}, #{contact.first_name}"
-%p
-  %b E-Mail:
-  = "#{contact.email}"
+  = contact.title
+  = contact.name
+  = "(#{contact.email})"

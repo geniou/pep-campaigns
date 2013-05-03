@@ -4,12 +4,15 @@
 
 %h1= "Antrag von #{@application.contact.name}"
 
-%h2 Kontakt
-=render :partial => "admin/contacts/details", :locals => { :contact => @application.contact }
+%h2 Bewerber
+= render :partial => "admin/contacts/details", locals: { contact: @application.contact }
+- if @application.applicant_questions.any?
+  = render :partial => "admin/answers/table",  locals: { answers: @application.applicant_answers }
 
-%h2 Antworten
-= render :partial => "admin/answers/table", :locals => { :answers => @application.answers }
+- if @application.application_questions.any?
+  %h2 Antworten
+  = render :partial => "admin/answers/table",  locals: { answers: @application.application_answers }
 
 %h2 Referenzen
-= render :partial => "admin/references/table", :locals => { :references => @application.references }
+= render :partial => "admin/references/table", locals: { references: @application.references }
 

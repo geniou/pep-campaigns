@@ -2,9 +2,12 @@
 
 %h1= "Referenz von #{@reference.contact.name}"
 
-%h2 Kontaktdaten
-=render :partial => "admin/contacts/details", :locals => { :contact => @reference.contact }
+%h2 Referent
+= render :partial => "admin/contacts/details", locals: { contact: @reference.contact }
+- if @reference.referee_questions.any?
+  = render :partial => "admin/answers/table", locals: { answers: @reference.referee_answers }
 
-%h2 Antworten
-= render :partial => "admin/answers/table", :locals => { :answers => @reference.answers }
+- if @reference.reference_questions.any?
+  %h2 Antworten
+  = render :partial => "admin/answers/table", locals: { answers: @reference.answers }
 

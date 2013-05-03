@@ -7,6 +7,8 @@ class Application < ActiveRecord::Base
   attr_accessible :name, :contact_attributes, :applicant_answers_attributes,
     :application_answers_attributes
 
+  delegate :application_questions, :applicant_questions, to: :campaign
+
   belongs_to :contact, class_name: Contact::Applicant
   accepts_nested_attributes_for :contact
   belongs_to :campaign
