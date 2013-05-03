@@ -2,8 +2,10 @@
   = f.inputs do
     = f.input :name
     = f.input :applicant_introduction_text
+    = f.input :open_to_applicants
     = f.input :referee_introduction_text
     = f.input :required_reference_count
+    = f.input :open_to_referees
 
   = f.actions do
     = f.action :submit, as: :button, label: 'speichern'

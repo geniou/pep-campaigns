@@ -2,6 +2,7 @@ require 'hashed_id'
 class ApplicationsController < ApplicationController
 
   before_filter :find_campaign
+  before_filter :check_if_closed
   before_filter :find_application, only: [ :success, :edit, :update ]
 
   def new
@@ -46,6 +47,12 @@ private
 
   def find_campaign
     @campaign = Campaign.find_by_hashed_id(params[:campaign_id]) || raise(ActionController::RoutingError.new("Not Found"))
+  end
+
+  def check_if_closed
+    unless @campaign.open_to_applicants
+      return render :closed
+    end
   end
 
   def find_application

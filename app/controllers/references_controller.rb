@@ -1,8 +1,9 @@
 require 'hashed_id'
 class ReferencesController < ApplicationController
 
-  before_filter :find_application, :only => [ :new, :create ]
-  before_filter :find_campaign, :only => [ :new, :create ]
+  before_filter :find_application
+  before_filter :find_campaign
+  before_filter :check_if_closed
 
   def new
     @reference = Reference.new
@@ -38,6 +39,12 @@ private
 
   def find_application
     @application = Application.find_by_hashed_id(params[:application_id]) || raise(ActionController::RoutingError.new("Not Found"))
+  end
+
+  def check_if_closed
+    unless @campaign.open_to_referees
+      return render :closed
+    end
   end
 
   def find_campaign

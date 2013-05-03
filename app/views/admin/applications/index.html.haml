@@ -1,7 +1,0 @@
-%h1 Anträge für "#{@campaign.name}"
-
-%h2 abgeschlossene Anträge
-= render :partial => "table", :locals => { :applications => @complete_applications }
-
-%h2 offene Anträge
-= render :partial => "table", :locals => { :applications => @incomplete_applications }
