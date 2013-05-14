@@ -2,18 +2,19 @@ de:
   activerecord:
     attributes:
       question:
-        for: für
-        type: Art
-        options: Option
+        for:      für
+        type:     Art
+        options:  Option
         position: Position
         required: Pflictfeld
-        text: Fragetext
+        text:     Fragetext
   question:
     type:
-      text:    Text
-      rate:    Bewertung
-      select:  Auswahl
-      boolean: Checkbox
+      simple_text: Textzeile
+      text:        Text (mehrzeilig)
+      rate:        Bewertung
+      select:      Auswahl
+      boolean:     Checkbox
     for:
       applicant:   Bewerber (Fragen zur Person)
       application: Bewerbung

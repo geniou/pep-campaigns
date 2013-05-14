@@ -1,4 +1,5 @@
 class Question < ActiveRecord::Base
+
   attr_accessible :text, :for, :type, :options, :position, :required
 
   belongs_to :campaign
@@ -22,10 +23,11 @@ class Question < ActiveRecord::Base
 
   def self.types
     {
-      I18n.t("question.type.text")    => Question::Text,
-      I18n.t("question.type.rate")    => Question::Rate,
-      I18n.t("question.type.select")  => Question::Select,
-      I18n.t("question.type.boolean") => Question::Boolean,
+      I18n.t("question.type.simple_text")  => Question::SimpleText,
+      I18n.t("question.type.text")         => Question::Text,
+      I18n.t("question.type.rate")         => Question::Rate,
+      I18n.t("question.type.select")       => Question::Select,
+      I18n.t("question.type.boolean")      => Question::Boolean,
     }
   end
 
