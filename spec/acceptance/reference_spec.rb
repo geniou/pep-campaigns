@@ -30,7 +30,7 @@ feature "Reference" do
 
     fill_in 'Question 1', with: "Answer 1"
 
-    click_button("Submit")
+    click_button("Abschicken")
   end
 
   def see_reference_submitted_landing

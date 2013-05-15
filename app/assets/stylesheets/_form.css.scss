@@ -1,21 +1,27 @@
 // fix display problem for long labels
-.formtastic .radio .choices {
-  .choices-group {
-    float: none;
-  }
-  .label {
-    position: relative;
-    width: 25%;
-    label {
+.formtastic {
+  .radio .choices {
+    .choices-group {
+      float: none;
+    }
+    .label {
       position: relative;
+      width: 25%;
+      label {
+        position: relative;
+      }
     }
   }
-}
 
-// rates inline
-.formtastic .rate .choices {
-  .choice {
-    display: inline;
+  // rates inline
+  .rate .choices {
+    .choice {
+      display: inline;
+    }
+  }
+
+  legend {
+    color: #333333;
   }
 }
 

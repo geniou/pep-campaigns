@@ -1,4 +1,4 @@
-%h1 Für ein Stipendium bewerben - Schritt 2/2
+%h1 Um ein Stipendium bewerben - Schritt 2/2
 
 - unless @campaign.application_introduction_text.blank?
   .introduction= simple_format(@campaign.application_introduction_text % { reference_link: new_campaign_application_reference_url(@campaign, @application), edit_link: edit_campaign_application_url(@campaign, @application) })
