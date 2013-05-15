@@ -34,6 +34,10 @@ class Application < ActiveRecord::Base
     references.size >= campaign.required_reference_count
   end
 
+  def references_received_mail?
+    references.size == campaign.required_reference_count
+  end
+
   def complete?
     application_answers? && required_references?
   end

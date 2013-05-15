@@ -25,7 +25,7 @@ class ReferencesController < ApplicationController
     if !@reference.save
       render :new
     else
-      if @application.required_references? && @campaign.references_received_mail?
+      if @application.references_received_mail? && @campaign.references_received_mail?
         UserMailer.references_received_mail(@application).deliver
       end
       redirect_to success_campaign_application_reference_path(@campaign, @application, @reference)
