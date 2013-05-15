@@ -5,6 +5,7 @@ de:
         for:      für
         type:     Art
         options:  Option
+        hint:     Hinweis / Anmerkung
         position: Position
         required: Pflictfeld
         text:     Fragetext

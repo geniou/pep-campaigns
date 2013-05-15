@@ -1,6 +1,6 @@
 class Question < ActiveRecord::Base
 
-  attr_accessible :text, :for, :type, :options, :position, :required
+  attr_accessible :text, :for, :type, :options, :position, :required, :hint
 
   belongs_to :campaign
   has_many :answers, dependent: :destroy
@@ -13,7 +13,8 @@ class Question < ActiveRecord::Base
       label:      text,
       as:         input_type,
       collection: options,
-      required:   required
+      required:   required,
+      hint:       hint
     } ]
   end
 

@@ -3,6 +3,7 @@
     = f.input :for,  as: :select, collection: Question.fors, include_blank: false
     = f.input :type, as: :select, collection: Question.types, include_blank: false
     = f.input :options, hint: I18n.t('question.form.option.hint')
+    = f.input :hint
     = f.input :position
     = f.input :required
     = f.input :text

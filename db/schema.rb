@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130503143001) do
+ActiveRecord::Schema.define(:version => 20130515054527) do
 
   create_table "admins", :force => true do |t|
     t.string   "email",                  :default => "", :null => false
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(:version => 20130503143001) do
     t.integer  "position"
     t.boolean  "required",    :default => true, :null => false
     t.string   "for",                           :null => false
+    t.string   "hint"
   end
 
   create_table "references", :force => true do |t|
