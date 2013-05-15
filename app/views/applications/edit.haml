@@ -1,7 +1,7 @@
 %h1 Für ein Stipendium bewerben - Schritt 2/2
 
 - unless @campaign.application_introduction_text.blank?
-  .introduction= simple_format(@campaign.application_introduction_text % { reference_link: new_campaign_application_reference_url(@campaign, @application), edit_link: edit_campaign_application_reference_url(@campaign, @application) })
+  .introduction= simple_format(@campaign.application_introduction_text % { reference_link: new_campaign_application_reference_url(@campaign, @application), edit_link: edit_campaign_application_url(@campaign, @application) })
 
 = semantic_form_for([ @campaign, @application ]) do |f|
   = f.semantic_errors
@@ -10,7 +10,7 @@
   = render partial: 'shared/questions', locals: { form: f, answers: :application_answers }
 
   - unless @campaign.application_credits_text.blank?
-    .credits= simple_format(@campaign.application_credits_text % { reference_link: new_campaign_application_reference_url(@campaign, @application), edit_link: edit_campaign_application_reference_url(@campaign, @application) })
+    .credits= simple_format(@campaign.application_credits_text % { reference_link: new_campaign_application_reference_url(@campaign, @application), edit_link: edit_campaign_application_url(@campaign, @application) })
 
   = f.semantic_fields_for :contact do |contact|
     = contact.inputs do

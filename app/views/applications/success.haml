@@ -1,4 +1,4 @@
 %h1 Danke für Deine Bewerbung!
 
 - unless @campaign.application_success_text.blank?
-  .introduction= simple_format(@campaign.application_success_text % { reference_link: new_campaign_application_reference_url(@campaign, @application), edit_link: edit_campaign_application_reference_url(@campaign, @application) })
+  .introduction= simple_format(@campaign.application_success_text % { reference_link: new_campaign_application_reference_url(@campaign, @application), edit_link: edit_campaign_application_url(@campaign, @application) })
