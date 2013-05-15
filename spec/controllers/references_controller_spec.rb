@@ -55,11 +55,27 @@ describe ReferencesController do
       }.should_not change(ActionMailer::Base.deliveries, :size)
     end
 
+    it "should not send a mail if mail is no configured" do
+      @application.references.destroy_all
+      (1..(@application.campaign.required_reference_count - 1)).each do
+        FactoryGirl.create(:reference, application: @application)
+      end
+
+      lambda {
+        do_request
+      }.should_not change(ActionMailer::Base.deliveries, :size)
+    end
+
     it "should send a mail if the required reference count is reached" do
       @application.references.destroy_all
       (1..(@application.campaign.required_reference_count - 1)).each do
         FactoryGirl.create(:reference, application: @application)
       end
+      @application.campaign.update_attributes(
+        references_received_mail_from:    'a@example.com',
+        references_received_mail_subject: 'Subject',
+        references_received_mail_text:    'Text'
+      )
 
       lambda {
         do_request

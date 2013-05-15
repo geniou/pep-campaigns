@@ -5,7 +5,8 @@ class Campaign < ActiveRecord::Base
 
   attr_accessible :name, :applicant_introduction_text, :application_introduction_text,
     :application_credits_text, :application_success_text, :referee_introduction_text,
-    :reference_success_text, :required_reference_count, :open_to_applicants, :open_to_referees
+    :reference_success_text, :required_reference_count, :open_to_applicants, :open_to_referees,
+    :references_received_mail_from, :references_received_mail_subject, :references_received_mail_text
   has_many :questions
   has_many :applications
   has_many :applicant_questions,
@@ -30,5 +31,11 @@ class Campaign < ActiveRecord::Base
 
   def to_param
     hashed_id
+  end
+
+  def references_received_mail?
+    !references_received_mail_from.blank? &&
+      !references_received_mail_subject.blank? &&
+      !references_received_mail_text.blank?
   end
 end

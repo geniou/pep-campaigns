@@ -1,12 +1,10 @@
-# encoding: UTF-8
-
 class UserMailer < ActionMailer::Base
-  default from: "PEP Deutschland <pep@example.com>"
-
   def references_received_mail(application)
-    @application = application
-    @contact = application.contact
-    mail(:to => @contact.email, :subject => "Alle Referenzen für Deine Bewerbung sind vorhanden!")
+    mail(
+      from:    application.campaign.references_received_mail_from,
+      to:      application.contact.email,
+      subject: application.campaign.references_received_mail_subject,
+      body:    application.campaign.references_received_mail_text % application.contact.attributes
+    )
   end
-
 end
