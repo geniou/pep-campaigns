@@ -4,7 +4,7 @@ class UserMailer < ActionMailer::Base
       from:    application.campaign.references_received_mail_from,
       to:      application.contact.email,
       subject: application.campaign.references_received_mail_subject,
-      body:    application.campaign.references_received_mail_text % application.contact.attributes
+      body:    application.campaign.references_received_mail_text % application.contact.attributes.symbolize_keys
     )
   end
 end

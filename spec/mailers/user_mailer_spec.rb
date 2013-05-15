@@ -9,15 +9,7 @@ describe UserMailer do
       ActionMailer::Base.deliveries.first
     end
 
-    let(:contact) do
-      double('contact',
-             email: 'eMail',
-             attributes: {
-               first_name: 'First Name',
-               last_name: 'Last Name'
-             }
-            )
-    end
+    let(:contact) { double('contact', email: 'eMail' ) }
     let(:campaign) do
       double('campaign',
              references_received_mail_from: 'a@example.com',
@@ -25,12 +17,12 @@ describe UserMailer do
              references_received_mail_text: 'Hallo %{first_name}, %{last_name}'
             )
     end
-    let(:application) do
-      double('application', contact: contact, campaign: campaign)
-    end
+    let(:application) { double('application', contact: contact, campaign: campaign) }
 
     before do
       ActionMailer::Base.deliveries = []
+      contact.stub_chain(:attributes, symbolize_keys:
+                         { first_name: 'First Name', last_name: 'Last Name' })
     end
 
     it "sends one mail" do
@@ -51,7 +43,7 @@ describe UserMailer do
     end
 
     it 'includes contact name into mail' do
-      subject.body.encoded.should match campaign.references_received_mail_text % contact.attributes
+      subject.body.encoded.should match campaign.references_received_mail_text % { first_name: 'First Name', last_name: 'Last Name' }
     end
   end
 end
