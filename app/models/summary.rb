@@ -20,7 +20,8 @@ class Summary
       [
         question.text,
         question.summary_type,
-        question.summary(application_answers(question))
+        question.summary(application_answers(question)),
+        question.summary(question.answers)
       ]
     end
   end

@@ -7,13 +7,18 @@ describe Summary do
     let(:summary) { Summary.new(Application.first) }
     before do
       create(:campaign) do |campaign|
-        create(:application, campaign: campaign) do |application|
-          create(:text_question, for: :reference, campaign: campaign, text: 'Question 1') do |question|
+        create(:text_question, for: :reference, campaign: campaign, text: 'Question 1') do |question|
+          create(:application, campaign: campaign) do |application|
             create(:reference, application: application) do |reference|
               create(:answer, question: question, reference: reference, text_value: 'Answer Q1-1')
             end
             create(:reference, application: application) do |reference|
               create(:answer, question: question, reference: reference, text_value: 'Answer Q1-2')
+            end
+          end
+          create(:application, campaign: campaign) do |application|
+            create(:reference, application: application) do |reference|
+              create(:answer, question: question, reference: reference, text_value: 'Answer Q1-3')
             end
           end
         end
@@ -26,11 +31,15 @@ describe Summary do
     end
 
     it 'returns question summary_type' do
-      subject[:questions].first.second.should == :list
+      subject[:questions].first[1].should == :list
     end
 
-    it 'returns answers to question' do
-      subject[:questions].first.third.should == ['Answer Q1-1', 'Answer Q1-2']
+    it 'returns application answers to question' do
+      subject[:questions].first[2].should == ['Answer Q1-1', 'Answer Q1-2']
+    end
+
+    it 'returns all answers to question' do
+      subject[:questions].first[3].should == ['Answer Q1-1', 'Answer Q1-2', 'Answer Q1-3']
     end
 
     it 'returns number of references' do

@@ -3,3 +3,4 @@ de:
     references:
       headline: "Auswertung der Referenzfragebögen von %s"
       count: "%{count} Teilnehmer"
+      other: "(Vergleichswerte der Kampagne in grau)"

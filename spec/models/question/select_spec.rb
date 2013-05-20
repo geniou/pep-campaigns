@@ -83,6 +83,6 @@ describe Question::Select do
       create(:answer, question: question, text_value: nil)
     end
 
-    it { should == [['Foo', 2], ['Bar', 1]] }
+    it { should == { 'Foo' => 2, 'Bar' => 1 } }
   end
 end

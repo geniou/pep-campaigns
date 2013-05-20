@@ -21,8 +21,9 @@ class Question
       Answer
         .select("text_value, count(*) as count")
         .where("text_value IS NOT NULL and id IN (?)", answers)
-        .group(:text_value).map { |a|
-          [a.text_value, a.count.to_i ]
+        .group(:text_value).inject({}) { |r, a|
+          r[a.text_value] = a.count.to_i
+          r
         }
     end
   end
