@@ -8,15 +8,21 @@ class Summary
 
   def references
     {
-      questions: questions,
+      questions: question_list,
       count: @application.references.count
     }
   end
 
-  private
+  protected
 
   def questions
-    @application.reference_questions.map do |question|
+    @application.reference_questions
+  end
+
+  private
+
+  def question_list
+    questions.map do |question|
       [
         question.text,
         question.summary_type,

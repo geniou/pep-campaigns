@@ -5,4 +5,10 @@ class PublicSummary < Summary
   def initialize(key)
     @application = Application.find_by_summary_key!(key)
   end
+
+  private
+
+  def questions
+    super.where(hide_on_summary: false)
+  end
 end
