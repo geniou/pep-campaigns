@@ -1,12 +1,11 @@
 require 'spec_helper'
 
-feature 'Admin summary' do
+feature 'Public summary' do
 
   scenario 'References summary' do
     reference_with_answers_exist
-    admin_exists_and_is_logged_in
 
-    go_to_admin_application_summary_page
+    go_to_references_summary_page
     see_summary
   end
 
@@ -30,8 +29,8 @@ feature 'Admin summary' do
     end
   end
 
-  def go_to_admin_application_summary_page
-    visit references_admin_application_summary_path(Application.first.id)
+  def go_to_references_summary_page
+    visit summary_path(Application.first.summary_key)
   end
 
   def see_summary

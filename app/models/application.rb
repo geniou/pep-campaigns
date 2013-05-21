@@ -23,6 +23,8 @@ class Application < ActiveRecord::Base
   validates_associated :answers, :contact
   validates_presence_of :campaign
 
+  before_create :create_summary_key
+
   def to_param
     hashed_id
   end
@@ -41,5 +43,11 @@ class Application < ActiveRecord::Base
 
   def complete?
     application_answers? && required_references?
+  end
+
+  private
+
+  def create_summary_key
+    self.summary_key = SecureRandom.hex(5)
   end
 end
