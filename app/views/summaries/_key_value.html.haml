@@ -2,4 +2,5 @@
   - answers.each do |answer, count|
     %li
       = "#{answer}: #{count}"
-      %span.other= "(#{all_answers[answer]})"
+      - if internal
+        %span.other= "(#{all_answers[answer]})"
