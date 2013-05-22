@@ -23,8 +23,7 @@ class Question
 
     def summary(answers)
       answers
-        .map { |answer| answer.value }
-        .reject { |answer| answer.blank? }
+        .reject { |answer| answer.value.blank? }
     end
   end
 end

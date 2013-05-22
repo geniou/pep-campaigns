@@ -16,7 +16,7 @@ describe PublicSummary do
             end
             create(:reference, application: application) do |reference|
               create(:answer, question: question, reference: reference,
-                     text_value: 'Answer Q1-2')
+                     hide_on_summary: true, text_value: 'Answer Q1-2')
             end
           end
           create(:application, campaign: campaign) do |application|
@@ -40,11 +40,11 @@ describe PublicSummary do
     end
 
     it 'returns application answers to question' do
-      subject[:questions].first[2].should == ['Answer Q1-1', 'Answer Q1-2']
+      subject[:questions].first[2].map(&:value).should == ['Answer Q1-1']
     end
 
     it 'returns all answers to question' do
-      subject[:questions].first[3].should == ['Answer Q1-1', 'Answer Q1-2', 'Answer Q1-3']
+      subject[:questions].first[3].map(&:value).should == ['Answer Q1-1', 'Answer Q1-3']
     end
 
     it 'returns number of references' do

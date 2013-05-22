@@ -27,7 +27,7 @@ class Summary
         question.text,
         question.summary_type,
         question.summary(application_answers(question)),
-        question.summary(question.answers)
+        question.summary(answers(question))
       ]
     end
   end
@@ -37,5 +37,9 @@ class Summary
       .includes(:reference)
       .where('"references"."application_id" = ? and "answers"."question_id" = ?',
              @application.id, question.id)
+  end
+
+  def answers(question)
+    question.answers
   end
 end

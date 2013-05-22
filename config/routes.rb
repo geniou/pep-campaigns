@@ -32,6 +32,10 @@ PepCampaigns::Application.routes.draw do
     end
     resources :references
     resources :contacts
+    resources :answers do
+      put :hide_on_summary
+      put :show_on_summary
+    end
   end
 
 end

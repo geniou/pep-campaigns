@@ -35,11 +35,11 @@ describe Summary do
     end
 
     it 'returns application answers to question' do
-      subject[:questions].first[2].should == ['Answer Q1-1', 'Answer Q1-2']
+      subject[:questions].first[2].map(&:value).should == ['Answer Q1-1', 'Answer Q1-2']
     end
 
     it 'returns all answers to question' do
-      subject[:questions].first[3].should == ['Answer Q1-1', 'Answer Q1-2', 'Answer Q1-3']
+      subject[:questions].first[3].map(&:value).should == ['Answer Q1-1', 'Answer Q1-2', 'Answer Q1-3']
     end
 
     it 'returns number of references' do

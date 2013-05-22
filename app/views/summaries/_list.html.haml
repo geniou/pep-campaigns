@@ -1,3 +1,9 @@
 %ul
   - answers.each do |answer|
-    %li= answer
+    %li
+      = answer.value
+      - if internal && !answer.question.hide_on_summary
+        - if answer.hide_on_summary
+          = render partial: 'admin/answers/show_on_summary_form', locals: { answer: answer }
+        - else
+          = render partial: 'admin/answers/hide_on_summary_form', locals: { answer: answer }

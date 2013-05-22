@@ -11,4 +11,12 @@ class PublicSummary < Summary
   def questions
     super.where(hide_on_summary: false)
   end
+
+  def application_answers(question)
+    super(question).where(hide_on_summary: false)
+  end
+
+  def answers(question)
+    super(question).where(hide_on_summary: false)
+  end
 end

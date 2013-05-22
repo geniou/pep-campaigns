@@ -2,8 +2,9 @@
 
 %p= t('summaries.references.count', count: @summary[:count])
 
-- @summary[:questions].each do |question, summary_type, answers, all_answers|
-  %h2= question
-  = render partial: "summaries/#{summary_type}", locals: { answers: answers, all_answers: all_answers, internal: true }
+.summary
+  - @summary[:questions].each do |question, summary_type, answers, all_answers|
+    %h2= question
+    = render partial: "summaries/#{summary_type}", locals: { answers: answers, all_answers: all_answers, internal: true }
 
 %p.other= t('summaries.references.other')

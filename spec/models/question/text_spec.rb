@@ -71,12 +71,12 @@ describe Question::Text do
   describe 'summary' do
     subject { question.summary(Answer.all) }
     let(:question) { create(:text_question, for: :application, required: false) }
+    let!(:answer1) { create(:answer, question: question, text_value: 'Foo') }
+    let!(:answer2) { create(:answer, question: question, text_value: 'Bar') }
     before do
-      create(:answer, question: question, text_value: 'Foo')
-      create(:answer, question: question, text_value: 'Bar')
       create(:answer, question: question, text_value: '')
     end
 
-    it { should == ['Foo', 'Bar'] }
+    it { should == [answer1, answer2] }
   end
 end
