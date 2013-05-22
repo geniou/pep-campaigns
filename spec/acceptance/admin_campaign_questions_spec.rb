@@ -55,7 +55,7 @@ feature 'Admin campaign questions' do
     click_link 'Frage anlegen'
 
     select 'Bewerbung', from: 'question_for'
-    select 'Text', from: 'question_type'
+    select 'Textzeile', from: 'question_type'
     fill_in 'question_text', with: 'What should we know about you?'
     click_button('Fragen anlegen')
   end

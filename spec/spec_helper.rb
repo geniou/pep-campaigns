@@ -1,5 +1,6 @@
 require 'rubygems'
 require 'spork'
+require 'capybara/poltergeist'
 
 ENV["RAILS_ENV"] ||= 'test'
 
@@ -9,16 +10,23 @@ Spork.prefork do
   require 'rspec/autorun'
   require 'database_cleaner'
 
-  Capybara.javascript_driver = :webkit
+  Capybara.javascript_driver = :poltergeist
 
   RSpec.configure do |config|
+    config.treat_symbols_as_metadata_keys_with_true_values = true
+
     require Rails.root.join("spec/support/admin.rb")
     config.include SpecAdmin
 
     config.include FactoryGirl::Syntax::Methods
 
-    DatabaseCleaner.strategy = :truncation
     config.before(:each) do
+      if example.metadata[:js]
+        config.use_transactional_fixtures = false
+        DatabaseCleaner.strategy = :truncation
+      else
+        DatabaseCleaner.strategy = :transaction
+      end
       DatabaseCleaner.start
     end
 

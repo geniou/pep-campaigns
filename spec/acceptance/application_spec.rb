@@ -43,7 +43,7 @@ feature "Application" do
 
   def fill_in_applicant_details
     fill_in_contact_details
-    fill_in 'Passwort', with: "geheim"
+    fill_in 'Passwort*', with: "geheim"
     fill_in 'Passwort bestätigen', with: "geheim"
     click_button("Weiter")
 

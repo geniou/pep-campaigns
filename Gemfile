@@ -19,7 +19,8 @@ group :test, :development do
   gem 'spork-rails'
   gem 'capistrano'
   gem 'awesome_print'
-  gem "factory_girl_rails"
+  gem 'factory_girl_rails'
+  gem 'poltergeist'
 end
 
 group :development do
