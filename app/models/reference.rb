@@ -8,7 +8,7 @@ class Reference < ActiveRecord::Base
 
   delegate :referee_questions, :reference_questions, to: :campaign
 
-  belongs_to :contact
+  belongs_to :contact, class_name: Contact::Referee
   accepts_nested_attributes_for :contact
   belongs_to :campaign
   belongs_to :application
