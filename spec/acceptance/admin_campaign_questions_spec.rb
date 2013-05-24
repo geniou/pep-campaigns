@@ -76,7 +76,7 @@ feature 'Admin campaign questions' do
   end
 
   def see_new_campaign_question
-    page.should have_selector('.notice', text: 'Frage angelegt')
+    page.should have_selector('.notice', text: 'Frage gespeichert')
     page.should have_selector('td', text: 'What should we know about you?')
   end
 end
