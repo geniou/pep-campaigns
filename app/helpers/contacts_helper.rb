@@ -1,5 +1,9 @@
 module ContactsHelper
 
+  def contact_email_full(contact)
+    "#{contact.first_name} #{contact.last_name} <#{contact.email}>"
+  end
+
   def contact_appearances(contact)
     appearances = []
     appearances_applications!(appearances, contact)

@@ -2,6 +2,14 @@ require 'spec_helper'
 
 describe ContactsHelper do
 
+  describe 'contact_email_full' do
+    subject { helper.contact_email_full(contact) }
+    let(:contact) { Contact.new(first_name: 'Foo', last_name: 'Bar',
+                                email: 'foo.bar@example.com') }
+
+    it { should == "Foo Bar <foo.bar@example.com>" }
+  end
+
   describe 'contact_appearances' do
     subject { Capybara.string(helper.contact_appearances(contact)) }
     let(:contact) { double('contact', applications: applications, references: references) }

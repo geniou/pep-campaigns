@@ -3,4 +3,4 @@
 - if internal
   %p
     JA:
-    = answers[:answers].map { |answer| answer.contact.email } .join(', ')
+    = answers[:answers].map { |answer| contact_email_full(answer.contact) } .join(', ')
