@@ -72,12 +72,18 @@ describe Question::Boolean do
     subject { question.summary(answers) }
     let(:question) { create(:boolean_question, for: :application, required: false) }
     let(:answers) { Answer }
+    let!(:positive_answer) { create(:answer, question: question, boolean_value: true) }
     before do
-      create(:answer, question: question, boolean_value: true)
       create(:answer, question: question, boolean_value: false)
       create(:answer, question: question, boolean_value: nil)
     end
 
-    it { should == 50 }
+    it 'returns average value' do
+      subject[:percentage].should == 50
+    end
+
+    it 'returns positive answers' do
+      subject[:answers].should == [positive_answer]
+    end
   end
 end

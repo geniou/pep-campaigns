@@ -10,6 +10,11 @@ class Answer < ActiveRecord::Base
     text_value || numeric_value || boolean_value
   end
 
+  # TODO: application contacts
+  def contact
+    reference.contact
+  end
+
   protected
 
   def value_exists?

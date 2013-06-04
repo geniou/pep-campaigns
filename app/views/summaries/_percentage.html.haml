@@ -1,2 +1,6 @@
-= number_to_percentage(answers)
-%span.other= "(#{number_to_percentage(all_answers)})"
+= number_to_percentage(answers[:percentage])
+%span.other= "(#{number_to_percentage(all_answers[:percentage])})"
+- if internal
+  %p
+    JA:
+    = answers[:answers].map { |answer| answer.contact.email } .join(', ')

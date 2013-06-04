@@ -18,7 +18,10 @@ class Question
     end
 
     def summary(answers)
-      answers.average('boolean_value::int') * 100
+      {
+        percentage: answers.average('boolean_value::int') * 100,
+        answers: answers.where(boolean_value: true)
+      }
     end
   end
 end
