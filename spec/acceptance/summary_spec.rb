@@ -11,17 +11,21 @@ feature 'Public summary' do
 
   def reference_with_answers_exist
     create(:campaign) do |campaign|
-      create(:applicant_contact) do |contact|
-        create(:application, campaign: campaign, contact: contact) do |application|
+      create(:applicant_contact) do |applicant_contact|
+        create(:application, campaign: campaign, contact: applicant_contact) do |application|
           create(:text_question, campaign: campaign, for: :reference, text: 'Question 1',
                  answer: 'Answer 1', application: application) do |question|
-            create(:reference, campaign: campaign, contact: contact,
-                   application: application) do |reference|
-              create(:answer, question: question, reference: reference, text_value: 'Answer 1')
+            create(:referee_contact) do |referee_contact|
+              create(:reference, campaign: campaign, contact: referee_contact,
+                     application: application) do |reference|
+                create(:answer, question: question, reference: reference, text_value: 'Answer 1')
+              end
             end
-            create(:reference, campaign: campaign, contact: contact,
-                   application: application) do |reference|
-              create(:answer, question: question, reference: reference, text_value: 'Answer 2')
+            create(:referee_contact) do |referee_contact|
+              create(:reference, campaign: campaign, contact: referee_contact,
+                     application: application) do |reference|
+                create(:answer, question: question, reference: reference, text_value: 'Answer 2')
+              end
             end
           end
         end
