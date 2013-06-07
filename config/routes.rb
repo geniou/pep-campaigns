@@ -26,6 +26,7 @@ PepCampaigns::Application.routes.draw do
       resources :questions
     end
     resources :applications do
+      get :export
       resource :summary do
         get :references
       end

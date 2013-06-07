@@ -1,16 +1,19 @@
 class Admin::ApplicationsController < Admin::BaseController
 
-  before_filter :find_application
-  before_filter :set_breadcrumb
-
   def show
+    @application = Application.find(params[:id])
+    @campaign = @application.campaign
   end
 
   def edit
+    @application = Application.find(params[:id])
+    @campaign = @application.campaign
     add_breadcrumb('bearbeiten')
   end
 
   def update
+    @application = Application.find(params[:id])
+    @campaign = @application.campaign
     if @application.update_attributes(params[:application])
       redirect_to admin_application_path(@application.id), notice: "Angaben erfolgreich bearbeitet."
     else
@@ -18,15 +21,14 @@ class Admin::ApplicationsController < Admin::BaseController
     end
   end
 
+  def export
+    @application = Application.find_by_id(params[:application_id])
+    respond_to do |format|
+      format.csv { send_data CSV.generate { |csv| Export.new(@application).references(csv) } }
+    end
+  end
+
   private
-
-  def find_campaign
-    @campaign = Campaign.find(params[:campaign_id])
-  end
-
-  def find_application
-    @application = Application.find(params[:id])
-  end
 
   def set_breadcrumb
     add_application_breadcrumb(@application)

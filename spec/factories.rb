@@ -45,7 +45,9 @@ FactoryGirl.define do
   factory :reference do
     association :campaign
     association :application
-    contact { create(:referee_contact) }
+    before(:create) do |reference, evaluator|
+      reference.contact = evaluator.contact || create(:referee_contact)
+    end
   end
 
   factory :application do

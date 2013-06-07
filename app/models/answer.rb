@@ -10,6 +10,10 @@ class Answer < ActiveRecord::Base
     text_value || numeric_value || boolean_value
   end
 
+  def to_s
+    value
+  end
+
   # TODO: application contacts
   def contact
     reference.contact
