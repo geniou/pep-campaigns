@@ -1,4 +1,4 @@
-class Export
+class Export::Application
 
   attr_accessor :application
 
@@ -6,7 +6,13 @@ class Export
     @application = application
   end
 
-  def references(export)
+  def to_csv
+    CSV.generate(col_sep: ";", force_quotes: true) do |csv|
+      data(csv)
+    end
+  end
+
+  def data(export)
     head = ['First name', 'Last name', 'eMail']
     reference_question.each do |answer|
       head << answer.text

@@ -24,7 +24,7 @@ class Admin::ApplicationsController < Admin::BaseController
   def export
     @application = Application.find_by_id(params[:application_id])
     respond_to do |format|
-      format.csv { send_data CSV.generate(col_sep: ";", force_quotes: true) { |csv| Export.new(@application).references(csv) } }
+      format.csv { send_data Export::Application.new(@application).to_csv }
     end
   end
 

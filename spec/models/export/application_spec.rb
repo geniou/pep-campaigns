@@ -1,10 +1,9 @@
 require 'spec_helper'
 
-describe Export do
+describe Export::Application do
 
-  describe 'references' do
-    subject { summary.references([]) }
-    let(:summary) { Export.new(Application.first) }
+  describe 'data' do
+    subject { described_class.new(Application.first).data([]) }
     before do
       create(:campaign) do |campaign|
         create(:text_question, for: :reference, campaign: campaign, text: 'Question 1') do |question|
