@@ -23,6 +23,7 @@ PepCampaigns::Application.routes.draw do
     root :to => 'campaigns#index'
 
     resources :campaigns, :constraints => { :id => /[^\/]+/ } do
+      get :export
       resources :questions
     end
     resources :applications do

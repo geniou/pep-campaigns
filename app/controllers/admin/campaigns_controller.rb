@@ -10,6 +10,13 @@ class Admin::CampaignsController < Admin::BaseController
     add_campagin_breadcrumb @campaign
   end
 
+  def export
+    @campaign = Campaign.find(params[:campaign_id])
+    respond_to do |format|
+      format.csv { send_data Export::Campaign.new(@campaign).to_csv }
+    end
+  end
+
   def new
     @campaign = Campaign.new
     add_breadcrumb 'neu Kampagne'

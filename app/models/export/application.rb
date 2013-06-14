@@ -1,15 +1,9 @@
-class Export::Application
+class Export::Application < Export::Base
 
   attr_accessor :application
 
   def initialize(application)
     @application = application
-  end
-
-  def to_csv
-    CSV.generate(col_sep: ";", force_quotes: true) do |csv|
-      data(csv)
-    end
   end
 
   def data(export)
