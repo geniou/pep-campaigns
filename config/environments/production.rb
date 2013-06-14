@@ -75,4 +75,11 @@ PepCampaigns::Application.configure do
   # Log the query plan for queries taking more than this (works
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
+
+  config.middleware.use ExceptionNotifier,
+    email: {
+      email_prefix:         "[PEP] ",
+      sender_address:       %{<noreply@example.com>},
+      exception_recipients: %w{info@nilsgemeinhardt.de}
+  }
 end
