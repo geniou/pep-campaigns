@@ -10,7 +10,9 @@ class Export::Campaign < Export::Base
 
   def data(export)
     export << [].tap do |head|
-      head << 'Kontakt'
+      head << 'Vorname'
+      head << 'Nachname'
+      head << 'E-Mail'
       head << 'Antworten' if @campaign.application_questions.any?
       head << 'Referenzen'
       head << 'Fertig'
@@ -20,7 +22,9 @@ class Export::Campaign < Export::Base
 
     @campaign.applications.each do |application|
       export <<  [].tap do |row|
-        row << application.contact.name
+        row << application.contact.first_name
+        row << application.contact.last_name
+        row << application.contact.email
         row << application.application_answers? if @campaign.application_questions.any?
         row << application.references.size
         row << application.complete?

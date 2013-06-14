@@ -22,8 +22,9 @@ describe Export::Campaign do
     end
     let(:contact_1) do
       double('contact_1',
-             name: 'Contact 1',
-             email: 'contact1@example.com'
+             first_name: 'FN1',
+             last_name: 'LN1',
+             email: 'EM1',
             )
     end
     let(:application_2) do
@@ -38,8 +39,9 @@ describe Export::Campaign do
     end
     let(:contact_2) do
       double('contact_2',
-             name: 'Contact 2',
-             email: 'contact2@example.com'
+             first_name: 'FN2',
+             last_name: 'LN2',
+             email: 'EM2',
             )
     end
     before do
@@ -54,32 +56,32 @@ describe Export::Campaign do
     end
 
     it 'returns header' do
-      subject.first.should == ['Kontakt', 'Antworten', 'Referenzen', 'Fertig',
-                               'öffentliche Auswertung', 'interne Auswertung']
+      subject.first.should == ['Vorname', 'Nachname', 'E-Mail', 'Antworten', 'Referenzen',
+                               'Fertig', 'öffentliche Auswertung', 'interne Auswertung']
     end
 
     it 'contains all contacts' do
-      rows_at_column(0).should =~ ['Contact 1', 'Contact 2']
+      subject[1..-1].map { |c| c[0..2].join(' ') }.should =~ ['FN1 LN1 EM1', 'FN2 LN2 EM2']
     end
 
     it 'contains if personal answers are there' do
-      rows_at_column(1).should =~ [true, false]
+      rows_at_column(3).should =~ [true, false]
     end
 
     it 'contains number of references' do
-      rows_at_column(2).should =~ [1, 0]
+      rows_at_column(4).should =~ [1, 0]
     end
 
     it 'contains if application is complete' do
-      rows_at_column(3).should =~ [false, true]
+      rows_at_column(5).should =~ [false, true]
     end
 
     it 'contains public summary path' do
-      rows_at_column(4).should =~ ['summary_1_url', 'summary_2_url']
+      rows_at_column(6).should =~ ['summary_1_url', 'summary_2_url']
     end
 
     it 'contains internal summary path' do
-      rows_at_column(5).should =~ ['admin_summary_1_url', 'admin_summary_2_url']
+      rows_at_column(7).should =~ ['admin_summary_1_url', 'admin_summary_2_url']
     end
   end
 
