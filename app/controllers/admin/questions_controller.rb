@@ -31,7 +31,8 @@ class Admin::QuestionsController < Admin::BaseController
   end
 
   def update
-    @question = Question.find(params[:id]).update_attributes(params['question'])
+    @question = Question.find(params[:id])
+    @question.update_attributes(params['question'])
     save_question(@question, :edit)
   end
 
