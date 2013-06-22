@@ -1,6 +1,6 @@
 de:
   summaries:
+    headline: "Auswertung zum Antrag von %s"
     references:
-      headline: "Auswertung der Referenzfragebögen von %s"
-      count: "%{count} Teilnehmer"
-      other: "(Vergleichswerte der Kampagne in grau)"
+      headline: "Referenzfragebögen (%s)"
+    other: "(Vergleichswerte der Kampagne in grau)"

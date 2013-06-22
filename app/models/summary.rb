@@ -6,40 +6,78 @@ class Summary
     @application = application
   end
 
-  def references
-    {
-      questions: question_list,
-      count: @application.references.count
-    }
+  def applicant_questions
+    applicant_question_list
+  end
+
+  def application_questions
+    application_question_list
+  end
+
+  def number_of_references
+    @application.references.count
+  end
+
+  def reference_questions
+    reference_question_list
   end
 
   protected
 
-  def questions
+  def _applicant_questions
+    @application.campaign.applicant_questions
+  end
+
+  def _application_questions
+    @application.campaign.application_questions
+  end
+
+  def _reference_questions
     @application.reference_questions
   end
 
   private
 
-  def question_list
-    questions.map do |question|
+  def applicant_question_list
+    _applicant_questions.map do |question|
+      answer = question.answers.where(application_id: @application.id).first
       [
         question.text,
-        question.summary_type,
-        question.summary(application_answers(question)),
-        question.summary(answers(question))
+        question.formatted_value(answer.value),
       ]
     end
   end
 
-  def application_answers(question)
+  def application_question_list
+    _application_questions.map do |question|
+      if answer = question.answers.where(application_id: @application.id).first
+        [
+          question.text,
+          question.formatted_value(answer.value),
+        ]
+      end
+    end
+  end
+
+  def reference_question_list
+    _reference_questions.map do |question|
+      [
+        question.text,
+        question.summary_type,
+        question.summary(_application_reference_answers(question)),
+        question.summary(_answers(question))
+      ]
+    end
+  end
+
+  def _application_reference_answers(question)
     Answer
       .includes(:reference)
       .where('"references"."application_id" = ? and "answers"."question_id" = ?',
              @application.id, question.id)
   end
 
-  def answers(question)
+  def _answers(question)
     question.answers
   end
 end

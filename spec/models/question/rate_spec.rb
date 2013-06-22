@@ -79,5 +79,15 @@ describe Question::Rate do
 
     it { should == 2 }
   end
+
+  describe 'formatted_value' do
+    subject { question.formatted_value(value) }
+    let(:question) { create(:rate_question, for: :application) }
+    let(:value) { double('value') }
+
+    it 'returns value' do
+      subject.should == value
+    end
+  end
 end
 

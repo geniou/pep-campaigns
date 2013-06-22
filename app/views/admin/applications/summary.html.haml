@@ -1,3 +1,5 @@
+= render 'subnavigation'
+
 %h1= t('summaries.headline') % @summary.application.contact.name
 
 - @summary.applicant_questions.each do |question, answer|
@@ -15,6 +17,6 @@
 
   - @summary.reference_questions.each do |question, summary_type, answers, all_answers|
     %h2= question
-    = render partial: summary_type.to_s, locals: { answers: answers, all_answers: all_answers, internal: false }
+    = render partial: "summaries/#{summary_type}", locals: { answers: answers, all_answers: all_answers, internal: true }
 
 %p.other= t('summaries.references.other')

@@ -1,8 +1,6 @@
 class SummariesController < ApplicationController
 
   def show
-    public_summary = PublicSummary.new(params[:id])
-    @summary = public_summary.references
-    @application = public_summary.application
+    @summary = PublicSummary.new(params[:id])
   end
 end

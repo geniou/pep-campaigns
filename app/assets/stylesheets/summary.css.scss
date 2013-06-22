@@ -1,0 +1,13 @@
+.q-a {
+  margin-bottom: 0.5em;
+  .question,
+  .answer {
+    display: inline-block;
+  }
+  .question {
+    width: 30%;
+    font-weight: bold;
+    text-align: right;
+    margin-right: 10px;
+  }
+}

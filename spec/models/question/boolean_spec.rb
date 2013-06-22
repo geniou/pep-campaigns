@@ -72,18 +72,42 @@ describe Question::Boolean do
     subject { question.summary(answers) }
     let(:question) { create(:boolean_question, for: :application, required: false) }
     let(:answers) { Answer }
-    let!(:positive_answer) { create(:answer, question: question, boolean_value: true) }
-    before do
-      create(:answer, question: question, boolean_value: false)
-      create(:answer, question: question, boolean_value: nil)
+
+    context 'with answers' do
+      let!(:positive_answer) { create(:answer, question: question, boolean_value: true) }
+      before do
+        create(:answer, question: question, boolean_value: false)
+        create(:answer, question: question, boolean_value: nil)
+      end
+
+      it 'returns average value' do
+        subject[:percentage].should == 50
+      end
+
+      it 'returns positive answers' do
+        subject[:answers].should == [positive_answer]
+      end
     end
 
-    it 'returns average value' do
-      subject[:percentage].should == 50
+    context 'without any answers' do
+      it 'returns nil as average value' do
+        subject[:percentage].should be_nil
+      end
+    end
+  end
+
+  describe 'formatted_value' do
+    subject { question.formatted_value(value) }
+    let(:question) { create(:boolean_question, for: :application, required: false) }
+
+    describe 'true' do
+      let(:value) { true }
+      it { should == 'Ja' }
     end
 
-    it 'returns positive answers' do
-      subject[:answers].should == [positive_answer]
+    describe 'false' do
+      let(:value) { false }
+      it { should == 'Nein' }
     end
   end
 end

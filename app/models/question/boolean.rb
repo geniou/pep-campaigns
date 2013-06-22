@@ -19,9 +19,19 @@ class Question
 
     def summary(answers)
       {
-        percentage: answers.average('boolean_value::int') * 100,
+        percentage: percentage,
         answers: answers.where(boolean_value: true)
       }
+    end
+
+    def formatted_value(value)
+      I18n.t("question.boolean.#{value ? 'is_true' : 'is_false'}")
+    end
+
+    private
+
+    def percentage
+      answers.any? ? answers.average('boolean_value::int') * 100 : nil
     end
   end
 end

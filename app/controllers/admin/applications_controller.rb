@@ -3,11 +3,13 @@ class Admin::ApplicationsController < Admin::BaseController
   def show
     @application = Application.find(params[:id])
     @campaign = @application.campaign
+    add_application_breadcrumb(@application)
   end
 
   def edit
     @application = Application.find(params[:id])
     @campaign = @application.campaign
+    add_application_breadcrumb(@application)
     add_breadcrumb('bearbeiten')
   end
 
@@ -28,9 +30,10 @@ class Admin::ApplicationsController < Admin::BaseController
     end
   end
 
-  private
-
-  def set_breadcrumb
+  def summary
+    @application = Application.find(params[:application_id])
+    @summary = Summary.new(@application)
     add_application_breadcrumb(@application)
+    add_breadcrumb('Auswertung Referenzen')
   end
 end

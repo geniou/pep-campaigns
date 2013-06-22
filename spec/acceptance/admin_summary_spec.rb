@@ -62,7 +62,7 @@ feature 'Admin summary' do
   end
 
   def go_to_admin_application_summary_page
-    visit references_admin_application_summary_path(Application.first.id)
+    visit admin_application_summary_path(application_id: Application.first.id)
   end
 
   def see_summary

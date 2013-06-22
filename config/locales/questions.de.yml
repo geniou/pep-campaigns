@@ -25,3 +25,6 @@ de:
       option:
         hint: nur für "Auswahl"; kommagetrennte Werte
       submit: Fragen anlegen
+    boolean:
+      is_true: 'Ja'
+      is_false: 'Nein'

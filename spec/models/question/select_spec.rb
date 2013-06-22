@@ -85,4 +85,14 @@ describe Question::Select do
 
     it { should == { 'Foo' => 2, 'Bar' => 1 } }
   end
+
+  describe 'formatted_value' do
+    subject { question.formatted_value(value) }
+    let(:question) { create(:rate_question, for: :application) }
+    let(:value) { double('value') }
+
+    it 'returns value' do
+      subject.should == value
+    end
+  end
 end

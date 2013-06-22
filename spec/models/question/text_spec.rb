@@ -79,4 +79,14 @@ describe Question::Text do
 
     it { should == [answer1, answer2] }
   end
+
+  describe 'formatted_value' do
+    subject { question.formatted_value(value) }
+    let(:question) { create(:rate_question, for: :application) }
+    let(:value) { double('value') }
+
+    it 'returns value' do
+      subject.should == value
+    end
+  end
 end

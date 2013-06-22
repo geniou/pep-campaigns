@@ -28,9 +28,7 @@ PepCampaigns::Application.routes.draw do
     end
     resources :applications do
       get :export
-      resource :summary do
-        get :references
-      end
+      get :summary
     end
     resources :references
     resources :contacts

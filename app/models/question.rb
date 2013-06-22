@@ -22,6 +22,10 @@ class Question < ActiveRecord::Base
     !value.nil? || !required
   end
 
+  def formatted_value(value)
+    value
+  end
+
   def self.types
     {
       I18n.t("question.type.simple_text")  => Question::SimpleText,
