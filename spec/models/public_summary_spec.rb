@@ -16,6 +16,8 @@ describe PublicSummary do
                 text: 'Application question 1', answer: 'Answer PQ1', application: application)
           create(:text_question, for: :application, campaign: campaign, hide_on_summary: true,
                 text: 'Application question 2', answer: 'Answer PQ2', application: application)
+          create(:text_question, for: :application, campaign: campaign,
+                text: 'Application question 3')
           create(:reference, application: application) do |reference|
             create(:answer, question: question, reference: reference,
                    text_value: 'Answer RQ1-1')
@@ -53,7 +55,7 @@ describe PublicSummary do
     subject { summary.application_questions }
 
     it 'returns all non hidden questions' do
-      subject.map{ |q| q.first }.should == ['Application question 1']
+      subject.map{ |q| q.first }.should == ['Application question 1', 'Application question 3']
     end
 
     it 'returns application answers to question' do

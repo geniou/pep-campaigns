@@ -43,19 +43,18 @@ class Summary
       answer = question.answers.where(application_id: @application.id).first
       [
         question.text,
-        question.formatted_value(answer.value),
+        answer ? question.formatted_value(answer.value) : nil,
       ]
     end
   end
 
   def application_question_list
     _application_questions.map do |question|
-      if answer = question.answers.where(application_id: @application.id).first
-        [
-          question.text,
-          question.formatted_value(answer.value),
-        ]
-      end
+      answer = question.answers.where(application_id: @application.id).first
+      [
+        question.text,
+        answer ? question.formatted_value(answer.value) : nil,
+      ]
     end
   end
 
