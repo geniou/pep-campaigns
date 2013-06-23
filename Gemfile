@@ -11,7 +11,7 @@ gem 'uglifier'
 gem 'devise'
 gem 'formtastic'
 gem "bcrypt-ruby", :require => "bcrypt"
-gem 'exception_notification'
+gem 'exception_notification', :require => 'exception_notifier'
 
 group :test, :development do
   gem "rspec-rails"

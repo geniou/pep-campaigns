@@ -81,5 +81,5 @@ PepCampaigns::Application.configure do
       email_prefix:         "[PEP] ",
       sender_address:       %{<noreply@example.com>},
       exception_recipients: %w{info@nilsgemeinhardt.de}
-  }
+    }
 end
