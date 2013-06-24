@@ -1,5 +1,5 @@
 jQuery ->
-  jQuery('body').on 'submit', '.summary form', (e) ->
+  jQuery('body').on 'submit', 'form.toggle-answer', (e) ->
     e.preventDefault()
     form = jQuery(@)
     jQuery.ajax

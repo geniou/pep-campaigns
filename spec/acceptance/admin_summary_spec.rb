@@ -73,12 +73,14 @@ feature 'Admin summary' do
 
   def hide_answer
     click_button('Antwort ausblenden')
+    page.should have_selector('h2', text: 'Question 1')
     page.should have_selector("input[value='Antwort anzeigen']")
     Answer.first.hide_on_summary.should be_true
   end
 
   def show_answer
     click_button('Antwort anzeigen')
+    page.should have_selector('h2', text: 'Question 1')
     page.should have_selector("input[value='Antwort ausblenden']")
     Answer.first.hide_on_summary.should be_false
   end
