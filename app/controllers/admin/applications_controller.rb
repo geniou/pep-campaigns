@@ -9,6 +9,12 @@ class Admin::ApplicationsController < Admin::BaseController
   def edit
     @application = Application.find(params[:id])
     @campaign = @application.campaign
+    @campaign.application_questions.each do |question|
+      unless question.answers.where(application_id: @application.id).any?
+        answer = @application.application_answers.build
+        answer.question = question
+      end
+    end
     add_application_breadcrumb(@application)
     add_breadcrumb('bearbeiten')
   end
