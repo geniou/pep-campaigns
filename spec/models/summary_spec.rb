@@ -5,7 +5,7 @@ describe Summary do
   let(:summary) { Summary.new(Application.first) }
   before do
     create(:campaign) do |campaign|
-      create(:text_question, for: :reference, campaign: campaign, text: 'Question 1') do |question|
+      create(:text_question, for: :reference, campaign: campaign, text: 'Question 1', position: 1) do |question|
         create(:application, campaign: campaign) do |application|
           create(:reference, application: application) do |reference|
             create(:answer, question: question, reference: reference, text_value: 'Answer Q1-1')
@@ -20,7 +20,7 @@ describe Summary do
           end
         end
       end
-      create(:text_question, for: :reference, campaign: campaign, text: 'Question 2')
+      create(:text_question, for: :reference, campaign: campaign, text: 'Question 2', position: 2)
     end
   end
 

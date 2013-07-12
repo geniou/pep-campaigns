@@ -19,8 +19,8 @@ class Export::Application < Export::Base
         reference.contact.last_name,
         reference.contact.email,
       ]
-      reference_question.each do |answer|
-        row << answers[answer.id].to_s
+      reference_question.each do |question|
+        row << answers[question.id].to_s
       end
       export << row
     end

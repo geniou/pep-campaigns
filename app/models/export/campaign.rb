@@ -13,7 +13,12 @@ class Export::Campaign < Export::Base
       head << 'Vorname'
       head << 'Nachname'
       head << 'E-Mail'
-      head << 'Antworten' if @campaign.application_questions.any?
+      @campaign.applicant_questions.each do |question|
+        head << question.text
+      end
+      @campaign.application_questions.each do |question|
+        head << question.text
+      end
       head << 'Referenzen'
       head << 'Fertig'
       head << 'öffentliche Auswertung'
@@ -25,7 +30,13 @@ class Export::Campaign < Export::Base
         row << application.contact.first_name
         row << application.contact.last_name
         row << application.contact.email
-        row << application.application_answers? if @campaign.application_questions.any?
+        answers = application.answers.index_by(&:question_id)
+        @campaign.applicant_questions.each do |question|
+          row << answers[question.id].to_s
+        end
+        @campaign.application_questions.each do |question|
+          row << answers[question.id].to_s
+        end
         row << application.references.size
         row << application.complete?
         row << Rails.application.routes.url_helpers.summary_url(application.summary_key)
