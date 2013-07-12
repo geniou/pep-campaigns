@@ -4,11 +4,13 @@
       %tr
         %th Name
         %th Erstellt
+        %th
     %tbody
       - references.each do |reference|
         - campaign = reference.campaign
         %tr
           %td= link_to reference.contact.name, admin_reference_path(reference)
           %td= l reference.created_at
+          %td= button_to 'löschen', admin_reference_path(reference), confirm: 'Sicher?', method: :delete
 - else
   %p Es gibt noch keine Referenzen für diesen Antrag

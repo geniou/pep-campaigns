@@ -1,16 +1,19 @@
 class Admin::ReferencesController < Admin::BaseController
 
-  before_filter :find_reference
-  before_filter :set_breadcrumb
-
   def show
+    @reference = Reference.find_by_id(params[:id])
+    add_reference_breadcrumb(@reference)
   end
 
   def edit
+    @reference = Reference.find_by_id(params[:id])
+    add_reference_breadcrumb(@reference)
     add_breadcrumb('bearbeiten')
   end
 
   def update
+    @reference = Reference.find_by_id(params[:id])
+    add_reference_breadcrumb(@reference)
     if @reference.update_attributes(params[:reference])
       redirect_to admin_reference_path(@reference.id), notice: "Angaben erfolgreich bearbeitet."
     else
@@ -18,13 +21,10 @@ class Admin::ReferencesController < Admin::BaseController
     end
   end
 
-  private
-
-  def find_reference
-    @reference = Reference.find_by_id(params[:id])
-  end
-
-  def set_breadcrumb
-    add_reference_breadcrumb(@reference)
+  def destroy
+    reference = Reference.find_by_id(params[:id])
+    application = reference.application
+    reference.destroy
+    redirect_to admin_application_path(application.id)
   end
 end

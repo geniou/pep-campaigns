@@ -3,7 +3,7 @@ require 'spec_helper'
 feature 'Admin application' do
 
   scenario 'Delete an application' do
-    campaign_with_application_and_references_exists
+    campaign_with_application_and_reference_exists
     admin_exists_and_is_logged_in
 
     visit_admin_campaign_page
@@ -14,7 +14,7 @@ feature 'Admin application' do
   let(:campaign) { create(:campaign) }
   let(:applicant) { create(:applicant_contact) }
 
-  def campaign_with_application_and_references_exists
+  def campaign_with_application_and_reference_exists
     create(:application, campaign: campaign, contact: applicant) do |application|
       create(:reference, application: application)
     end
