@@ -14,7 +14,6 @@ class Application < ActiveRecord::Base
   accepts_nested_attributes_for :contact
   belongs_to :campaign
   has_many :references
-  has_many :team_members
   has_many :answers
   has_many :applicant_answers,   class_name: Answer, include: :question, conditions: [ "questions.for = 'applicant'" ]
   has_many :application_answers, class_name: Answer, include: :question, conditions: [ "questions.for = 'application'" ]
