@@ -29,6 +29,13 @@ class Admin::ApplicationsController < Admin::BaseController
     end
   end
 
+  def destroy
+    application = Application.find(params[:id])
+    campaign = application.campaign
+    notice = application.destroy ? 'Antrag erfolgreich gelöscht.' : 'Fehler beim löschen des Antrag.'
+    redirect_to admin_campaign_path(campaign.id), notice: notice
+  end
+
   def export
     @application = Application.find_by_id(params[:application_id])
     respond_to do |format|

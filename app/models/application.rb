@@ -10,11 +10,11 @@ class Application < ActiveRecord::Base
   delegate :application_questions, :applicant_questions,
    :referee_questions, :reference_questions, to: :campaign
 
-  belongs_to :contact, class_name: Contact::Applicant
+  belongs_to :contact, class_name: Contact::Applicant, dependent: :destroy
   accepts_nested_attributes_for :contact
   belongs_to :campaign
-  has_many :references
-  has_many :answers
+  has_many :references, dependent: :destroy
+  has_many :answers, dependent: :destroy
   has_many :applicant_answers,   class_name: Answer, include: :question, conditions: [ "questions.for = 'applicant'" ]
   has_many :application_answers, class_name: Answer, include: :question, conditions: [ "questions.for = 'application'" ]
   accepts_nested_attributes_for :applicant_answers, :application_answers
