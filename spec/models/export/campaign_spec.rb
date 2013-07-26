@@ -41,35 +41,37 @@ describe Export::Campaign do
     end
 
     it 'contains all contacts' do
-      subject[1..-1].map { |c| c[0..2].join(' ') }.should =~ ['FN1 LN1 EM1', 'FN2 LN2 EM2']
+      values_at('Vorname').should == ['FN1', 'FN2']
+      values_at('Nachname').should == ['LN1', 'LN2']
+      values_at('E-Mail').should == ['EM1', 'EM2']
     end
 
     it 'contains answers to applicant questions' do
-      rows_at_column(3).should =~ ['Foo', ""]
+      values_at('Applicant question').should == ['Foo', '']
     end
 
     it 'contains answers to application questions' do
-      rows_at_column(4).should =~ ['Bar', ""]
+      values_at('Application question').should == ['Bar', '']
     end
 
     it 'contains number of references' do
-      rows_at_column(5).should =~ [1, 0]
+      values_at('Referenzen').should == [1, 0]
     end
 
     it 'contains if application is complete' do
-      rows_at_column(6).should =~ [false, false]
+      values_at('Fertig').should == [false, false]
     end
 
     it 'contains public summary path' do
-      rows_at_column(7).should =~ ['summary_1_url', 'summary_2_url']
+      values_at('öffentliche Auswertung').should == ['summary_1_url', 'summary_2_url']
     end
 
     it 'contains internal summary path' do
-      rows_at_column(8).should =~ ['admin_summary_1_url', 'admin_summary_2_url']
+      values_at('interne Auswertung').should == ['admin_summary_1_url', 'admin_summary_2_url']
     end
   end
 
-  def rows_at_column(column)
-    subject[1..-1].map { |c| c[column] }
+  def values_at(name)
+    subject[1..-1].map{ |row| row[subject[0].index(name)] }
   end
 end

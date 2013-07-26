@@ -6,16 +6,26 @@ describe Export::Application do
     subject { described_class.new(Application.first).data([]) }
     before do
       create(:campaign) do |campaign|
-        create(:text_question, for: :reference, campaign: campaign, text: 'Question 1') do |question|
-          create(:application, campaign: campaign) do |application|
-            create(:referee_contact, first_name: 'FN1', last_name: 'LN1', email: 'EM1') do |referee_contact|
-              create(:reference, application: application, contact: referee_contact) do |reference|
-                create(:answer, question: question, reference: reference, text_value: 'Answer Q1-1')
+        create(:text_question, for: :referee, campaign: campaign,
+                                                text: 'Question R1') do |referee_question|
+          create(:text_question, for: :reference, campaign: campaign,
+                                                  text: 'Question 1') do |reference_question|
+            create(:application, campaign: campaign) do |application|
+              create(:referee_contact, first_name: 'FN1', last_name: 'LN1', email: 'EM1') do |referee_contact|
+                create(:reference, application: application, contact: referee_contact) do |reference|
+                  create(:answer, question: referee_question, reference: reference,
+                                  text_value: 'Answer QR1-1')
+                  create(:answer, question: reference_question, reference: reference,
+                                  text_value: 'Answer Q1-1')
+                end
               end
-            end
-            create(:referee_contact, first_name: 'FN2', last_name: 'LN2', email: 'EM2') do |referee_contact|
-              create(:reference, application: application, contact: referee_contact) do |reference|
-                create(:answer, question: question, reference: reference, text_value: 'Answer Q1-2')
+              create(:referee_contact, first_name: 'FN2', last_name: 'LN2', email: 'EM2') do |referee_contact|
+                create(:reference, application: application, contact: referee_contact) do |reference|
+                  create(:answer, question: referee_question, reference: reference,
+                                  text_value: 'Answer QR1-2')
+                  create(:answer, question: reference_question, reference: reference,
+                                  text_value: 'Answer Q1-2')
+                end
               end
             end
           end
@@ -25,12 +35,21 @@ describe Export::Application do
     end
 
     it 'returns all contacts' do
-      subject.map{ |e| e[0..2].join(',') }.should =~ [
-        'First name,Last name,eMail', 'FN1,LN1,EM1', 'FN2,LN2,EM2']
+      values_at('First name').should == ['FN1', 'FN2']
+      values_at('Last name').should == ['LN1', 'LN2']
+      values_at('eMail').should == ['EM1', 'EM2']
     end
 
-    it 'returns all answers' do
-      subject.map{ |e| e[3] }.should =~ ['Question 1', 'Answer Q1-1', 'Answer Q1-2']
+    it 'returns all referee answers' do
+      values_at('Question R1').should == ['Answer QR1-1', 'Answer QR1-2']
     end
+
+    it 'returns all reference answers' do
+      values_at('Question 1').should == ['Answer Q1-1', 'Answer Q1-2']
+    end
+  end
+
+  def values_at(name)
+    subject[1..-1].map{ |row| row[subject[0].index(name)] }
   end
 end

@@ -8,7 +8,10 @@ class Export::Application < Export::Base
 
   def data(export)
     head = ['First name', 'Last name', 'eMail']
-    reference_question.each do |answer|
+    referee_questions.each do |answer|
+      head << answer.text
+    end
+    reference_questions.each do |answer|
       head << answer.text
     end
     export << head
@@ -19,7 +22,10 @@ class Export::Application < Export::Base
         reference.contact.last_name,
         reference.contact.email,
       ]
-      reference_question.each do |question|
+      referee_questions.each do |question|
+        row << answers[question.id].to_s
+      end
+      reference_questions.each do |question|
         row << answers[question.id].to_s
       end
       export << row
@@ -29,7 +35,11 @@ class Export::Application < Export::Base
 
   private
 
-  def reference_question
+  def referee_questions
+    application.referee_questions.all
+  end
+
+  def reference_questions
     application.reference_questions.all
   end
 end
