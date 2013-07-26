@@ -2,6 +2,7 @@ class Contact::Applicant < Contact
   has_many :applications
 
   attr_accessor :password
+
   before_save :encrypt_password
 
   validates_confirmation_of :password

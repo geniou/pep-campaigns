@@ -20,7 +20,7 @@ class Admin::QuestionsController < Admin::BaseController
   end
 
   def create
-    @question = @campaign.questions.new(params[:question])
+    @question = @campaign.questions.new(question_params)
     save_question(@question, :new)
   end
 
@@ -62,5 +62,10 @@ class Admin::QuestionsController < Admin::BaseController
     else
       render action: action
     end
+  end
+
+  def question_params
+    params.require(:question).permit(:text, :for, :type, { options: [] }, :position, :required,
+                                     :hint, :hide_on_summary)
   end
 end

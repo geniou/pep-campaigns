@@ -1,10 +1,7 @@
 require 'hashed_id'
 
 class Reference < ActiveRecord::Base
-
   include HashedId
-
-  attr_accessible :contact_attributes, :referee_answers_attributes, :reference_answers_attributes
 
   delegate :referee_questions, :reference_questions, to: :campaign
 
@@ -13,8 +10,12 @@ class Reference < ActiveRecord::Base
   belongs_to :campaign
   belongs_to :application
   has_many :answers
-  has_many :referee_answers,   class_name: Answer, include: :question, conditions: [ "questions.for = 'referee'" ]
-  has_many :reference_answers, class_name: Answer, include: :question, conditions: [ "questions.for = 'reference'" ]
+  has_many :referee_answers,
+    -> { includes(:question).where("questions.for = 'referee'").references(:question) },
+    class_name: Answer
+  has_many :reference_answers,
+    -> { includes(:question).where("questions.for = 'reference'").references(:question) },
+    class_name: Answer
   accepts_nested_attributes_for :referee_answers, :reference_answers
 
   validates_associated :contact, :referee_answers, :reference_answers

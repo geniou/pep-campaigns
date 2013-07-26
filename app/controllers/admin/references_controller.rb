@@ -14,7 +14,7 @@ class Admin::ReferencesController < Admin::BaseController
   def update
     @reference = Reference.find_by_id(params[:id])
     add_reference_breadcrumb(@reference)
-    if @reference.update_attributes(params[:reference])
+    if @reference.update_attributes(reference_params)
       redirect_to admin_reference_path(@reference.id), notice: "Angaben erfolgreich bearbeitet."
     else
       render :edit
@@ -26,5 +26,11 @@ class Admin::ReferencesController < Admin::BaseController
     application = reference.application
     reference.destroy
     redirect_to admin_application_path(application.id)
+  end
+
+  private
+
+  def reference_params
+    params.require(:reference).permit!
   end
 end

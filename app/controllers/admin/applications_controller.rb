@@ -22,7 +22,7 @@ class Admin::ApplicationsController < Admin::BaseController
   def update
     @application = Application.find(params[:id])
     @campaign = @application.campaign
-    if @application.update_attributes(params[:application])
+    if @application.update_attributes(applicaion_params)
       redirect_to admin_application_path(@application.id), notice: "Angaben erfolgreich bearbeitet."
     else
       render :edit
@@ -48,5 +48,11 @@ class Admin::ApplicationsController < Admin::BaseController
     @summary = Summary.new(@application)
     add_application_breadcrumb(@application)
     add_breadcrumb('Auswertung Referenzen')
+  end
+
+  private
+
+  def applicaion_params
+    params.require(:application).permit!
   end
 end

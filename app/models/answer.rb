@@ -1,6 +1,4 @@
 class Answer < ActiveRecord::Base
-  attr_accessible :text_value, :numeric_value, :boolean_value, :question_id
-
   belongs_to :question
   belongs_to :application
   belongs_to :reference

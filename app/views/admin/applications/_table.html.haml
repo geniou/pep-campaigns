@@ -23,6 +23,6 @@
           %td= application.complete?
           %td= l application.created_at
           %td= l application.updated_at
-          %td= button_to 'löschen', admin_application_path(application.id), confirm: 'Sicher?', method: :delete
+          %td= button_to 'löschen', admin_application_path(application.id), data: { confirm: 'Sicher?' }, method: :delete
 - else
   %p Es gibt noch keine Anträge

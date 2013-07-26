@@ -2,29 +2,20 @@ require 'hashed_id'
 
 class Campaign < ActiveRecord::Base
   include HashedId
-
-  attr_accessible :name, :applicant_introduction_text, :application_introduction_text,
-    :application_credits_text, :application_success_text, :referee_introduction_text,
-    :reference_success_text, :required_reference_count, :open_to_applicants, :open_to_referees,
-    :references_received_mail_from, :references_received_mail_subject, :references_received_mail_text
   has_many :questions
   has_many :applications
   has_many :applicant_questions,
-    class_name: 'Question',
-    conditions: { for: :applicant },
-    order: :position
+    -> { where(for: :applicant).order(:position) },
+    class_name: 'Question'
   has_many :application_questions,
-    class_name: 'Question',
-    conditions: { for: :application },
-    order: :position
+    -> { where(for: :application).order(:position) },
+    class_name: 'Question'
   has_many :referee_questions,
-    class_name: 'Question',
-    conditions: { for: :referee },
-    order: :position
+    -> { where(for: :referee).order(:position) },
+    class_name: 'Question'
   has_many :reference_questions,
-    class_name: 'Question',
-    conditions: { for: :reference },
-    order: :position
+    -> { where(for: :reference).order(:position) },
+    class_name: 'Question'
 
   validates_presence_of :name
   validates :required_reference_count, numericality: { only_integer: true, greater_than: 0 }

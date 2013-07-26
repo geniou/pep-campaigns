@@ -73,7 +73,7 @@ class Summary
     Answer
       .includes(:reference)
       .where('"references"."application_id" = ? and "answers"."question_id" = ?',
-             @application.id, question.id)
+             @application.id, question.id).references(:reference)
   end
 
   def _answers(question)

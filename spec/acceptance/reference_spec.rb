@@ -16,7 +16,7 @@ feature "Reference" do
 
   def application_with_question_exists
     @campaign = create(:campaign, referee_introduction_text: 'Introduction text')
-    @application = create(:application, :campaign => @campaign)
+    @application = create(:application, campaign: @campaign)
     @campaign.reference_questions << create(:text_question, for: :reference, text: 'Question 1')
   end
 
@@ -38,5 +38,4 @@ feature "Reference" do
 
     Contact::Referee.first.last_name.should == 'Person'
   end
-
 end

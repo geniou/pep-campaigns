@@ -15,7 +15,7 @@ class ApplicationsController < ApplicationController
   end
 
   def create
-    @application = Application.new(params[:application])
+    @application = Application.new(application_params)
     @application.campaign = @campaign
     if @application.save
       redirect_to edit_campaign_application_path(@campaign, @application)
@@ -33,7 +33,7 @@ class ApplicationsController < ApplicationController
   end
 
   def update
-    if @application.update_attributes(params[:application])
+    if @application.update_attributes(application_params)
       redirect_to success_campaign_application_path(@campaign, @application)
     else
       render :edit
@@ -43,7 +43,7 @@ class ApplicationsController < ApplicationController
   def success
   end
 
-private
+  private
 
   def find_campaign
     @campaign = Campaign.find_by_hashed_id(params[:campaign_id]) || raise(ActionController::RoutingError.new("Not Found"))
@@ -60,4 +60,7 @@ private
     @application.campaign = @campaign
   end
 
+  def application_params
+    params.require(:application).permit!
+  end
 end

@@ -1,11 +1,7 @@
 require 'hashed_id'
 
 class Application < ActiveRecord::Base
-
   include HashedId
-
-  attr_accessible :name, :contact_attributes, :applicant_answers_attributes,
-    :application_answers_attributes
 
   delegate :application_questions, :applicant_questions,
    :referee_questions, :reference_questions, to: :campaign
@@ -15,8 +11,12 @@ class Application < ActiveRecord::Base
   belongs_to :campaign
   has_many :references, dependent: :destroy
   has_many :answers, dependent: :destroy
-  has_many :applicant_answers,   class_name: Answer, include: :question, conditions: [ "questions.for = 'applicant'" ]
-  has_many :application_answers, class_name: Answer, include: :question, conditions: [ "questions.for = 'application'" ]
+  has_many :applicant_answers,
+    -> { includes(:question).where("questions.for = 'applicant'").references(:question) },
+    class_name: Answer
+  has_many :application_answers,
+    -> { includes(:question).where("questions.for = 'application'").references(:question) },
+    class_name: Answer
   accepts_nested_attributes_for :applicant_answers, :application_answers
 
   validates_associated :answers, :contact

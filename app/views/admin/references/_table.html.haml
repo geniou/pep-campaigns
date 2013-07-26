@@ -11,6 +11,6 @@
         %tr
           %td= link_to reference.contact.name, admin_reference_path(reference)
           %td= l reference.created_at
-          %td= button_to 'löschen', admin_reference_path(reference), confirm: 'Sicher?', method: :delete
+          %td= button_to 'löschen', admin_reference_path(reference), data: { confirm: 'Sicher?' }, method: :delete
 - else
   %p Es gibt noch keine Referenzen für diesen Antrag

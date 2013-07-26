@@ -19,7 +19,7 @@ class ReferencesController < ApplicationController
   end
 
   def create
-    @reference = Reference.new(params[:reference])
+    @reference = Reference.new(reference_params)
     @reference.campaign = @campaign
     @reference.application = @application
     if !@reference.save
@@ -35,7 +35,7 @@ class ReferencesController < ApplicationController
   def success
   end
 
-private
+  private
 
   def find_application
     @application = Application.find_by_hashed_id(params[:application_id]) || raise(ActionController::RoutingError.new("Not Found"))
@@ -51,4 +51,7 @@ private
     @campaign = Campaign.find_by_hashed_id(params[:campaign_id]) || raise(ActionController::RoutingError.new("Not Found"))
   end
 
+  def reference_params
+    params.require(:reference).permit!
+  end
 end

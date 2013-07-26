@@ -27,13 +27,13 @@ describe ReferencesController do
 
       @reference_contact = FactoryGirl.create(:contact)
       @application = FactoryGirl.create(:application)
-      @params = { :campaign_id => @application.campaign.hashed_id,
-                  :application_id => @application.hashed_id,
-                  :reference => {
-                    :contact_attributes => {
-                      :email => @reference_contact.email,
-                      :last_name => @reference_contact.last_name,
-                      :first_name => @reference_contact.first_name
+      @params = { campaign_id: @application.campaign.hashed_id,
+                  application_id: @application.hashed_id,
+                  reference: {
+                    contact_attributes: {
+                      email: @reference_contact.email,
+                      last_name: @reference_contact.last_name,
+                      first_name: @reference_contact.first_name
                     }
                   }
                 }

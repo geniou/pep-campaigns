@@ -36,10 +36,10 @@ class Export::Application < Export::Base
   private
 
   def referee_questions
-    application.referee_questions.all
+    application.referee_questions
   end
 
   def reference_questions
-    application.reference_questions.all
+    application.reference_questions
   end
 end
