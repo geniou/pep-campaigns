@@ -2,14 +2,14 @@ PepCampaigns::Application.routes.draw do
 
   devise_for :admins
 
-  root :to => 'root#index'
+  root to: 'root#index'
 
-  resources :campaigns, :constraints => { :id => /[^\/]+/ } do
-    resources :applications, :constraints => { :id => /[^\/]+/ } do
+  resources :campaigns, constraints: { id: /[^\/]+/ } do
+    resources :applications, constraints: { id: /[^\/]+/ } do
       member do
         get :success
       end
-      resources :references, :constraints => { :id => /[^\/]+/ } do
+      resources :references, constraints: { id: /[^\/]+/ } do
         member do
           get :success
         end
@@ -20,9 +20,9 @@ PepCampaigns::Application.routes.draw do
   resources :summaries
 
   namespace :admin do
-    root :to => 'campaigns#index'
+    root to: 'campaigns#index'
 
-    resources :campaigns, :constraints => { :id => /[^\/]+/ } do
+    resources :campaigns, constraints: { id: /[^\/]+/ } do
       get :export
       resources :questions
     end
@@ -37,5 +37,4 @@ PepCampaigns::Application.routes.draw do
       put :show_on_summary
     end
   end
-
 end
