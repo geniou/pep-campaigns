@@ -26,6 +26,7 @@ end
 
 group :development do
   gem 'erd'
+  gem 'travis'
 end
 
 group :production do
