@@ -9,6 +9,7 @@ test:
   encoding: unicode
   database: pep-campaigns_test
   min_messages: warning
+  <%= "username: postgres" if ENV['TRAVIS'] %>
 
 production:
   adapter: postgresql

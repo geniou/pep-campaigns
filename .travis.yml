@@ -1,0 +1,8 @@
+language: ruby
+rvm:
+  - 2.0.0-p247
+before_script:
+  - psql -c 'create database "pep-campaigns_test";' -U postgres
+  - bin/rake db:schema:load
+script:
+  - bin/rake spec
