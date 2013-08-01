@@ -37,9 +37,9 @@ class Admin::ApplicationsController < Admin::BaseController
   end
 
   def export
-    @application = Application.find_by_id(params[:application_id])
+    application = Application.find_by_id(params[:application_id])
     respond_to do |format|
-      format.csv { send_data Export::Application.new(@application).to_csv }
+      format.csv { send_data Export::Applications.new([application]).to_csv }
     end
   end
 

@@ -11,9 +11,16 @@ class Admin::CampaignsController < Admin::BaseController
   end
 
   def export
-    @campaign = Campaign.find(params[:campaign_id])
+    campaign = Campaign.find(params[:campaign_id])
     respond_to do |format|
-      format.csv { send_data Export::Campaign.new(@campaign).to_csv }
+      format.csv { send_data Export::Campaign.new(campaign).to_csv }
+    end
+  end
+
+  def export_references
+    campaign = Campaign.find(params[:campaign_id])
+    respond_to do |format|
+      format.csv { send_data Export::Applications.new(campaign.applications).to_csv }
     end
   end
 

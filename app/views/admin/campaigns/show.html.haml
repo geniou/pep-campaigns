@@ -2,7 +2,8 @@
 
 - add_subnavigation_item 'Fragen anzeigen', admin_campaign_questions_path(@campaign.id)
 - add_subnavigation_item 'Bewerber-Formular (Schritt 1)', new_campaign_application_url(@campaign)
-- add_subnavigation_item "Export", admin_campaign_export_path(@campaign.id, format: :csv)
+- add_subnavigation_item "Export Bewerber", admin_campaign_export_path(@campaign.id, format: :csv)
+- add_subnavigation_item "Export Referenzen", admin_campaign_export_references_path(@campaign.id, format: :csv)
 - add_subnavigation_item "bearbeiten", edit_admin_campaign_path(@campaign.id)
 
 = render :partial => "admin/applications/table", :locals => { :applications => @campaign.applications }

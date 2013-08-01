@@ -24,6 +24,7 @@ PepCampaigns::Application.routes.draw do
 
     resources :campaigns, constraints: { id: /[^\/]+/ } do
       get :export
+      get :export_references
       resources :questions
     end
     resources :applications do

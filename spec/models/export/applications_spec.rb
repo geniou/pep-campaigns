@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Export::Application do
+describe Export::Applications do
 
   describe 'data' do
-    subject { described_class.new(Application.first).data([]) }
+    subject { described_class.new([Application.first]).data([]) }
     before do
       create(:campaign) do |campaign|
         create(:text_question, for: :referee, campaign: campaign,
